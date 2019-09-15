@@ -1,0 +1,48 @@
+{
+  "name": "run-log",
+  "version": "1.0.0",
+  "description": "HackerYou Fullstack Masterclass Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "react-scripts test",
+    "start:server": "nodemon api/server.js --ignore client",
+    "start:client": "react-scripts start",
+    "build:client": "react-scripts build",
+    "git:remote:set": "git remote set-url origin https://github.com/derekmurr/run-log.git",
+    "git:remote:create": "git remote add origin https://github.com/derekmurr/run-log.git"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derekmurr/run-log.git"
+  },
+  "keywords": [],
+  "author": "Derek Murr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HackerYou/con-ed-full-stack/issues"
+  },
+  "homepage": "https://github.com/HackerYou/con-ed-full-stack#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "eslint": "^5.12.0",
+    "express": "^4.16.4",
+    "init-package-json": "^1.10.3",
+    "mongoose": "^5.6.11",
+    "nodemon": "^1.19.1",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-router-dom": "^5.0.0"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "proxy": "http://localhost:4000",
+  "semistandard": {
+    "ignore": [
+      "build/**"
+    ]
+  }
+}
