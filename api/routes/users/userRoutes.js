@@ -3,17 +3,17 @@
 const express = require('express');
 const router = express.Router();
 
-const bookService = require('./bookService');
+const userService = require('./userService');
 
-// GET /books/
+// GET /users/
 router.route('/')
   .get(async (req, res, next) => {
     try {
-      // 1. Fetch all books from database
-      const books = await bookService.listBooks();
-      // 2. Respond with list of books
+      // 1. Fetch all users from database
+      const users = await userService.listUsers();
+      // 2. Respond with list of users
       res.status(200).send({
-        data: books,
+        data: users,
       });
     } catch (e) {
       // 3. If error, send to the error handler
@@ -21,7 +21,7 @@ router.route('/')
     }
   });
 
-// POST /books/
+// POST /users/
 router.route('/')
   .post(async (req, res, next) => {
     // 1. Get data from request body
@@ -36,13 +36,13 @@ router.route('/')
       }
     */
     // Play around with the destructuring if you would like the request to be sent in a different way
-    const { bookData } = req.body;
+    const { userData } = req.body;
     try {
-      // 2. Create book from data
-      const book = await bookService.createBook(bookData);
-      // 3. Respond with created book
+      // 2. Create user from data
+      const user = await userService.createUser(userData);
+      // 3. Respond with created user
       res.status(200).send({
-        data: [book],
+        data: [user],
       });
     } catch (e) {
       // 4. If error, send to the error handler

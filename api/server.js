@@ -9,7 +9,7 @@ const http = require('http');
 const router = express();
 
 // 2. Require routes
-const { router: bookRoutes } = require('./routes/books/bookRoutes');
+const { router: userRoutes } = require('./routes/users/userRoutes');
 
 // 3. Require conatants
 const { URL, PORT } = require('./utils/constants');
@@ -19,7 +19,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 // 5. Utilise routes
-router.use('/api/books', bookRoutes);
+router.use('/api/users', userRoutes);
 
 // 6. Create a server from express instance
 const server = http.createServer(router);
