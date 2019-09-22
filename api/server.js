@@ -4,12 +4,15 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const express = require('express');
 const http = require('http');
+const { applyMiddleware } = require('./utils');
+const middleWare = require('./middleware');
 
 // 1. Create main express intance
 const router = express();
 
 // 2. Require routes
 const { router: userRoutes } = require('./routes/users/userRoutes');
+const { router: runRoutes } = require('./routes/runs/runRoutes');
 
 // 3. Require conatants
 const { URL, PORT } = require('./utils/constants');
@@ -18,13 +21,17 @@ const { URL, PORT } = require('./utils/constants');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
-// 5. Utilise routes
-router.use('/api/users', userRoutes);
+// 5. Apply all our middleware
+applyMiddleware(middleWare, router);
 
-// 6. Create a server from express instance
+// 6. Utilise routes
+router.use('/api/users', userRoutes);
+router.use('/api/runs', runRoutes);
+
+// 7. Create a server from express instance
 const server = http.createServer(router);
 
-// 7. Start server
+// 8. Start server
 mongoose
   .connect(URL, { useNewUrlParser: true })
   .then(async () => {

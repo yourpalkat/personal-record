@@ -23,10 +23,12 @@
   },
   "homepage": "https://github.com/HackerYou/con-ed-full-stack#readme",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "eslint": "^6.1.0",
     "express": "^4.16.4",
     "init-package-json": "^1.10.3",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.11",
     "nodemon": "^1.19.1",
     "react": "^16.8.4",
