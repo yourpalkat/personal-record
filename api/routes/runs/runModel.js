@@ -13,10 +13,10 @@ const runSchema = new Schema({
     type: Number,
     required: true
   },
-  // date: {
-  //   type: Date,
-  //   required: true
-  // },
+  date: {
+    type: Date,
+    required: true
+  },
   userId: {
     type: String,
     required: true
