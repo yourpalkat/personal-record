@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const runService = require('./runService');
+const requireAuth = require('../../middleware/auth');
 
 router.route('/new')
   .post(async (req, res, next) => {
@@ -17,12 +18,23 @@ router.route('/new')
   });
 
 router.route('/')
-  .post(async (req, res, next) => {
+  .get(requireAuth, async (req, res, next) => {
     try {
-      // Need to send currently logged in user's id to listRuns({ userId: $id }) or some such
-      const allRuns = await runService.listRuns(req.body.data);
-      res.status(201).json({
-        data: [allRuns]
+      const allRuns = await runService.listRuns();
+      res.status(200).send({
+        data: allRuns
+      });
+    } catch (e) {
+      next(e);
+    }
+  });
+
+router.route('/:id')
+  .get(requireAuth, async (req, res, next) => {
+    try {
+      const run = await runServices.getRunById(req.params.id);
+      res.status(200).send({
+        data: run
       });
     } catch (e) {
       next(e);

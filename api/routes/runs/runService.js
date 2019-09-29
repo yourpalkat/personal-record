@@ -18,11 +18,21 @@ exports.createRun = async (runData) => {
 };
 
 // List all runs from a particular user
-exports.listRuns = async (query) => {
+exports.listRuns = async () => {
   try {
-    const allRuns = Run.find(query);
+    const allRuns = await Run.find({});
     return allRuns;
   } catch (e) {
     throw e;
   }
 };
+
+// Get a particular run by id
+exports.getRunById = async (runId) => {
+  try {
+    const run = await Run.findById(runId);
+    return run;
+  } catch (e) {
+    throw e;
+  }
+}

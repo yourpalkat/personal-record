@@ -25,7 +25,8 @@ router.route('/login')
         const token = await tokenService.issueToken(user);
         res.status(200).json({
           data: {
-            token
+            token,
+            user
           }
         })
       } else {

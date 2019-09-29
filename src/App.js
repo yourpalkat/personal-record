@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import Login from './components/Login';
+import LoginWrapper from './components/LoginWrapper';
 import Dashboard from './components/Dashboard';
 import './App.css';
 
@@ -9,9 +8,38 @@ class App extends Component {
     super();
     this.state = {
       isLoggedIn: false,
+      showLogin: true,
       userId: '',
-      firstName: ''
+      firstName: '',
+      // loginActive: false,
+      token: {}
     }
+  }
+  // toggleLogin = () => this.setState(prevState => ({ showLogin: !prevState.showLogin }));
+
+  hideLogin = () => {
+    this.setState({
+      showLogin: false
+    })
+  }
+
+  setUser = (token, userId, firstName) => {
+    this.setState({
+      isLoggedIn: true,
+      userId,
+      firstName,
+      token
+    });
+  }
+
+  logOut = (e) => {
+    e.preventDefault();
+    this.setState({
+      isLoggedIn: false,
+      showLogin: true,
+      firstName: '', 
+      token: {}
+    })
   }
 
   render () {
@@ -21,7 +49,9 @@ class App extends Component {
           <p>
             It's a website
           </p>
-          {!this.state.isLoggedIn ? <Login /> : <Dashboard userId={this.state.userId} userName={this.state.firstName} />}
+          {this.state.showLogin && <LoginWrapper hideLogin={this.hideLogin} setUser={this.setUser} />}
+          
+          {this.state.isLoggedIn && <Dashboard userId={this.state.userId} userName={this.state.firstName} logOut={this.logOut} />}
         </header>
       </div>
     );
