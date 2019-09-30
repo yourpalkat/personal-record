@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { setToken } from '../services/tokenService';
+import { setToken } from '../../services/tokenService';
+
+import './Login.css';
 
 const Login = ({setUser, hideLogin}) => {
   const [message, setMessage] = useState(null);
@@ -36,12 +38,14 @@ const Login = ({setUser, hideLogin}) => {
   }
 
   return (
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      <form autoComplete='off' onSubmit={handleSubmit}>
         <h4>Please log in to continue</h4>
-        <input name="email" type="email" placeholder="email" onChange={handleChange} />
-        <input name="password" type="password" placeholder="password" onChange={handleChange} />
-        <button type="submit" onClick={handleSubmit}>Log in</button>
-        <button small onClick={hideLogin}>Cancel</button>
+        <input name='email' type='email' placeholder='email' onChange={handleChange} required />
+        <label htmlFor='email'>Email address</label>
+        <input name='password' type='password' placeholder='password' onChange={handleChange} required />
+        <label htmlFor='password'>Password</label>
+        <button className='cancel' onClick={hideLogin}>Cancel</button>
+        <button className='submit' type='submit' onClick={handleSubmit}>Log in</button>
         {message && <p>Sorry, your login or password was incorrect!</p>}
       </form>
   );

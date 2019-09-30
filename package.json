@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "react-scripts test",
+    "start:mongo": "mongod --config /usr/local/etc/mongod.conf",
     "start:server": "nodemon api/server.js --ignore client",
     "start:client": "react-scripts start",
     "build:client": "react-scripts build",

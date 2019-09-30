@@ -1,0 +1,47 @@
+form {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 0;
+}
+
+input {
+  display: block;
+  appearance: none;
+  margin: 2rem auto 0;
+  font-size: 1.0rem;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin: 0.5rem 0 0;
+  color: darkslategray;
+  font-size: 0.9rem;
+  text-align: left;
+  padding-left: 0.5rem;
+}
+
+h4 {
+  color: darkslategray;
+}
+
+.cancel, .submit {
+  appearance: none;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  padding: 0.5rem 2rem;
+  margin: 2rem 1rem;
+}
+.submit {
+  color: gainsboro;
+  background-color: darkslategray;
+  border: none;
+}
+.cancel {
+  color: darkslategray;
+  background-color: gainsboro;
+  border: 1px solid darkslategray;
+}

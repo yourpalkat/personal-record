@@ -1,0 +1,31 @@
+header {
+  background-color: #282c34;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.header-wrapper {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.login {
+  appearance: none;
+  padding: 0;
+  border: none;
+  color: white;
+  background-color: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.login:hover,
+.login:focus {
+  text-decoration: underline;
+}
+
+.header-wrapper p {
+  font-size: 1rem;
+}

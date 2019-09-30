@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import LoginWrapper from './components/LoginWrapper';
-import Dashboard from './components/Dashboard';
+import LoginWrapper from './components/Login/LoginWrapper';
+import Dashboard from './components/Dashboard/Dashboard';
+import Header from './components/Header/Header';
 import './App.css';
 
 class App extends Component {
@@ -18,7 +19,13 @@ class App extends Component {
   hideLogin = () => {
     this.setState({
       showLogin: false
-    })
+    });
+  }
+
+  showLogin = () => {
+    this.setState({
+      showLogin: true
+    });
   }
 
   setUser = (token, userId, firstName) => {
@@ -43,15 +50,14 @@ class App extends Component {
 
   render () {
     return (
-      <div className='App'>
-        <header className='App-header'>
-          <p>
-            It's a website
-          </p>
-          {this.state.showLogin && <LoginWrapper hideLogin={this.hideLogin} setUser={this.setUser} />}
-          
-          {this.state.isLoggedIn && <Dashboard userId={this.state.userId} userName={this.state.firstName} logOut={this.logOut} />}
-        </header>
+      <div className='app'>
+        {this.state.showLogin && <LoginWrapper hideLogin={this.hideLogin} setUser={this.setUser} />}
+        <Header isLoggedIn={this.state.isLoggedIn} firstName={this.state.firstName} logOut={this.logOut} showLogin={this.showLogin} />
+        <main>
+          <div className='wrapper'>
+            {this.state.isLoggedIn && <Dashboard userId={this.state.userId} userName={this.state.firstName} />}
+          </div>
+        </main>
       </div>
     );
   }

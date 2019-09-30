@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { setToken } from '../services/tokenService';
+import { setToken } from '../../services/tokenService';
+
+import './Login.css';
 
 const Signup = ({ hideLogin, setUser }) => {
 
@@ -44,18 +46,20 @@ const Signup = ({ hideLogin, setUser }) => {
   }
 
   return (
-    <div className="wrapper">
-      <form autoComplete="off" onSubmit={handleSubmit}>
-        <h4>Please sign up to continue</h4>
-        <input name="email" type="email" placeholder="email" onChange={handleChange} />
-        <input name="password" type="password" placeholder="password" onChange={handleChange} />
-        <input name="firstName" type="text" placeholder="first name" onChange={handleChange} />
-        <input name="lastName" type="text" placeholder="last name" onChange={handleChange} />
+    <form autoComplete='off' onSubmit={handleSubmit}>
+      <h4>Please sign up to continue</h4>
+      <input name='email' type='email' placeholder='email' onChange={handleChange} />
+      <label htmlFor='email'>Email address</label>
+      <input name='password' type='password' placeholder='password' onChange={handleChange} />
+      <label htmlFor='password'>Password</label>
+      <input name='firstName' type='text' placeholder='first name' onChange={handleChange} />
+      <label htmlFor='firstName'>First name</label>
+      <input name='lastName' type='text' placeholder='last name' onChange={handleChange} />
+      <label htmlFor='lastName'>Last name</label>
 
-        <button type="submit" onClick={handleSubmit}>Sign up</button>
-        <button onClick={hideLogin}>cancel</button>
-      </form>
-    </div>
+      <button className='cancel' onClick={hideLogin}>cancel</button>
+      <button className='submit' type='submit' onClick={handleSubmit}>Sign up</button>
+    </form>
   )
 }
 

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { getToken } from '../services/tokenService';
+import { getToken } from '../../services/tokenService';
+
+import './Dashboard.css';
 
 const Dashboard = (props) => {
   const [runs, setRuns] = useState([]);
@@ -27,17 +29,16 @@ const Dashboard = (props) => {
 
   const userName = props.userName;
   return(
-    <section>
-      <div>
-        Hello, {userName}
-        <button onClick={props.logOut}>Log out</button>
-      </div>
-      <div>
+    <section className='dashboard'>
+      <h2>
+        {userName}’s workouts
+      </h2>
+      <div className='workout-grid'>
         {runs.map(run => {
           return (
-            <div>
+            <div className='workout'>
               <p>{run.workoutType}</p>
-              <p>{run.distance}</p>
+              <p>{run.distance}km</p>
             </div>
           )
         })}

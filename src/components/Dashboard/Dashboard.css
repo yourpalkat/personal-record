@@ -1,0 +1,25 @@
+.dashboard {
+  padding: 8rem 0 6rem;
+}
+.dashboard h2 {
+  text-align: left;
+  font-size: 2.2rem;
+  color: darkslategray;
+}
+
+.workout-grid {
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.workout {
+  border-radius: 6px;
+  padding: 1.5rem;
+  background-color: #282c34;
+}
+
+.workout p {
+  color: gainsboro;
+  font-size: 1.1rem;
+}
