@@ -39,7 +39,7 @@ const Signup = ({ hideLogin, setUser }) => {
       hideLogin();
     } catch (e) {
       setMessage(e);
-      console.log(e);
+      console.log(message);
     }
   }
 

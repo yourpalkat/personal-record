@@ -11,11 +11,9 @@ class App extends Component {
       showLogin: true,
       userId: '',
       firstName: '',
-      // loginActive: false,
       token: {}
     }
   }
-  // toggleLogin = () => this.setState(prevState => ({ showLogin: !prevState.showLogin }));
 
   hideLogin = () => {
     this.setState({
@@ -37,7 +35,8 @@ class App extends Component {
     this.setState({
       isLoggedIn: false,
       showLogin: true,
-      firstName: '', 
+      firstName: '',
+      userId: '',
       token: {}
     })
   }

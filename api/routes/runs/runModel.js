@@ -23,7 +23,7 @@ const runSchema = new Schema({
   },
   workoutType: {
     type: String,
-    enum: ['Default', 'Easy', 'Hills', 'Tempo', 'Intervals'],
+    enum: ['Default', 'Easy', 'Hills', 'Tempo', 'Intervals', 'Long'],
     required: true
   },
   notes: {
