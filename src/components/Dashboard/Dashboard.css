@@ -19,7 +19,38 @@
   background-color: #282c34;
 }
 
-.workout p {
+.workout p, .workout time {
   color: gainsboro;
   font-size: 1.1rem;
+}
+
+.more {
+  appearance: none;
+  background-color: darkslategray;
+  border: none;
+  border-radius: 6px;
+  color: gainsboro;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.5rem;
+}
+.more:hover,
+.more:focus {
+  text-decoration: underline;
+}
+
+.add-new-button {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: darkslategray;
+}
+.add-new-button:hover,
+.add-new-button:focus {
+  text-decoration: underline;
 }

@@ -21,12 +21,17 @@
 }
 .login-tabs button {
   appearance: none;
+  cursor: pointer;
   padding: 0.5rem 2rem;
   background-color: darkslategray;
   color: gainsboro;
   border-radius: 6px 6px 0 0;
   border: none;
   font-size: 1.2rem;
+}
+.login-tabs button:hover,
+.login-tabs button:focus {
+  text-decoration: underline;
 }
 .login-tabs button.active {
   background-color: gainsboro;

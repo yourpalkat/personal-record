@@ -30,10 +30,17 @@ h4 {
 
 .cancel, .submit {
   appearance: none;
+  cursor: pointer;
   font-size: 1.2rem;
   border-radius: 6px;
   padding: 0.5rem 2rem;
   margin: 2rem 1rem;
+}
+.cancel:hover,
+.cancel:focus,
+.submit:hover,
+.submit:focus {
+  text-decoration: underline;
 }
 .submit {
   color: gainsboro;

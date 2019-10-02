@@ -12,8 +12,8 @@ const LoginWrapper = ({hideLogin, setUser}) => {
     <div className='login-modal'>
       <div className='login-wrapper'>
         <div className='login-tabs'>
-          <button onClick={() => setType('login')} className={type === 'login' && 'active'}>Login</button>
-          <button onClick={() => setType('signup')} className={type === 'signup' && 'active'}>Sign up</button>
+          <button onClick={() => setType('login')} className={type === 'login' ? 'active' : undefined}>Login</button>
+          <button onClick={() => setType('signup')} className={type === 'signup' ? 'active' : undefined}>Sign up</button>
         </div>
         <div className='login-body'>
           {type === 'login' && <Login hideLogin={hideLogin} setUser={setUser} />} 
