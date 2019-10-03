@@ -32,7 +32,7 @@ router.route('/')
 router.route('/run/:id')
   .get(requireAuth, async (req, res, next) => {
     try {
-      const run = await runServices.getRunById(req.params.id);
+      const run = await runService.getRunById(req.params.id);
       res.status(200).send({
         data: run
       });
@@ -40,5 +40,19 @@ router.route('/run/:id')
       next(e);
     }
   });
+
+router.route('/delete')
+  .delete(requireAuth, async (req, res, next) => {
+    try {
+      const run = await runService.deleteRun(req.body.data[id]);
+      if (run) {
+        res.status(204).send('record deleted');
+      } else {
+        res.status(404).send('record not found');
+      }
+    } catch (e) {
+      next(e);
+    }
+  })
 
 exports.router = router;

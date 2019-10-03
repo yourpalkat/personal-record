@@ -36,3 +36,13 @@ exports.getRunById = async (runId) => {
     throw e;
   }
 }
+
+// Find and delete a particular run by id
+exports.deleteRun = async(runId) => {
+  try {
+    const run = await Run.findByIdAndDelete(runId);
+    return run;
+  } catch (e) {
+    throw e;
+  }
+}
