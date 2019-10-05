@@ -44,6 +44,7 @@ class AddNew extends Component {
           notes: this.state.notes
         }
       });
+      console.log(`Created new record: ${res}`);
       this.props.setShowAddNew(false);
     } catch (e) {
       this.setState({ message: e });

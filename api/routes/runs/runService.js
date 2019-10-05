@@ -46,3 +46,13 @@ exports.deleteRun = async(runId) => {
     throw e;
   }
 }
+
+// Find and edit a particular run by id
+exports.editRun = async (runId, update) => {
+  try {
+    const run = await Run.findByIdAndUpdate(runId, update);
+    return run;
+  } catch (e) {
+    throw e;
+  }
+}

@@ -17,6 +17,18 @@ router.route('/new')
     }
   });
 
+router.route('/edit')
+  .post(requireAuth, async (req, res, next) => {
+    try {
+      const run = await runService.editRun(req.body.headers.runId, req.body.data);
+      res.status(201).json({
+        data: [run]
+      });
+    } catch (e) {
+      next(e);
+    }
+  });
+
 router.route('/')
   .post(requireAuth, async (req, res, next) => {
     try {

@@ -22,7 +22,7 @@ const Dashboard = (props) => {
           'userId': id
         }
       });
-      setRuns(res.data.data);
+      setRuns(res.data.data.sort((a, b) => a.date - b.date ));
     } catch (e) {
       console.error(e);
     }
