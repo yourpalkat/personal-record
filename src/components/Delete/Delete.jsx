@@ -1,20 +1,14 @@
 import React from 'react';
-import { getToken } from '../../services/tokenService';
+import axios from 'axios';
 
-const Delete = ({ cancel, hideMoreInfo }) => {
-  const handleDelete = () => {
+const Delete = ({ cancel, finishDelete, run }) => {
+  const handleDelete = async () => {
     try {
-      const id = run._id;
-      const res = await axios.post(`/api/runs/delete/`, {
-        headers: {
-          'Authorization': `Bearer ${getToken()}`
-        },
-        data: {
-          'id': id
-        }
-      });
-      console.log(`Deleted run id ${res.data.data.id}`);
-      hideMoreInfo();
+      console.log(run._id);
+      const res = await axios.delete(`/api/runs/delete/${run._id}`);
+      console.log(`Deleted: ${res}`);
+      finishDelete();
+      cancel();
     } catch (e) {
       console.error(e);
     }

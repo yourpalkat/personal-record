@@ -41,10 +41,10 @@ router.route('/run/:id')
     }
   });
 
-router.route('/delete')
-  .delete(requireAuth, async (req, res, next) => {
+router.route('/delete/:id')
+  .delete(async (req, res, next) => {
     try {
-      const run = await runService.deleteRun(req.body.data[id]);
+      const run = await runService.deleteRun(req.params.id);
       if (run) {
         res.status(204).send('record deleted');
       } else {
