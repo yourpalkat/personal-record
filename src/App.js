@@ -31,6 +31,7 @@ class App extends Component {
   setUser = (token, userId, firstName) => {
     this.setState({
       isLoggedIn: true,
+      showLogin: false,
       userId,
       firstName,
       token
@@ -45,7 +46,7 @@ class App extends Component {
       firstName: '',
       userId: '',
       token: {}
-    })
+    });
   }
 
   render () {

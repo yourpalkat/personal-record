@@ -22,7 +22,15 @@ const Dashboard = (props) => {
           'userId': id
         }
       });
-      setRuns(res.data.data.sort((a, b) => a.date - b.date ));
+      const sortedRuns = res.data.data;
+      sortedRuns.sort((a, b) => {
+        if (a.date > b.date) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+      setRuns(sortedRuns);
     } catch (e) {
       console.error(e);
     }

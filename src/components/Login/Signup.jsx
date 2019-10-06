@@ -48,13 +48,13 @@ const Signup = ({ hideLogin, setUser }) => {
   return (
     <form autoComplete='off' onSubmit={handleSubmit}>
       <h4>Please sign up to continue</h4>
-      <input name='email' type='email' placeholder='email' onChange={handleChange} />
+      <input name='email' type='email' placeholder='email' required onChange={handleChange} />
       <label htmlFor='email'>Email address</label>
-      <input name='password' type='password' placeholder='password' onChange={handleChange} />
+      <input name='password' type='password' placeholder='password' required onChange={handleChange} />
       <label htmlFor='password'>Password</label>
-      <input name='firstName' type='text' placeholder='first name' onChange={handleChange} />
+      <input name='firstName' type='text' placeholder='first name' required onChange={handleChange} />
       <label htmlFor='firstName'>First name</label>
-      <input name='lastName' type='text' placeholder='last name' onChange={handleChange} />
+      <input name='lastName' type='text' placeholder='last name' required onChange={handleChange} />
       <label htmlFor='lastName'>Last name</label>
 
       <button className='cancel' onClick={hideLogin}>cancel</button>

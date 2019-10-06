@@ -7,12 +7,21 @@ exports.createUser = async (userData) => {
   // 1. Create a user instance
   const user = new User(userData);
   try {
-    // 2. Save user to database
-    const newUser = await user.save();
-    // 3. return with created user
-    return newUser;
+    // 2. Make sure new user's email does not exist in db, as they have to be unique
+    // I've commented this out because not only is it not working, it's breaking the sign-up function
+    // const checkEmail = userData.email;
+    // const [checkUser] = await User.find({ checkEmail });
+    // if (!checkUser) {
+      // 3. Save user to database
+      const newUser = await user.save();
+      // 4. return with created user
+      return newUser;
+    // } else {
+    //   const error = 'That email address is already in use! Please use another, or login.';
+    //   return error;
+    // }
   } catch (e) {
-    // 4. If error, throw and controller will catch
+    // 5. If error, throw and controller will catch
     throw e;
   }
 };
