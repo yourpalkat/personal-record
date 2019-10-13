@@ -9,11 +9,15 @@ const runSchema = new Schema({
     type: Number,
     required: true
   },
-  elapsedTime: {
-    type: Number,
+  title: {
+    type: String,
     required: true
   },
-  date: {
+  start: {
+    type: Date,
+    required: true
+  },
+  end: {
     type: Date,
     required: true
   },
@@ -23,7 +27,7 @@ const runSchema = new Schema({
   },
   workoutType: {
     type: String,
-    enum: ['Default', 'Easy', 'Hills', 'Tempo', 'Intervals', 'Long'],
+    enum: ['Default', 'Easy', 'Hills', 'Tempo', 'Intervals', 'Long', 'Race'],
     required: true
   },
   notes: {

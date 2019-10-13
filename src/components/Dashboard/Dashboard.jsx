@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Moment from 'react-moment';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import moment from 'moment';
 import { getToken } from '../../services/tokenService';
 import ShowMore from '../ShowMore/ShowMore';
 import AddNew from '../AddNew/AddNew';
 import './Dashboard.css';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const Dashboard = (props) => {
+  const localizer = momentLocalizer(moment);
   const [runs, setRuns] = useState([]);
   const [selectedRun, setSelectedRun] = useState({});
   const [isShowMoreVisible, setIsShowMoreVisible] = useState(false);
@@ -58,16 +61,15 @@ const Dashboard = (props) => {
       </h2>
       {showAddNew && <AddNew setShowAddNew={setShowAddNew} userId={props.userId} />}
       {isShowMoreVisible && <ShowMore run={selectedRun} hideMoreInfo={hideMoreInfo} />}
-      <div className='workout-grid'>
-        {runs.map(run => {
-          return (
-            <div className='workout' key={run._id}>
-              <Moment date={run.date} format='Do MMMM, YYYY' />
-              <p>{run.distance}km</p>
-              <button className='more' onClick={() => showMoreInfo(run)}>More...</button>
-            </div>
-          )
-        })}
+      <div className='calendar-container' style={{height: 700}}>
+        <Calendar 
+          localizer={localizer}
+          events={runs} 
+          step={30} 
+          defaultView='month' 
+          views={['month', 'week']} 
+          defaultDate={new Date()} 
+        />
       </div>
     </section>
   );

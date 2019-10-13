@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DateTimePicker from 'react-datetime-picker';
 import { getToken } from '../../services/tokenService';
+import moment from 'moment';
 
 import './AddNew.css';
 
@@ -10,8 +11,11 @@ class AddNew extends Component {
     super();
     this.state = {
       distance: 0,
-      elapsedTime: 0,
-      runDate: new Date(),
+      title: '',
+      elapsedHours: 0,
+      elapsedMinutes: 0,
+      elapsedSeconds: 0,
+      runStart: new Date(),
       workoutType: 'Default',
       notes: '',
       message: ''
@@ -25,11 +29,20 @@ class AddNew extends Component {
   }
 
   handleTimeChange = date => {
-    this.setState({ runDate: date });
+    this.setState({ runStart: date });
   }
 
   handleSubmit = async e => {
     e.preventDefault();
+    const runEnd = moment(this.state.runStart).add(this.state.elapsedHours, 'hours').add(this.state.elapsedMinutes, 'minutes').add(this.state.elapsedSeconds, 'seconds').toDate();
+
+    let assignedTitle = '';
+    if (!this.state.title) {
+      assignedTitle = `${this.state.distance}K ${this.state.workoutType}`;
+    } else {
+      assignedTitle = this.state.title;
+    }
+
     try {
       const res = await axios.post(`/api/runs/new`, {
         headers: {
@@ -37,8 +50,9 @@ class AddNew extends Component {
         },
         data: {
           distance: this.state.distance,
-          elapsedTime: this.state.elapsedTime,
-          date: this.state.runDate,
+          title: assignedTitle,
+          start: this.state.runStart,
+          end: runEnd,
           userId: this.props.userId,
           workoutType: this.state.workoutType,
           notes: this.state.notes
@@ -58,22 +72,30 @@ class AddNew extends Component {
         <div className='add-new-wrapper'>
           <h4>New Run</h4>
           <form autoComplete='off' onSubmit={this.handleSubmit}>
-            <input name='distance' id='distance' type='text' placeholder='distance' onChange={this.handleChange} />
+            <input name='distance' id='distance' type='number' placeholder='0' min='0' step='0.1' onChange={this.handleChange} value={this.state.distance} required />
             <label htmlFor='distance'>Distance (km)</label>
+
+            <input name='title' id='title' type='text' placeholder={`${this.state.distance}km ${this.state.workoutType}`} value={this.state.title} />
+            <label htmlFor='title'>Workout name</label>
   
-            <input name='elapsedTime' id='elapsedTime' type='text' placeholder='elapsed time' onChange={this.handleChange} />
-            <label htmlFor='elapsedTime'>Elapsed time</label>
+            <input name='elapsedHours' id='elapsedHours' type='number' placeholder='0' min='0' max='12' onChange={this.handleChange} value={this.state.elapsedHours} />
+            <label htmlFor='elapsedHours'>Hours</label>
+            <input name='elapsedMinutes' id='elapsedMinutes' type='number' placeholder='0' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedMinutes} />
+            <label htmlFor='elapsedMinutes'>Minutes</label>
+            <input name='elapsedSeconds' id='elapsedSeconds' type='number' placeholder='0' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedSeconds} />
+            <label htmlFor='elapsedSeconds'>Seconds</label>
   
-            <DateTimePicker name='runDate' id='runDate' onChange={this.handleTimeChange} value={this.state.runDate} />
+            <DateTimePicker name='runDate' id='runDate' onChange={this.handleTimeChange} value={this.state.runStart} />
             <label htmlFor='runDate'>Date &amp; time</label>
   
-            <select name='workoutType' id='workoutType' onChange={this.handleChange}>
+            <select name='workoutType' id='workoutType' onChange={this.handleChange} >
               <option value='Default'>Default</option>
               <option value='Easy'>Easy</option>
               <option value='Hills'>Hills</option>
               <option value='Tempo'>Tempo</option>
               <option value='Intervals'>Intervals</option>
               <option value='Long'>Long</option>
+              <option value='Race'>Race</option>
             </select>
             <label htmlFor='workoutType'>Workout type</label>
   

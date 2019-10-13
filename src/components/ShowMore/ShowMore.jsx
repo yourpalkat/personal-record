@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Moment from 'react-moment';
+import moment from 'moment';
 import Delete from '../Delete/Delete';
 import EditRun from '../EditRun/EditRun';
 import './ShowMore.css';
@@ -16,9 +17,11 @@ const ShowMore = ({ run, hideMoreInfo }) => {
   const displayRun = run;
 
   const updateDisplay = (newRun) => {
-    displayRun.date = newRun.date;
+    displayRun.date = newRun.start;
     displayRun.distance = newRun.distance;
-    displayRun.elapsedTime = newRun.elapsedTime;
+    const start = new moment(newRun.start);
+    var end = new moment(newRun.end);
+    displayRun.elapsedTime = moment.duration(start.diff(end));
     displayRun.workoutType = newRun.workoutType;
     displayRun.notes = newRun.notes;
   }
@@ -41,7 +44,8 @@ const ShowMore = ({ run, hideMoreInfo }) => {
                   <Moment date={displayRun.date} format='Do MMMM, YYYY'/>
                   <Moment date={displayRun.date} format='h:mm:ss a' />
                   <p>Distance: {displayRun.distance}km</p>
-                  <p>Elapsed time: {displayRun.elapsedTime} minutes</p>
+                  <p>Elapsed time:</p>
+                  <Moment duration={displayRun.elapsedTime} date={displayRun.date} />
                   <p>Workout type: {displayRun.workoutType}</p>
                   <p>Notes: {displayRun.notes}</p>
                   <div>
