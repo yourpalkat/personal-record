@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DateTimePicker from 'react-datetime-picker';
 import { getToken } from '../../services/tokenService';
+import moment from 'moment';
 
 import '../AddNew/AddNew.css';
 
@@ -11,9 +12,10 @@ class EditRun extends Component {
     this.state = {
       runId: this.props.run._id,
       userId: this.props.run.userId,
+      title: this.props.run.title,
       distance: this.props.run.distance,
-      elapsedTime: this.props.run.elapsedTime,
-      date: this.props.run.date,
+      start: this.props.run.start,
+      end: this.props.run.end,
       workoutType: this.props.run.workoutType,
       notes: this.props.run.notes,
       message: ''
@@ -32,6 +34,15 @@ class EditRun extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
+    const runEnd = moment(this.state.runStart).add(this.state.elapsedHours, 'hours').add(this.state.elapsedMinutes, 'minutes').add(this.state.elapsedSeconds, 'seconds').toDate();
+
+    let assignedTitle = '';
+    if (!this.state.title) {
+      assignedTitle = `${this.state.distance}K ${this.state.workoutType}`;
+    } else {
+      assignedTitle = this.state.title;
+    }
+
     try {
       const res = await axios.post(`/api/runs/edit`, {
         headers: {
@@ -40,8 +51,9 @@ class EditRun extends Component {
         },
         data: {
           distance: this.state.distance,
-          elapsedTime: this.state.elapsedTime,
-          date: this.state.date,
+          title: assignedTitle,
+          start: this.state.start,
+          end: runEnd,
           userId: this.state.userId,
           workoutType: this.state.workoutType,
           notes: this.state.notes
@@ -50,8 +62,9 @@ class EditRun extends Component {
 
       const newRun = {
         distance: this.state.distance,
-        elapsedTime: this.state.elapsedTime,
-        date: this.state.date,
+        title: assignedTitle,
+        start: this.state.start,
+        end: runEnd,
         userId: this.state.userId,
         workoutType: this.state.workoutType,
         notes: this.state.notes
@@ -72,13 +85,20 @@ class EditRun extends Component {
         <div className='add-new-wrapper'>
           <h4>Edit Run</h4>
           <form autoComplete='off' onSubmit={this.handleSubmit}>
-            <input name='distance' id='distance' type='text' placeholder='distance' onChange={this.handleChange} value={this.state.distance} />
+            <input name='distance' id='distance' type='number' min='0' step='0.1' onChange={this.handleChange} value={this.state.distance} />
             <label htmlFor='distance'>Distance (km)</label>
 
-            <input name='elapsedTime' id='elapsedTime' type='text' placeholder='elapsed time' onChange={this.handleChange} value={this.state.elapsedTime} />
-            <label htmlFor='elapsedTime'>Elapsed time</label>
+            <input name='title' id='title' type='text' value={this.state.title} onChange={this.handleChange} />
+            <label htmlFor='title'>Workout name</label>
 
-            <DateTimePicker name='runDate' id='runDate' onChange={this.handleTimeChange} value={this.state.date} />
+            <input name='elapsedHours' id='elapsedHours' type='number' min='0' max='12' onChange={this.handleChange} value={this.state.elapsedHours} />
+            <label htmlFor='elapsedHours'>Hours</label>
+            <input name='elapsedMinutes' id='elapsedMinutes' type='number' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedMinutes} />
+            <label htmlFor='elapsedMinutes'>Minutes</label>
+            <input name='elapsedSeconds' id='elapsedSeconds' type='number' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedSeconds} />
+            <label htmlFor='elapsedSeconds'>Seconds</label>
+
+            <DateTimePicker name='runDate' id='runDate' onChange={this.handleTimeChange} value={this.state.start} />
             <label htmlFor='runDate'>Date &amp; time</label>
 
             <select name='workoutType' id='workoutType' onChange={this.handleChange} value={this.state.workoutType}>
@@ -88,6 +108,7 @@ class EditRun extends Component {
               <option value='Tempo'>Tempo</option>
               <option value='Intervals'>Intervals</option>
               <option value='Long'>Long</option>
+              <option value='Race'>Race</option>
             </select>
             <label htmlFor='workoutType'>Workout type</label>
 

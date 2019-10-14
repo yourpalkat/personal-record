@@ -75,7 +75,7 @@ class AddNew extends Component {
             <input name='distance' id='distance' type='number' placeholder='0' min='0' step='0.1' onChange={this.handleChange} value={this.state.distance} required />
             <label htmlFor='distance'>Distance (km)</label>
 
-            <input name='title' id='title' type='text' placeholder={`${this.state.distance}km ${this.state.workoutType}`} value={this.state.title} />
+          <input name='title' id='title' type='text' placeholder={`${this.state.distance}km ${this.state.workoutType}`} value={this.state.title}   onChange={this.handleChange} />
             <label htmlFor='title'>Workout name</label>
   
             <input name='elapsedHours' id='elapsedHours' type='number' placeholder='0' min='0' max='12' onChange={this.handleChange} value={this.state.elapsedHours} />

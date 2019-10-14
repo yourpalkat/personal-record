@@ -15,13 +15,18 @@ const ShowMore = ({ run, hideMoreInfo }) => {
   }
 
   const displayRun = run;
+  let start = new moment(displayRun.start);
+  let end = new moment(displayRun.end);
+  displayRun.elapsedTime = moment.duration(end.diff(start));
+
 
   const updateDisplay = (newRun) => {
-    displayRun.date = newRun.start;
+    displayRun.start = newRun.start;
     displayRun.distance = newRun.distance;
-    const start = new moment(newRun.start);
-    var end = new moment(newRun.end);
-    displayRun.elapsedTime = moment.duration(start.diff(end));
+    displayRun.end = newRun.end;
+    start = new moment(newRun.start);
+    end = new moment(newRun.end);
+    displayRun.elapsedTime = moment.duration(end.diff(start));
     displayRun.workoutType = newRun.workoutType;
     displayRun.notes = newRun.notes;
   }
@@ -41,11 +46,9 @@ const ShowMore = ({ run, hideMoreInfo }) => {
                   <div className='close-wrap'>
                     <button className='close' onClick={hideMoreInfo}>Close</button>
                   </div>
-                  <Moment date={displayRun.date} format='Do MMMM, YYYY'/>
-                  <Moment date={displayRun.date} format='h:mm:ss a' />
+                  <Moment date={displayRun.start} format='Do MMMM, YYYY, h:mm a'/>
                   <p>Distance: {displayRun.distance}km</p>
-                  <p>Elapsed time:</p>
-                  <Moment duration={displayRun.elapsedTime} date={displayRun.date} />
+                  <p>Elapsed time: {displayRun.elapsedTime.format('h:mm:ss')}</p>
                   <p>Workout type: {displayRun.workoutType}</p>
                   <p>Notes: {displayRun.notes}</p>
                   <div>

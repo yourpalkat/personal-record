@@ -69,6 +69,7 @@ const Dashboard = (props) => {
           defaultView='month' 
           views={['month', 'week']} 
           defaultDate={new Date()} 
+          onSelectEvent={(event) => showMoreInfo(event)}
         />
       </div>
     </section>
