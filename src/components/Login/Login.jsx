@@ -4,7 +4,7 @@ import { setToken } from '../../services/tokenService';
 
 import './Login.css';
 
-const Login = ({setUser, hideLogin}) => {
+const Login = ({setUser}) => {
   const [message, setMessage] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,7 +30,6 @@ const Login = ({setUser, hideLogin}) => {
       setToken(token);
       setUser(token, res.data.data.user._id, res.data.data.user.firstName);
       setMessage(null);
-      hideLogin();
     } catch (e) {
       setMessage({ message: e });
       console.log(e);
@@ -44,7 +43,6 @@ const Login = ({setUser, hideLogin}) => {
         <label htmlFor='email'>Email address</label>
         <input name='password' type='password' placeholder='password' onChange={handleChange} required />
         <label htmlFor='password'>Password</label>
-        <button className='cancel' onClick={hideLogin}>Cancel</button>
         <button className='submit' type='submit' onClick={handleSubmit}>Log in</button>
         {message && <p>Sorry, your login or password was incorrect!</p>}
       </form>
