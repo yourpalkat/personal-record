@@ -3,13 +3,13 @@ import Header from '../Header/Header';
 
 import layoutStyles from './Layout.css';
 
-const Layout = ({ children, logOut, isLoggedIn, firstName }) => {
+const Layout = ({ children, logOut, isLoggedIn, user }) => {
   return (
     <div className={layoutStyles.wrapper}>
       <Header 
         logOut={logOut} 
         isLoggedIn={isLoggedIn} 
-        firstName={firstName} />
+        firstName={user.firstName} />
       <main role='main' id='main'>
         {children}
       </main>

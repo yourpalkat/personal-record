@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
 import Layout from './components/Layout/Layout';
-// import LoginWrapper from './components/Login/LoginWrapper';
 import Dashboard from './components/Dashboard/Dashboard';
+import AddNew from './components/AddNew/AddNew';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
-// import Header from './components/Header/Header';
 // import './App.css';
 
 class App extends Component {
@@ -13,29 +13,15 @@ class App extends Component {
     super();
     this.state = {
       isLoggedIn: false,
-      userId: '',
-      firstName: '',
+      user: {},
       token: {}
     }
   }
 
-  // hideLogin = () => {
-  //   this.setState({
-  //     showLogin: false
-  //   });
-  // }
-
-  // showLogin = () => {
-  //   this.setState({
-  //     showLogin: true
-  //   });
-  // }
-
-  setUser = (token, userId, firstName) => {
+  setUser = (token, user) => {
     this.setState({
       isLoggedIn: true,
-      userId,
-      firstName,
+      user,
       token
     });
   }
@@ -44,8 +30,7 @@ class App extends Component {
     e.preventDefault();
     this.setState({
       isLoggedIn: false,
-      firstName: '',
-      userId: '',
+      user: {},
       token: {}
     });
   }
@@ -56,16 +41,19 @@ class App extends Component {
         <Layout 
           logOut={this.logOut}
           isLoggedIn={this.state.isLoggedIn}
-          firstName={this.state.firstName} >
+          user={this.state.user} >
           <Switch>
+            <Route path="/login">
+              <Login setUser={this.setUser} user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
+            </Route>
+            <PrivateRoute path="/users/:userId" isLoggedIn={this.state.isLoggedIn}>
+              <Dashboard user={this.state.user} />
+            </PrivateRoute>
+            <PrivateRoute path="/users/:userId/runs/add" isLoggedIn={this.state.isLoggedIn}>
+              <AddNew user={this.state.user} />
+            </PrivateRoute>
             <Route exact path="/">
               <Home />
-            </Route>
-            <Route path="/login">
-              <Login setUser={this.setUser} />
-            </Route>
-            <Route path="/user/:userId">
-                <Dashboard userId={this.state.userId} userName={this.state.firstName} />
             </Route>
           </Switch>
         </Layout>

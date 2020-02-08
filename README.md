@@ -13,5 +13,17 @@ A simple log for anyone to sign up and keep a log of their running workouts and 
 - Users can see their rolling weekly/monthly total mileage, plus year-to-date and overall totals
 
 ## Stretch Goals
-- Can view another user's workouts by hitting the "/users/:username" endpoint, if and only if that user has set their preferences to public
 - Ability to import tcx files from running apps & watches
+- Plot those tcx files on a map using Leaflet
+- Ability to run reports on records
+
+## Route structure
+- Home: /
+- Login: /login
+- Signup: /signup
+- User: /users/:userId/profile
+- Dashboard: /users/:userId
+- Runs (all, list view): /users/:userId/runs
+- Run (individual, detail): /users/:userId/runs/:runId
+- Run (individual, edit): /users/:userId/runs/:runId/edit
+- Run (individual, add): /users/:userId/runs/add
