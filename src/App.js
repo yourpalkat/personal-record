@@ -6,6 +6,8 @@ import Dashboard from './components/Dashboard/Dashboard';
 import AddNew from './components/AddNew/AddNew';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
+import ShowRun from './components/ShowMore/ShowMore';
+import EditRun from './components/EditRun/EditRun';
 // import './App.css';
 
 class App extends Component {
@@ -14,7 +16,8 @@ class App extends Component {
     this.state = {
       isLoggedIn: false,
       user: {},
-      token: {}
+      token: {},
+      selectedRun: {},
     }
   }
 
@@ -26,12 +29,19 @@ class App extends Component {
     });
   }
 
+  setRun = (run) => {
+    this.setState({
+      selectedRun: run,
+    });
+  }
+
   logOut = (e) => {
     e.preventDefault();
     this.setState({
       isLoggedIn: false,
       user: {},
-      token: {}
+      token: {},
+      selectedRun: {},
     });
   }
 
@@ -46,11 +56,17 @@ class App extends Component {
             <Route path="/login">
               <Login setUser={this.setUser} user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
             </Route>
-            <PrivateRoute path="/users/:userId" isLoggedIn={this.state.isLoggedIn}>
-              <Dashboard user={this.state.user} />
-            </PrivateRoute>
             <PrivateRoute path="/users/:userId/runs/add" isLoggedIn={this.state.isLoggedIn}>
               <AddNew user={this.state.user} />
+            </PrivateRoute>
+            <PrivateRoute path="/users/:userId/runs/:runId/edit" isLoggedIn={this.state.isLoggedIn}>
+              <EditRun user={this.state.user} />
+            </PrivateRoute>
+            <PrivateRoute path="/users/:userId/runs/:runId" isLoggedIn={this.state.isLoggedIn}>
+              <ShowRun user={this.state.user} run={this.state.selectedRun} setRun={this.setRun} />
+            </PrivateRoute>
+            <PrivateRoute path="/users/:userId" isLoggedIn={this.state.isLoggedIn}>
+              <Dashboard user={this.state.user} setRun={this.setRun} selectedRun={this.state.selectedRun} />
             </PrivateRoute>
             <Route exact path="/">
               <Home />

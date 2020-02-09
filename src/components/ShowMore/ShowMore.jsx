@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
 import moment from 'moment';
 import Delete from '../Delete/Delete';
-import EditRun from '../EditRun/EditRun';
 import './ShowMore.css';
 
-const ShowMore = ({ run, hideMoreInfo }) => {
+const ShowMore = ({ user, run, setRun }) => {
   const [showDelete, setShowDelete] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false);
-
-  const finishDelete = () => {
-    setIsDeleted(true);
-  }
 
   const displayRun = run;
   let start = new moment(displayRun.start);
@@ -33,40 +27,24 @@ const ShowMore = ({ run, hideMoreInfo }) => {
 
   return (
     <>
-      {showEdit ? (
-        <EditRun setShowEdit={setShowEdit} run={displayRun} updateDisplay={updateDisplay} />
-      ) : (
-        <div className='show-more-modal'>
-          {showDelete ? (
-            <Delete finishDelete={finishDelete} cancel={() => setShowDelete(false)} run={displayRun} />
-          ) : (
-            <div className='show-more-wrapper'>
-              {!isDeleted ? (
-                <>
-                  <div className='close-wrap'>
-                    <button className='close' onClick={hideMoreInfo}>Close</button>
-                  </div>
-                  <Moment date={displayRun.start} format='Do MMMM, YYYY, h:mm a'/>
-                  <p>Distance: {displayRun.distance}km</p>
-                  <p>Elapsed time: {displayRun.elapsedTime.format('h:mm:ss')}</p>
-                  <p>Workout type: {displayRun.workoutType}</p>
-                  <p>Notes: {displayRun.notes}</p>
-                  <div>
-                    <button className='cancel' onClick={() => setShowDelete(true)}>Delete run</button>
-                    <button className='cancel' onClick={() => setShowEdit(true)}>Edit run</button>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <p>Run deleted.</p>
-                  <div className='close-wrap'>
-                    <button className='close' onClick={hideMoreInfo}>Close</button>
-                  </div>
-                </>
-              )}
+      {!run._id ? <Redirect to={`/users/${user._id}`} /> : (
+        <>
+          {showDelete && <Delete setRun={setRun} cancel={() => setShowDelete(false)} run={displayRun} />}
+          <div className='show-more-wrapper'>
+            <div className='close-wrap'>
+              <button onClick={() => setRun({})}>Close</button>
             </div>
-          )}
-        </div>
+            <Moment date={displayRun.start} format='Do MMMM, YYYY, h:mm a'/>
+            <p>Distance: {displayRun.distance}km</p>
+            <p>Elapsed time: {displayRun.elapsedTime.format('h:mm:ss')}</p>
+            <p>Workout type: {displayRun.workoutType}</p>
+            <p>Notes: {displayRun.notes}</p>
+            <div>
+              <button className='cancel' onClick={() => setShowDelete(true)}>Delete run</button>
+              <Link to={`users/${user._id}/runs/${run._id}/edit`}>Edit run</Link>
+            </div>
+          </div>
+        </>
       )}
     </>
   );
