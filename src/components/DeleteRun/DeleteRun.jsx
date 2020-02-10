@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import './DeleteRun.scss';
+import deleteStyles from './DeleteRun.module.scss';
 
 const Delete = ({ closeModal, setRun, run }) => {
   const handleDelete = async () => {
@@ -17,8 +17,8 @@ const Delete = ({ closeModal, setRun, run }) => {
   }
 
   return (
-    <div className='modal-outer'>
-      <div className='modal-inner'>
+    <div className={deleteStyles.modalOuter}>
+      <div className={deleteStyles.modalInner}>
         <h4>Are you sure you want to delete this run?</h4>
         <p>This cannot be undone.</p>
         <button className='cancel' onClick={closeModal}>Cancel</button>

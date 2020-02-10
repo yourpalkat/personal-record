@@ -1,4 +1,4 @@
-.modal-outer {
+.modalOuter {
   background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
   top: 0;
@@ -11,7 +11,7 @@
   z-index: 10;
 }
 
-.modal-inner {
+.modalInner {
   width: 50%;
   max-width: 500px;
   border-radius: 6px;
