@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import { getToken } from '../../services/tokenService';
-import ShowMore from '../ShowMore/ShowMore';
-import AddNew from '../AddNew/AddNew';
 import './Dashboard.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-const Dashboard = (props) => {
+const Dashboard = ({ user, setRun, selectedRun, location }) => {
   const localizer = momentLocalizer(moment);
   const [runs, setRuns] = useState([]);
-  const [selectedRun, setSelectedRun] = useState({});
-  const [isShowMoreVisible, setIsShowMoreVisible] = useState(false);
-  const [showAddNew, setShowAddNew] = useState(false);
 
   const fetchRuns = async (id) => {
     try {
@@ -40,39 +36,35 @@ const Dashboard = (props) => {
   }
 
   useEffect(() => {
-    fetchRuns(props.userId);
-  }, [props.userId, runs]);
+    fetchRuns(user._id);
+  }, [user._id, runs]);
 
-  const showMoreInfo = (run) => {
-    setSelectedRun(run);
-    setIsShowMoreVisible(true);
+  const selectRun = (run) => {
+    setRun(run);
   }
 
-  const hideMoreInfo = () => {
-    setSelectedRun({});
-    setIsShowMoreVisible(false);
-  }
-
-  const userName = props.userName;
   return(
-    <section className='dashboard'>
-      <h2>
-        {userName}’s workouts | <button className='add-new-button' onClick={() => setShowAddNew(true)}>Add New Run</button>
-      </h2>
-      {showAddNew && <AddNew setShowAddNew={setShowAddNew} userId={props.userId} />}
-      {isShowMoreVisible && <ShowMore run={selectedRun} hideMoreInfo={hideMoreInfo} />}
-      <div className='calendar-container' style={{height: 700}}>
-        <Calendar 
-          localizer={localizer}
-          events={runs} 
-          step={30} 
-          defaultView='month' 
-          views={['month', 'week']} 
-          defaultDate={new Date()} 
-          onSelectEvent={(event) => showMoreInfo(event)}
-        />
-      </div>
-    </section>
+    <>
+      {selectedRun._id ? <Redirect to={`/users/${user._id}/runs/${selectedRun._id}`} /> : (
+
+      <section className='dashboard'>
+        <h2>
+          {user.firstName}’s workouts | <Link to={`${location}/runs/add`}>Add New Run</Link>
+        </h2>
+        <div className='calendar-container' style={{height: 700}}>
+          <Calendar 
+            localizer={localizer}
+            events={runs} 
+            step={30} 
+            defaultView='month' 
+            views={['month', 'week']} 
+            defaultDate={new Date()} 
+            onSelectEvent={(event) => selectRun(event)}
+          />
+        </div>
+      </section>
+      )}
+    </>
   );
 }
 

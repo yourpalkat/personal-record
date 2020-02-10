@@ -1,40 +1,38 @@
 import React, { Component } from 'react';
-import LoginWrapper from './components/Login/LoginWrapper';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
+import Layout from './components/Layout/Layout';
 import Dashboard from './components/Dashboard/Dashboard';
-import Header from './components/Header/Header';
-import './App.css';
+import AddNew from './components/AddNew/AddNew';
+import Home from './components/Home/Home';
+import Login from './components/Login/Login';
+import Signup from './components/Signup/Signup';
+import RunDetail from './components/RunDetail/RunDetail';
+import EditRun from './components/EditRun/EditRun';
+// import './App.scss';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       isLoggedIn: false,
-      showLogin: true,
-      userId: '',
-      firstName: '',
-      token: {}
+      user: {},
+      token: {},
+      selectedRun: {},
     }
   }
 
-  hideLogin = () => {
-    this.setState({
-      showLogin: false
-    });
-  }
-
-  showLogin = () => {
-    this.setState({
-      showLogin: true
-    });
-  }
-
-  setUser = (token, userId, firstName) => {
+  setUser = (token, user) => {
     this.setState({
       isLoggedIn: true,
-      showLogin: false,
-      userId,
-      firstName,
+      user,
       token
+    });
+  }
+
+  setRun = (run) => {
+    this.setState({
+      selectedRun: run,
     });
   }
 
@@ -42,24 +40,44 @@ class App extends Component {
     e.preventDefault();
     this.setState({
       isLoggedIn: false,
-      showLogin: true,
-      firstName: '',
-      userId: '',
-      token: {}
+      user: {},
+      token: {},
+      selectedRun: {},
     });
   }
 
   render () {
     return (
-      <div className='app'>
-        {this.state.showLogin && <LoginWrapper hideLogin={this.hideLogin} setUser={this.setUser} />}
-        <Header isLoggedIn={this.state.isLoggedIn} firstName={this.state.firstName} logOut={this.logOut} showLogin={this.showLogin} />
-        <main>
-          <div className='wrapper'>
-            {this.state.isLoggedIn && <Dashboard userId={this.state.userId} userName={this.state.firstName} />}
-          </div>
-        </main>
-      </div>
+      <Router>
+        <Layout 
+          logOut={this.logOut}
+          isLoggedIn={this.state.isLoggedIn}
+          user={this.state.user} >
+          <Switch>
+            <Route path="/login">
+              <Login setUser={this.setUser} user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
+            </Route>
+            <Route path="/signup">
+              <Signup setUser={this.setUser} user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
+            </Route>
+            <PrivateRoute path="/users/:userId/runs/add" isLoggedIn={this.state.isLoggedIn}>
+              <AddNew user={this.state.user} />
+            </PrivateRoute>
+            <PrivateRoute path="/users/:userId/runs/:runId/edit" isLoggedIn={this.state.isLoggedIn}>
+              <EditRun user={this.state.user} run={this.state.selectedRun} setRun={this.setRun} />
+            </PrivateRoute>
+            <PrivateRoute path="/users/:userId/runs/:runId" isLoggedIn={this.state.isLoggedIn}>
+              <RunDetail user={this.state.user} run={this.state.selectedRun} setRun={this.setRun} />
+            </PrivateRoute>
+            <PrivateRoute path="/users/:userId" isLoggedIn={this.state.isLoggedIn}>
+              <Dashboard user={this.state.user} setRun={this.setRun} selectedRun={this.state.selectedRun} />
+            </PrivateRoute>
+            <Route exact path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Layout>
+       </Router>
     );
   }
 }

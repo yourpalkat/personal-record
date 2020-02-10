@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import DateTimePicker from 'react-datetime-picker';
 import { getToken } from '../../services/tokenService';
@@ -18,7 +19,8 @@ class EditRun extends Component {
       end: this.props.run.end,
       workoutType: this.props.run.workoutType,
       notes: this.props.run.notes,
-      message: ''
+      message: '',
+      redirect: false,
     }
   }
 
@@ -69,10 +71,9 @@ class EditRun extends Component {
         workoutType: this.state.workoutType,
         notes: this.state.notes
       }
-      this.props.updateDisplay(newRun);
-
+      this.props.setRun(newRun);
       console.log(`Edited record: ${res}`);
-      this.props.setShowEdit(false);
+      this.setState({ redirect: true });
     } catch (e) {
       this.setState({ message: e });
       console.log(this.state.message);
@@ -81,7 +82,10 @@ class EditRun extends Component {
 
   render() {
     return (
-      <div className='add-new-modal'>
+      <>
+        {this.state.redirect ? (
+          <Redirect to={`/users/${this.props.user._id}`} />
+        ) : (
         <div className='add-new-wrapper'>
           <h4>Edit Run</h4>
           <form autoComplete='off' onSubmit={this.handleSubmit}>
@@ -115,11 +119,12 @@ class EditRun extends Component {
             <textarea name='notes' id='notes' onChange={this.handleChange} value={this.state.notes} />
             <label htmlFor='notes'>Notes</label>
 
-            <button className='cancel' onClick={() => this.props.setShowEdit(false)}>Cancel</button>
+            <button className='cancel' onClick={() => this.setState({ redirect: true })}>Cancel</button>
             <button className='submit' type='submit' onClick={this.handleSubmit}>Save</button>
           </form>
         </div>
-      </div>
+      )}
+      </>
     );
   }
 }

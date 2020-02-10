@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { setToken } from '../../services/tokenService';
 
-import './Login.css';
+import './Login.scss';
 
-const Login = ({setUser, hideLogin}) => {
+const Login = ({ setUser, user, isLoggedIn }) => {
   const [message, setMessage] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,9 +29,8 @@ const Login = ({setUser, hideLogin}) => {
       });
       const token = res.data.data.token;
       setToken(token);
-      setUser(token, res.data.data.user._id, res.data.data.user.firstName);
+      setUser(token, res.data.data.user);
       setMessage(null);
-      hideLogin();
     } catch (e) {
       setMessage({ message: e });
       console.log(e);
@@ -38,16 +38,21 @@ const Login = ({setUser, hideLogin}) => {
   }
 
   return (
-      <form autoComplete='off' onSubmit={handleSubmit}>
-        <h4>Please log in to continue</h4>
-        <input name='email' type='email' placeholder='email' onChange={handleChange} required />
-        <label htmlFor='email'>Email address</label>
-        <input name='password' type='password' placeholder='password' onChange={handleChange} required />
-        <label htmlFor='password'>Password</label>
-        <button className='cancel' onClick={hideLogin}>Cancel</button>
-        <button className='submit' type='submit' onClick={handleSubmit}>Log in</button>
-        {message && <p>Sorry, your login or password was incorrect!</p>}
-      </form>
+    <>
+      {isLoggedIn ? (
+        <Redirect to={`users/${user._id}`} />
+      ) : (
+        <form autoComplete='off' onSubmit={handleSubmit}>
+          <h4>Please log in to continue</h4>
+          <input name='email' type='email' placeholder='email' onChange={handleChange} required />
+          <label htmlFor='email'>Email address</label>
+          <input name='password' type='password' placeholder='password' onChange={handleChange} required />
+          <label htmlFor='password'>Password</label>
+          <button className='submit' type='submit' onClick={handleSubmit}>Log in</button>
+          {message && <p>Sorry, your login or password was incorrect!</p>}
+        </form>
+      )}
+    </>
   );
 }
 
