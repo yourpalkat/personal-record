@@ -1,13 +1,6 @@
-body {
-  background-color: gainsboro;
-}
-
-.app {
-  text-align: center;
-}
-
-.wrapper {
-  width: 100%;
-  max-width: 1024px;
-  margin: 0 auto;
-}
+@import './styles/normalize.scss';
+@import './styles/mixins.scss';
+@import './styles/functions.scss';
+@import './styles/variables.scss';
+@import './styles/typography.scss';
+@import './styles/global.scss';

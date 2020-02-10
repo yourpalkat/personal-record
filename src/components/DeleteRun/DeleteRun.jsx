@@ -21,8 +21,8 @@ const Delete = ({ closeModal, setRun, run }) => {
       <div className={deleteStyles.modalInner}>
         <h4>Are you sure you want to delete this run?</h4>
         <p>This cannot be undone.</p>
-        <button className='cancel' onClick={closeModal}>Cancel</button>
-        <button className='submit' onClick={handleDelete}>Yes, delete</button>
+        <button className={deleteStyles.cancel} onClick={closeModal}>Cancel</button>
+        <button className={deleteStyles.confirm} onClick={handleDelete}>Yes, delete</button>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header/Header';
 
-import layoutStyles from './Layout.css';
+import layoutStyles from './Layout.module.scss';
 
 const Layout = ({ children, logOut, isLoggedIn, user }) => {
   return (

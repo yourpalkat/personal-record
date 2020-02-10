@@ -1,0 +1,35 @@
+/* Mixins
+========================================================================== */
+
+/* MEDIA QUERIES */
+@mixin respond-to($breakpoint) {
+  @if $breakpoint== 'mobile-xsmall' {
+    @media (max-width: 320px) {
+      @content;
+    }
+  } @else if $breakpoint== 'mobile-small' {
+    @media (max-width: 375px) {
+      @content;
+    }
+  } @else if $breakpoint== 'mobile' {
+    @media (max-width: 749px) {
+      @content;
+    }
+  } @else if $breakpoint== 'tablet' {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  } @else if $breakpoint== 'desktop' {
+    @media (max-width: 1450px) {
+      @content;
+    }
+  } @else if $breakpoint== 'xlarge' {
+    @media (min-width: 1451px) {
+      @content;
+    }
+  } @else {
+    @media ($breakpoint) {
+      @content;
+    }
+  }
+}

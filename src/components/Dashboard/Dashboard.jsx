@@ -4,8 +4,10 @@ import axios from 'axios';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import { getToken } from '../../services/tokenService';
-import './Dashboard.css';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
+import dashStyles from './Dashboard.module.scss';
+// import 'react-big-calendar/lib/css/react-big-calendar.css';
+import 'react-big-calendar/lib/sass/styles.scss';
+import './CalendarEventStyles.scss';
 
 const Dashboard = ({ user, setRun, selectedRun, location }) => {
   const localizer = momentLocalizer(moment);
@@ -46,23 +48,25 @@ const Dashboard = ({ user, setRun, selectedRun, location }) => {
   return(
     <>
       {selectedRun._id ? <Redirect to={`/users/${user._id}/runs/${selectedRun._id}`} /> : (
-
-      <section className='dashboard'>
-        <h2>
-          {user.firstName}’s workouts | <Link to={`${location}/runs/add`}>Add New Run</Link>
-        </h2>
-        <div className='calendar-container' style={{height: 700}}>
-          <Calendar 
-            localizer={localizer}
-            events={runs} 
-            step={30} 
-            defaultView='month' 
-            views={['month', 'week']} 
-            defaultDate={new Date()} 
-            onSelectEvent={(event) => selectRun(event)}
-          />
+        <div className='gridWrapper'>
+          <section className={dashStyles.dashboard}>
+            <h2>
+              {user.firstName}’s workouts <Link to={`${location}/runs/add`} className={dashStyles.addNewLink}>Add New Run</Link>
+            </h2>
+            <div className={dashStyles.calendarContainer} style={{height: 700}}>
+              <Calendar 
+                localizer={localizer}
+                events={runs} 
+                step={30} 
+                defaultView='month' 
+                views={['month', 'week']} 
+                defaultDate={new Date()} 
+                onSelectEvent={(event) => selectRun(event)}
+                eventPropGetter={(event) => { return { className: `${event.workoutType}Run`} }}
+              />
+            </div>
+          </section>
         </div>
-      </section>
       )}
     </>
   );
