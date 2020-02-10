@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { setToken } from '../../services/tokenService';
 
-import './Login.css';
+import './Login.scss';
 
 const Login = ({ setUser, user, isLoggedIn }) => {
   const [message, setMessage] = useState(null);

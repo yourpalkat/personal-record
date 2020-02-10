@@ -1,6 +1,6 @@
 {
   "name": "run-log",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "HackerYou Fullstack Masterclass Project",
   "main": "index.js",
   "scripts": {
@@ -20,9 +20,9 @@
   "author": "Derek Murr",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/HackerYou/con-ed-full-stack/issues"
+    "url": "https://github.com/derekmurr/run-log/issues"
   },
-  "homepage": "https://github.com/HackerYou/con-ed-full-stack#readme",
+  "homepage": "https://github.com/derekmurr/run-log",
   "dependencies": {
     "axios": "^0.19.0",
     "bcryptjs": "^2.4.3",
@@ -34,6 +34,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "mongoose": "^5.6.11",
+    "node-sass": "^4.13.1",
     "nodemon": "^1.19.1",
     "react": "^16.8.4",
     "react-big-calendar": "^0.22.1",

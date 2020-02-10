@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import DateTimePicker from 'react-datetime-picker';
 import { getToken } from '../../services/tokenService';
@@ -72,46 +72,44 @@ class AddNew extends Component {
     return (
       <>
         {this.state.redirect ? (
-          <Redirect to={`users/${this.props.user._id}`} />
+          <Redirect to={`/users/${this.props.user._id}`} />
         ) : (
-          <div className='add-new-modal'>
-            <div className='add-new-wrapper'>
-              <h4>New Run</h4>
-              <form autoComplete='off' onSubmit={this.handleSubmit}>
-                <input name='distance' id='distance' type='number' placeholder='0' min='0' step='0.1' onChange={this.handleChange} value={this.state.distance} required />
-                <label htmlFor='distance'>Distance (km)</label>
+          <div className='add-new-wrapper'>
+            <h4>New Run</h4>
+            <form autoComplete='off' onSubmit={this.handleSubmit}>
+              <input name='distance' id='distance' type='number' placeholder='0' min='0' step='0.1' onChange={this.handleChange} value={this.state.distance} required />
+              <label htmlFor='distance'>Distance (km)</label>
 
-              <input name='title' id='title' type='text' placeholder={`${this.state.distance}km ${this.state.workoutType}`} value={this.state.title}   onChange={this.handleChange} />
-                <label htmlFor='title'>Workout name</label>
-      
-                <input name='elapsedHours' id='elapsedHours' type='number' placeholder='0' min='0' max='12' onChange={this.handleChange} value={this.state.elapsedHours} />
-                <label htmlFor='elapsedHours'>Hours</label>
-                <input name='elapsedMinutes' id='elapsedMinutes' type='number' placeholder='0' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedMinutes} />
-                <label htmlFor='elapsedMinutes'>Minutes</label>
-                <input name='elapsedSeconds' id='elapsedSeconds' type='number' placeholder='0' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedSeconds} />
-                <label htmlFor='elapsedSeconds'>Seconds</label>
-      
-                <DateTimePicker name='runDate' id='runDate' onChange={this.handleTimeChange} value={this.state.runStart} />
-                <label htmlFor='runDate'>Date &amp; time</label>
-      
-                <select name='workoutType' id='workoutType' onChange={this.handleChange} >
-                  <option value='Default'>Default</option>
-                  <option value='Easy'>Easy</option>
-                  <option value='Hills'>Hills</option>
-                  <option value='Tempo'>Tempo</option>
-                  <option value='Intervals'>Intervals</option>
-                  <option value='Long'>Long</option>
-                  <option value='Race'>Race</option>
-                </select>
-                <label htmlFor='workoutType'>Workout type</label>
-      
-                <textarea name='notes' id='notes' onChange={this.handleChange} />
-                <label htmlFor='notes'>Notes</label>
-      
-                <Link className='cancel' to={`users/${this.props.user._id}`}>Cancel</Link>
-                <button className='submit' type='submit' onClick={this.handleSubmit}>Add run</button>
-              </form>
-            </div>
+            <input name='title' id='title' type='text' placeholder={`${this.state.distance}km ${this.state.workoutType}`} value={this.state.title}   onChange={this.handleChange} />
+              <label htmlFor='title'>Workout name</label>
+    
+              <input name='elapsedHours' id='elapsedHours' type='number' placeholder='0' min='0' max='12' onChange={this.handleChange} value={this.state.elapsedHours} />
+              <label htmlFor='elapsedHours'>Hours</label>
+              <input name='elapsedMinutes' id='elapsedMinutes' type='number' placeholder='0' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedMinutes} />
+              <label htmlFor='elapsedMinutes'>Minutes</label>
+              <input name='elapsedSeconds' id='elapsedSeconds' type='number' placeholder='0' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedSeconds} />
+              <label htmlFor='elapsedSeconds'>Seconds</label>
+    
+              <DateTimePicker name='runDate' id='runDate' onChange={this.handleTimeChange} value={this.state.runStart} />
+              <label htmlFor='runDate'>Date &amp; time</label>
+    
+              <select name='workoutType' id='workoutType' onChange={this.handleChange} >
+                <option value='Default'>Default</option>
+                <option value='Easy'>Easy</option>
+                <option value='Hills'>Hills</option>
+                <option value='Tempo'>Tempo</option>
+                <option value='Intervals'>Intervals</option>
+                <option value='Long'>Long</option>
+                <option value='Race'>Race</option>
+              </select>
+              <label htmlFor='workoutType'>Workout type</label>
+    
+              <textarea name='notes' id='notes' onChange={this.handleChange} />
+              <label htmlFor='notes'>Notes</label>
+    
+              <button className='cancel' onClick={() => this.setState({redirect: true})}>Cancel</button>
+              <button className='submit' type='submit' onClick={this.handleSubmit}>Add run</button>
+            </form>
           </div>
         )}
       </>
