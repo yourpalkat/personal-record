@@ -5,7 +5,7 @@ import DateTimePicker from 'react-datetime-picker';
 import { getToken } from '../../services/tokenService';
 import moment from 'moment';
 
-import './AddNew.css';
+import addStyles from './AddNew.module.scss';
 
 class AddNew extends Component {
   constructor() {
@@ -74,9 +74,9 @@ class AddNew extends Component {
         {this.state.redirect ? (
           <Redirect to={`/users/${this.props.user._id}`} />
         ) : (
-          <div className='add-new-wrapper'>
-            <h4>New Run</h4>
-            <form autoComplete='off' onSubmit={this.handleSubmit}>
+          <div className='gridWrapper'>
+            <form autoComplete='off' onSubmit={this.handleSubmit} className={addStyles.addForm}>
+              <h4>New Run</h4>
               <input name='distance' id='distance' type='number' placeholder='0' min='0' step='0.1' onChange={this.handleChange} value={this.state.distance} required />
               <label htmlFor='distance'>Distance (km)</label>
 
@@ -107,8 +107,8 @@ class AddNew extends Component {
               <textarea name='notes' id='notes' onChange={this.handleChange} />
               <label htmlFor='notes'>Notes</label>
     
-              <button className='cancel' onClick={() => this.setState({redirect: true})}>Cancel</button>
-              <button className='submit' type='submit' onClick={this.handleSubmit}>Add run</button>
+              <button className={addStyles.cancel} onClick={() => this.setState({redirect: true})}>Cancel</button>
+              <button className={addStyles.submit} type='submit' onClick={this.handleSubmit}>Add run</button>
             </form>
           </div>
         )}
