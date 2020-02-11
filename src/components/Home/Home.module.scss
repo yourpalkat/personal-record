@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.header {
+  color: $white;
+  grid-column: 2 / -2;
+}
+
+.introText {
+  grid-column: 2 / -2;
+}

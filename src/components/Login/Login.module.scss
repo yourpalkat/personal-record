@@ -1,15 +1,18 @@
-form {
+@import '../../styles/variables.scss';
+
+.loginForm {
+  grid-column: 2 / -2;
   width: 100%;
   max-width: 400px;
   margin: 0 auto 0;
 }
 
-input {
+.loginForm input {
   display: block;
   appearance: none;
   margin: 2rem auto 0;
   font-size: 1.0rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.75rem 0.5rem;
   border: none;
   border-radius: 6px;
   width: 100%;
@@ -18,23 +21,31 @@ input {
 label {
   display: block;
   margin: 0.5rem 0 0;
-  color: darkslategray;
+  color: $white;
   font-size: 0.9rem;
   text-align: left;
   padding-left: 0.5rem;
 }
 
-h4 {
-  color: darkslategray;
+.loginForm h4 {
+  color: $white;
+}
+
+.signup {
+  color: $white;
+  margin-top: 3rem;
 }
 
 .cancel, .submit {
   appearance: none;
   cursor: pointer;
   font-size: 1.2rem;
+  font-family: $font-heading;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
   border-radius: 6px;
   padding: 0.5rem 2rem;
-  margin: 2rem 1rem;
+  margin: 2rem 0;
 }
 .cancel:hover,
 .cancel:focus,
@@ -43,12 +54,12 @@ h4 {
   text-decoration: underline;
 }
 .submit {
-  color: gainsboro;
-  background-color: darkslategray;
+  color: $white;
+  background-color: $easy;
   border: none;
 }
 .cancel {
-  color: darkslategray;
-  background-color: gainsboro;
-  border: 1px solid darkslategray;
+  color: $white;
+  background-color: transparent;
+  border: 1px solid $white;
 }

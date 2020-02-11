@@ -1,0 +1,35 @@
+@import '../../styles/variables.scss';
+
+.EasyRun {
+  background-color: $easy;
+}
+
+.DefaultRun {
+  background-color: $recovery;
+} 
+
+.HillsRun {
+  background-color: $hill;
+}
+
+.TempoRun {
+  background-color: $tempo;
+}
+
+.IntervalsRun {
+  background-color: $interval;
+}
+.LongRun {
+  background-color: $long;
+}
+
+.RaceRun {
+  background-color: $race;
+}
+
+.rbc-header {
+  padding: 0.5rem;
+}
+.rbc-btn-group:last-of-type {
+  display: none;
+}

@@ -1,0 +1,57 @@
+@import '../../styles/variables.scss';
+
+.moreInfo {
+  grid-column: 2 / -2;
+}
+
+.moreInfo h3, .moreInfo h5, .moreInfo p {
+  color: $white;
+}
+
+.close {
+  appearance: none;
+  background: transparent;
+  border: 1px solid $white;
+  border-radius: 4px;
+  color: $white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: $font-heading;
+  font-weight: 600;
+  padding: .5rem 1rem;
+}
+.close:hover,
+.close:focus {
+  text-decoration: underline;
+}
+.closeContainer {
+  margin-bottom: 2rem;
+}
+
+.delete, .edit {
+  appearance: none;
+  cursor: pointer;
+  font-family: $font-heading;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 0.5rem 2rem;
+  margin: 2rem 1rem 1rem 0;
+  text-decoration: none;
+}
+.delete:hover,
+.delete:focus,
+.edit:hover,
+.edit:focus {
+  text-decoration: underline;
+}
+.edit {
+  color: $white;
+  background-color: $easy;
+  border: 1px solid $easy;
+}
+.delete {
+  color: $white;
+  background-color: $hill;
+  border: 1px solid $hill;
+}

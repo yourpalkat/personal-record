@@ -9,7 +9,7 @@ import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import RunDetail from './components/RunDetail/RunDetail';
 import EditRun from './components/EditRun/EditRun';
-// import './App.scss';
+import './App.scss';
 
 class App extends Component {
   constructor() {

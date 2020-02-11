@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+
+header {
+  padding: 2rem 0;
+  margin-bottom: 4rem;
+  width: 100%;
+}
+
+.logo {
+  grid-column: 2 / 10;
+  color: $white;
+}
+
+.login {
+  grid-column: -8 / -2;
+  text-align: right;
+  align-self: center;
+}
+.login a, .login p {
+  color: $white;
+}
+.logOut {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: $white;
+  cursor: pointer;
+  text-decoration: underline;
+}
