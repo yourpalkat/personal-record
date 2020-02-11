@@ -5,7 +5,7 @@ import DateTimePicker from 'react-datetime-picker';
 import { getToken } from '../../services/tokenService';
 import moment from 'moment';
 
-import '../AddNew/AddNew.css';
+import editStyles from './EditRun.module.scss';
 
 class EditRun extends Component {
   constructor(props) {
@@ -86,9 +86,9 @@ class EditRun extends Component {
         {this.state.redirect ? (
           <Redirect to={`/users/${this.props.user._id}`} />
         ) : (
-        <div className='add-new-wrapper'>
-          <h4>Edit Run</h4>
-          <form autoComplete='off' onSubmit={this.handleSubmit}>
+        <div className='gridWrapper'>
+          <form autoComplete='off' onSubmit={this.handleSubmit} className={editStyles.editForm}>
+            <h4>Edit Run</h4>
             <input name='distance' id='distance' type='number' min='0' step='0.1' onChange={this.handleChange} value={this.state.distance} />
             <label htmlFor='distance'>Distance (km)</label>
 
@@ -119,8 +119,8 @@ class EditRun extends Component {
             <textarea name='notes' id='notes' onChange={this.handleChange} value={this.state.notes} />
             <label htmlFor='notes'>Notes</label>
 
-            <button className='cancel' onClick={() => this.setState({ redirect: true })}>Cancel</button>
-            <button className='submit' type='submit' onClick={this.handleSubmit}>Save</button>
+            <button className={editStyles.cancel} onClick={() => this.setState({ redirect: true })}>Cancel</button>
+            <button className={editStyles.submit} type='submit' onClick={this.handleSubmit}>Save</button>
           </form>
         </div>
       )}
