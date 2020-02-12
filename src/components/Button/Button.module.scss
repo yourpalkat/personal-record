@@ -1,0 +1,103 @@
+@import '../../styles/variables.scss';
+@import '../../styles/functions.scss';
+
+button {
+  appearance: none;
+  border: none;
+  border-radius: 4px;
+  color: $white;
+  cursor: pointer;
+  font-family: $font-heading;
+  font-size: 1.2rem;
+  padding: 0 2rem;
+  height: 2.4rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: background 0.3s ease, color 0.3s ease, text-decoration-color 0.3s ease;
+}
+
+a.ghost, a.primary, a.secondary, a.confirm, a.danger {
+  border-radius: 4px;
+  color: $white;
+  font-family: $font-heading;
+  font-size: 1.2rem;
+  padding: 0 2rem;
+  height: 2.4rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+}
+
+.primary {
+  background: $primary;
+}
+.primary:hover,
+.primary:focus {
+  background: shade($primary, 15);
+  text-decoration-color: $white;
+}
+
+.secondary {
+  background: $secondary;
+}
+.secondary:hover,
+.secondary:focus {
+  background: shade($secondary, 15);
+  text-decoration-color: $white;
+}
+
+.confirm {
+  background: $confirm;
+}
+.confirm:hover,
+.confirm:focus {
+  background: tint($confirm, 35);
+  color: $background;
+  text-decoration-color: $background;
+}
+
+.danger {
+  background: $danger;
+}
+.danger:hover,
+.danger:focus {
+  background: shade($danger, 15);
+  text-decoration-color: $white;
+}
+
+.text {
+  background-color: transparent;
+  border: none;
+  color: $white;
+  padding: 0;
+  margin: 0;
+  display: inline;
+  text-decoration-color: $white;
+  font-size: inherit;
+  font-family: $font-condensed;
+}
+.text:hover,
+.text:focus {
+  color: $primary;
+  text-decoration-color: $primary;
+}
+
+a.ghost {
+  border: 1px solid $white;
+}
+.ghost {
+  background: transparent;
+  border: 1px solid $white;
+}
+.ghost:hover,
+.ghost:focus {
+  background: rgba(255, 255, 255, 0.1);
+  text-decoration-color: $white;
+}

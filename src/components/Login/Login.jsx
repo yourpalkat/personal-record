@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import { setToken } from '../../services/tokenService';
+import Button from '../Button/Button';
 
 import loginStyles from './Login.module.scss';
 
@@ -45,12 +46,16 @@ const Login = ({ setUser, user, isLoggedIn }) => {
         <div className='gridWrapper'>
           <form autoComplete='off' onSubmit={handleSubmit} className={loginStyles.loginForm}>
             <h4>Please log in to continue</h4>
-            <input name='email' type='email' placeholder='email' onChange={handleChange} required />
             <label htmlFor='email'>Email address</label>
-            <input name='password' type='password' placeholder='password' onChange={handleChange} required />
+            <input name='email' type='email' placeholder='email' onChange={handleChange} required />
             <label htmlFor='password'>Password</label>
-            <button className={loginStyles.submit} type='submit' onClick={handleSubmit}>Log in</button>
-            {message && <p>Sorry, your login or password was incorrect!</p>}
+            <input name='password' type='password' placeholder='password' onChange={handleChange} required />
+            <Button 
+              buttonStyle='confirm'
+              buttonType='button' 
+              eventHandler={handleSubmit}
+              text='Log in' />
+            {message && <p className={loginStyles.error}>Sorry, your login or password was incorrect!</p>}
             <p className={loginStyles.signup}>Don't have an account? <Link to='/signup'>Sign up!</Link></p>
           </form>
         </div>

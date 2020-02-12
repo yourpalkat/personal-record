@@ -7,31 +7,8 @@
 .editForm h4 {
   color: $white;
 }
-
-.cancel, .submit {
-  appearance: none;
-  cursor: pointer;
-  font-family: $font-heading;
-  font-size: 1.2rem;
-  border-radius: 4px;
-  padding: 0.5rem 2rem;
-  margin: 2rem 1rem;
-}
-.cancel:hover,
-.cancel:focus,
-.submit:hover,
-.submit:focus {
-  text-decoration: underline;
-}
-.submit {
-  color: $white;
-  background-color: $easy;
-  border: 1px solid $easy;
-}
-.cancel {
-  color: $white;
-  background-color: transparent;
-  border: 1px solid $white;
+.editForm button:last-of-type {
+  margin-left: 2rem;
 }
 
 textarea {

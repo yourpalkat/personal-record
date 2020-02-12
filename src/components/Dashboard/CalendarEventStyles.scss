@@ -5,6 +5,10 @@
 }
 
 .DefaultRun {
+  background-color: $default;
+} 
+
+.RecoveryRun {
   background-color: $recovery;
 } 
 
@@ -30,6 +34,15 @@
 .rbc-header {
   padding: 0.5rem;
 }
+.rbc-toolbar {
+  flex-direction: row-reverse;
+}
+.rbc-toolbar button {
+  font-size: 0.9rem;
+}
 .rbc-btn-group:last-of-type {
   display: none;
+}
+.rbc-event-content {
+  padding: 0.5rem 0;
 }

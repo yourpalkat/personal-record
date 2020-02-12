@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import { getToken } from '../../services/tokenService';
+
+import Button from '../Button/Button';
+
 import dashStyles from './Dashboard.module.scss';
-// import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-big-calendar/lib/sass/styles.scss';
 import './CalendarEventStyles.scss';
 
@@ -51,7 +53,12 @@ const Dashboard = ({ user, setRun, selectedRun, location }) => {
         <div className='gridWrapper'>
           <section className={dashStyles.dashboard}>
             <h2>
-              {user.firstName}’s workouts <Link to={`${location}/runs/add`} className={dashStyles.addNewLink}>Add New Run</Link>
+              {user.firstName}’s workouts &emsp;
+              <Button 
+                buttonType='link'
+                linkPath={`${location}/runs/add`}
+                buttonStyle='confirm'
+                text='Add New Run' />
             </h2>
             <div className={dashStyles.calendarContainer} style={{height: 700}}>
               <Calendar 

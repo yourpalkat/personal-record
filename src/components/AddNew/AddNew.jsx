@@ -5,6 +5,8 @@ import DateTimePicker from 'react-datetime-picker';
 import { getToken } from '../../services/tokenService';
 import moment from 'moment';
 
+import Button from '../Button/Button';
+
 import addStyles from './AddNew.module.scss';
 
 class AddNew extends Component {
@@ -77,22 +79,23 @@ class AddNew extends Component {
           <div className='gridWrapper'>
             <form autoComplete='off' onSubmit={this.handleSubmit} className={addStyles.addForm}>
               <h4>New Run</h4>
-              <input name='distance' id='distance' type='number' placeholder='0' min='0' step='0.1' onChange={this.handleChange} value={this.state.distance} required />
               <label htmlFor='distance'>Distance (km)</label>
+              <input name='distance' id='distance' type='number' placeholder='0' min='0' step='0.1' onChange={this.handleChange} value={this.state.distance} required />
 
-            <input name='title' id='title' type='text' placeholder={`${this.state.distance}km ${this.state.workoutType}`} value={this.state.title}   onChange={this.handleChange} />
               <label htmlFor='title'>Workout name</label>
+              <input name='title' id='title' type='text' placeholder={`${this.state.distance}km ${this.state.workoutType}`} value={this.state.title}   onChange={this.handleChange} />
     
-              <input name='elapsedHours' id='elapsedHours' type='number' placeholder='0' min='0' max='12' onChange={this.handleChange} value={this.state.elapsedHours} />
               <label htmlFor='elapsedHours'>Hours</label>
-              <input name='elapsedMinutes' id='elapsedMinutes' type='number' placeholder='0' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedMinutes} />
+              <input name='elapsedHours' id='elapsedHours' type='number' placeholder='0' min='0' max='12' onChange={this.handleChange} value={this.state.elapsedHours} />
               <label htmlFor='elapsedMinutes'>Minutes</label>
-              <input name='elapsedSeconds' id='elapsedSeconds' type='number' placeholder='0' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedSeconds} />
+              <input name='elapsedMinutes' id='elapsedMinutes' type='number' placeholder='0' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedMinutes} />
               <label htmlFor='elapsedSeconds'>Seconds</label>
+              <input name='elapsedSeconds' id='elapsedSeconds' type='number' placeholder='0' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedSeconds} />
     
-              <DateTimePicker name='runDate' id='runDate' onChange={this.handleTimeChange} value={this.state.runStart} />
               <label htmlFor='runDate'>Date &amp; time</label>
+              <DateTimePicker name='runDate' id='runDate' onChange={this.handleTimeChange} value={this.state.runStart} />
     
+              <label htmlFor='workoutType'>Workout type</label>
               <select name='workoutType' id='workoutType' onChange={this.handleChange} >
                 <option value='Default'>Default</option>
                 <option value='Easy'>Easy</option>
@@ -102,13 +105,22 @@ class AddNew extends Component {
                 <option value='Long'>Long</option>
                 <option value='Race'>Race</option>
               </select>
-              <label htmlFor='workoutType'>Workout type</label>
     
-              <textarea name='notes' id='notes' onChange={this.handleChange} />
               <label htmlFor='notes'>Notes</label>
-    
-              <button className={addStyles.cancel} onClick={() => this.setState({redirect: true})}>Cancel</button>
-              <button className={addStyles.submit} type='submit' onClick={this.handleSubmit}>Add run</button>
+              <textarea name='notes' id='notes' onChange={this.handleChange} />
+
+              <div className={addStyles.buttonContainer}>
+                <Button 
+                  buttonType='button'
+                  buttonStyle='ghost'
+                  text='Cancel'
+                  eventHandler={() => this.setState({ redirect: true })} />
+                <Button
+                  buttonType='button'
+                  buttonStyle='confirm'
+                  text='Add run'
+                  eventHandler={this.handleSubmit} />
+              </div>
             </form>
           </div>
         )}
