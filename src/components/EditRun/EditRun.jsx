@@ -5,6 +5,8 @@ import DateTimePicker from 'react-datetime-picker';
 import { getToken } from '../../services/tokenService';
 import moment from 'moment';
 
+import Button from '../Button/Button';
+
 import editStyles from './EditRun.module.scss';
 
 class EditRun extends Component {
@@ -89,22 +91,23 @@ class EditRun extends Component {
         <div className='gridWrapper'>
           <form autoComplete='off' onSubmit={this.handleSubmit} className={editStyles.editForm}>
             <h4>Edit Run</h4>
-            <input name='distance' id='distance' type='number' min='0' step='0.1' onChange={this.handleChange} value={this.state.distance} />
             <label htmlFor='distance'>Distance (km)</label>
+            <input name='distance' id='distance' type='number' min='0' step='0.1' onChange={this.handleChange} value={this.state.distance} />
 
-            <input name='title' id='title' type='text' value={this.state.title} onChange={this.handleChange} />
             <label htmlFor='title'>Workout name</label>
+            <input name='title' id='title' type='text' value={this.state.title} onChange={this.handleChange} />
 
-            <input name='elapsedHours' id='elapsedHours' type='number' min='0' max='12' onChange={this.handleChange} value={this.state.elapsedHours} />
             <label htmlFor='elapsedHours'>Hours</label>
-            <input name='elapsedMinutes' id='elapsedMinutes' type='number' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedMinutes} />
+            <input name='elapsedHours' id='elapsedHours' type='number' min='0' max='12' onChange={this.handleChange} value={this.state.elapsedHours} />
             <label htmlFor='elapsedMinutes'>Minutes</label>
-            <input name='elapsedSeconds' id='elapsedSeconds' type='number' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedSeconds} />
+            <input name='elapsedMinutes' id='elapsedMinutes' type='number' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedMinutes} />
             <label htmlFor='elapsedSeconds'>Seconds</label>
+            <input name='elapsedSeconds' id='elapsedSeconds' type='number' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedSeconds} />
 
-            <DateTimePicker name='runDate' id='runDate' onChange={this.handleTimeChange} value={this.state.start} />
             <label htmlFor='runDate'>Date &amp; time</label>
+            <DateTimePicker name='runDate' id='runDate' onChange={this.handleTimeChange} value={this.state.start} />
 
+            <label htmlFor='workoutType'>Workout type</label>
             <select name='workoutType' id='workoutType' onChange={this.handleChange} value={this.state.workoutType}>
               <option value='Default'>Default</option>
               <option value='Easy'>Easy</option>
@@ -114,13 +117,20 @@ class EditRun extends Component {
               <option value='Long'>Long</option>
               <option value='Race'>Race</option>
             </select>
-            <label htmlFor='workoutType'>Workout type</label>
 
-            <textarea name='notes' id='notes' onChange={this.handleChange} value={this.state.notes} />
             <label htmlFor='notes'>Notes</label>
+            <textarea name='notes' id='notes' onChange={this.handleChange} value={this.state.notes} />
 
-            <button className={editStyles.cancel} onClick={() => this.setState({ redirect: true })}>Cancel</button>
-            <button className={editStyles.submit} type='submit' onClick={this.handleSubmit}>Save</button>
+            <Button
+              buttonType='button'
+              buttonStyle='ghost'
+              text='Cancel'
+              eventHandler={() => this.setState({ redirect: true })} />
+            <Button
+              buttonType='button'
+              buttonStyle='confirm'
+              text='Save'
+              eventHandler={this.handleSubmit} />
           </form>
         </div>
       )}

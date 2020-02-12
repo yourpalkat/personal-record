@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Button from '../Button/Button';
 
 import headerStyles from './Header.module.scss';
 
@@ -10,9 +10,9 @@ const Header = ({isLoggedIn, firstName, logOut}) => {
         <h4 className={headerStyles.logo}>Personal Record</h4>
         <div className={headerStyles.login}>
           {isLoggedIn ? (
-            <p>Hello, {firstName} | <button onClick={logOut} className={headerStyles.logOut}>Log out</button></p>
+            <p>Hello, {firstName} &emsp; <Button buttonType='button' eventHandler={logOut} text='Log out' buttonStyle='text'/></p>
           ) : (
-            <p>Welcome | <Link to="/login">Log in</Link></p>
+              <p>Welcome &emsp; <Button buttonType='link' linkPath='/login' text='Log in' buttonStyle='text' /></p>
           )}
         </div>
       </div>

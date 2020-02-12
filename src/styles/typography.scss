@@ -29,14 +29,18 @@
   margin-bottom: 2rem;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, button {
   font-family: $font-heading;
 }
+button {
+  font-size: 1.2rem;
+}
 
-p, label, input {
+p, label, input, h6 {
   font-family: $font-condensed;
 }
 
 a {
-  color: $hill;
+  color: $primary;
+  transition: background 0.3s ease, color 0.3s ease, text-decoration-color 0.3s ease;
 }

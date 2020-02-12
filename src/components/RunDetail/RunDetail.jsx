@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
 import moment from 'moment';
+
+import Button from '../Button/Button';
 import DeleteRun from '../DeleteRun/DeleteRun';
+
 import runStyles from './RunDetail.module.scss';
 
 const RunDetail = ({ user, run, setRun }) => {
@@ -20,7 +23,11 @@ const RunDetail = ({ user, run, setRun }) => {
           {showDelete && <DeleteRun setRun={setRun} closeModal={() => setShowDelete(false)} run={displayRun} />}
           <div className={runStyles.moreInfo}>
             <div className={runStyles.closeContainer}>
-              <button onClick={() => setRun({})} className={runStyles.close}>Close</button>
+              <Button 
+                buttonType='button'
+                buttonStyle='ghost'
+                text='Close'
+                eventHandler={() => setRun({})} />
             </div>
             <h5><Moment date={displayRun.start} format='Do MMMM, YYYY, h:mm a' /></h5>
             <h3>{displayRun.title}</h3>
@@ -28,9 +35,17 @@ const RunDetail = ({ user, run, setRun }) => {
             <p>Elapsed time: {displayRun.elapsedTime.format('h:mm:ss')}</p>
             <p>Workout type: {displayRun.workoutType}</p>
             <p>Notes: {displayRun.notes}</p>
-            <div>
-              <button className={runStyles.delete} onClick={() => setShowDelete(true)}>Delete run</button>
-              <Link to={`/users/${user._id}/runs/${run._id}/edit`} className={runStyles.edit}>Edit run</Link>
+            <div className={runStyles.buttonContainer}>
+              <Button
+                buttonType='button'
+                buttonStyle='danger'
+                text='Delete run'
+                eventHandler={() => setShowDelete(true)} />
+              <Button 
+                buttonType='link'
+                buttonStyle='confirm'
+                text='Edit run'
+                linkPath={`/users/${user._id}/runs/${run._id}/edit`} />
             </div>
           </div>
         </div>

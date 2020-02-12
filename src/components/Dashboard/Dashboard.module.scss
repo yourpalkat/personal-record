@@ -10,21 +10,6 @@
   margin-bottom: 4rem;
 }
 
-.addNewLink {
-  background-color: $easy;
-  border-radius: 4px;
-  color: $white;
-  padding: 0.5rem 0.75rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-left: 1rem;
-  text-decoration: none;
-}
-.addNewLink:hover,
-.addNewLink:focus {
-  text-decoration: underline;
-}
-
 .calendarContainer {
   color: $white;
   font-family: $font-condensed;

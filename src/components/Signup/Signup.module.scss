@@ -10,12 +10,18 @@
 .signupForm input {
   display: block;
   appearance: none;
-  margin: 2rem auto 0;
+  margin: 1rem auto 2rem;
   font-size: 1.0rem;
   padding: 0.75rem 0.5rem;
   border: none;
   border-radius: 6px;
   width: 100%;
+}
+.signupForm input:last-of-type {
+  margin-bottom: 3rem;
+}
+.signupForm button:last-of-type {
+  margin-left: 2rem;
 }
 
 label {
@@ -34,32 +40,4 @@ label {
 .login {
   color: $white;
   margin-top: 3rem;
-}
-
-.cancel, .submit {
-  appearance: none;
-  cursor: pointer;
-  font-size: 1.2rem;
-  font-family: $font-heading;
-  border-radius: 6px;
-  padding: 0.5rem 2rem;
-  margin: 2rem 0;
-}
-.cancel:hover,
-.cancel:focus,
-.submit:hover,
-.submit:focus {
-  text-decoration: underline;
-}
-.submit {
-  color: $white;
-  background-color: $easy;
-  border: 1px solid $easy;
-  border: none;
-  margin-left: 2rem;
-}
-.cancel {
-  color: $white;
-  background-color: transparent;
-  border: 1px solid $white;
 }

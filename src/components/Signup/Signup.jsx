@@ -3,6 +3,8 @@ import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { setToken } from '../../services/tokenService';
 
+import Button from '../Button/Button';
+
 import signupStyles from './Signup.module.scss';
 
 const Signup = ({ user, setUser, isLoggedIn }) => {
@@ -54,17 +56,25 @@ const Signup = ({ user, setUser, isLoggedIn }) => {
         <div className='gridWrapper'>
           <form autoComplete='off' onSubmit={handleSubmit} className={signupStyles.signupForm}>
             <h4>Please sign up to continue</h4>
-            <input name='email' type='email' placeholder='email' required onChange={handleChange} />
             <label htmlFor='email'>Email address</label>
-            <input name='password' type='password' placeholder='password' required onChange={handleChange} />
+            <input name='email' type='email' placeholder='email' required onChange={handleChange} />
             <label htmlFor='password'>Password</label>
-            <input name='firstName' type='text' placeholder='first name' required onChange={handleChange} />
+            <input name='password' type='password' placeholder='password' required onChange={handleChange} />
             <label htmlFor='firstName'>First name</label>
-            <input name='lastName' type='text' placeholder='last name' required onChange={handleChange} />
+            <input name='firstName' type='text' placeholder='first name' required onChange={handleChange} />
             <label htmlFor='lastName'>Last name</label>
+            <input name='lastName' type='text' placeholder='last name' required onChange={handleChange} />
 
-            <Link className={signupStyles.cancel} to='/'>Cancel</Link>
-            <button className={signupStyles.submit} type='submit' onClick={handleSubmit}>Sign up</button>
+            <Button
+              buttonType='link'
+              linkPath='/'
+              text='Cancel'
+              buttonStyle='ghost' />
+            <Button 
+              buttonType='button' 
+              eventHandler={handleSubmit}
+              buttonStyle='confirm'
+              text='Sign up!' />
             <p className={signupStyles.login}>Already have an account? <Link to='/login'>Log in!</Link></p>
           </form>
         </div>
