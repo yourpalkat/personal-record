@@ -1,20 +1,23 @@
-# Project Proposal
-A log to keep track of running workouts.
-
-## Project Name
-Working name is just Run Log, I'm sure I'll come up with a stupid pun sooner or later
+# Personal Record
+A web application to log running workouts.
 
 ## Description
-A simple log for anyone to sign up and keep a log of their running workouts and track their mileage. Express/node/mongoDB/mongoose back-end, React front-end.
+A simple log for anyone to sign up and keep a log of their running workouts and track their mileage. Back-end: API via Express/Node/MongoDB/Mongoose. Front-end: React/SCSS modules.
 
-## MVC Goals
+## MVP Goals
 - Users can create an account or log in to their existing account
 - Once logged in, users can create an entry for a new workout, view past workouts on a calendar, and edit or delete old workouts
-- Users can see their rolling weekly/monthly total mileage, plus year-to-date and overall totals
+
+## Next steps
+- Dashboard shows rolling weekly/monthly total mileage, plus year-to-date and overall totals
+- Options for Calendar or List views
+- Expand API to allow more data (kilometer splits, heart rate, weather conditions, perceived effort)
+- Add shoe data type to allow tracking mileage on footwear
 
 ## Stretch Goals
 - Ability to import tcx files from running apps & watches
-- Plot those tcx files on a map using Leaflet
+- Plot gps routes from those files on a map using Leaflet
+- Bulk import and export of records
 - Ability to run reports on records
 
 ## Route structure
