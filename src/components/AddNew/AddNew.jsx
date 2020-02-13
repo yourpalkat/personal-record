@@ -99,6 +99,7 @@ class AddNew extends Component {
               <select name='workoutType' id='workoutType' onChange={this.handleChange} >
                 <option value='Default'>Default</option>
                 <option value='Easy'>Easy</option>
+                <option value='Recovery'>Recovery</option>
                 <option value='Hills'>Hills</option>
                 <option value='Tempo'>Tempo</option>
                 <option value='Intervals'>Intervals</option>
