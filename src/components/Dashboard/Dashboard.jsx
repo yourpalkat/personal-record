@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
@@ -14,6 +14,10 @@ import './CalendarEventStyles.scss';
 const Dashboard = ({ user, setRun, selectedRun, location }) => {
   const localizer = momentLocalizer(moment);
   const [runs, setRuns] = useState([]);
+  
+  // This is a flag we'll use to make sure the component is mounted and to
+  // know whether to run async cleanup functions when it's unmounted
+  const isMountedRef = useRef(null);
 
   const fetchRuns = async (id) => {
     try {
@@ -33,14 +37,22 @@ const Dashboard = ({ user, setRun, selectedRun, location }) => {
           return -1;
         }
       });
-      setRuns(sortedRuns);
+      if (isMountedRef.current) {
+        setRuns(sortedRuns);
+      }
     } catch (e) {
       console.error(e);
     }
   }
 
   useEffect(() => {
-    fetchRuns(user._id);
+    // set flag that component is mounted and thus async functions can run
+    isMountedRef.current = true;
+    if (isMountedRef.current) {
+      fetchRuns(user._id);
+    }
+    // return a function to set mounted flag to false, so async functions won't run
+    return () => isMountedRef.current = false;
   }, [user._id, runs]);
 
   const selectRun = (run) => {

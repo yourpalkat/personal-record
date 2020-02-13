@@ -12,13 +12,25 @@ import editStyles from './EditRun.module.scss';
 class EditRun extends Component {
   constructor(props) {
     super(props);
+    const start = moment(this.props.run.start);
+    const end = moment(this.props.run.end);
+    const totalInSeconds = Math.floor(end.diff(start, 'seconds'));
+    const elapsedHours = Math.floor(totalInSeconds / 3600);
+    const elapsedMinutes = Math.floor((totalInSeconds % 3600) / 60);
+    const elapsedSeconds = Math.floor(totalInSeconds % 60);
+    const startDate = moment(this.props.run.start).toDate();
+    const endDate = moment(this.props.run.end).toDate();
+
     this.state = {
       runId: this.props.run._id,
       userId: this.props.run.userId,
       title: this.props.run.title,
       distance: this.props.run.distance,
-      start: this.props.run.start,
-      end: this.props.run.end,
+      runStart: startDate,
+      end: endDate,
+      elapsedHours,
+      elapsedMinutes,
+      elapsedSeconds,
       workoutType: this.props.run.workoutType,
       notes: this.props.run.notes,
       message: '',
@@ -33,7 +45,7 @@ class EditRun extends Component {
   }
 
   handleTimeChange = date => {
-    this.setState({ date: date });
+    this.setState({ runStart: date });
   }
 
   handleSubmit = async e => {
@@ -56,7 +68,7 @@ class EditRun extends Component {
         data: {
           distance: this.state.distance,
           title: assignedTitle,
-          start: this.state.start,
+          start: this.state.runStart,
           end: runEnd,
           userId: this.state.userId,
           workoutType: this.state.workoutType,
@@ -67,7 +79,7 @@ class EditRun extends Component {
       const newRun = {
         distance: this.state.distance,
         title: assignedTitle,
-        start: this.state.start,
+        start: this.state.runStart,
         end: runEnd,
         userId: this.state.userId,
         workoutType: this.state.workoutType,
@@ -105,12 +117,13 @@ class EditRun extends Component {
             <input name='elapsedSeconds' id='elapsedSeconds' type='number' min='0' max='59' onChange={this.handleChange} value={this.state.elapsedSeconds} />
 
             <label htmlFor='runDate'>Date &amp; time</label>
-            <DateTimePicker name='runDate' id='runDate' onChange={this.handleTimeChange} value={this.state.start} />
+            <DateTimePicker name='runDate' id='runDate' onChange={this.handleTimeChange} value={this.state.runStart} />
 
             <label htmlFor='workoutType'>Workout type</label>
             <select name='workoutType' id='workoutType' onChange={this.handleChange} value={this.state.workoutType}>
               <option value='Default'>Default</option>
               <option value='Easy'>Easy</option>
+              <option value='Recovery'>Recovery</option>
               <option value='Hills'>Hills</option>
               <option value='Tempo'>Tempo</option>
               <option value='Intervals'>Intervals</option>
