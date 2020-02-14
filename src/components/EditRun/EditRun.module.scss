@@ -1,56 +1,21 @@
 @import '../../styles/variables.scss';
 
-.editForm {
-  grid-column: 2 / -2;
-}
+// .react-datetime-picker {
+//   background-color: white;
+//   border-radius: 4px;
+//   padding: .5rem;
+//   margin: 2rem 0 0;
+//   width: 100%;
+// }
+// .react-datetime-picker input,
+// .react-datetime-picker select {
+//   margin-top: 0;
+//   width: auto;
+// }
 
-.editForm h4 {
-  color: $white;
-}
-.editForm button:last-of-type {
-  margin-left: 2rem;
-}
-
-textarea {
-  appearance: none;
-  display: block;
-  border: none;
-  border-radius: 4px;
-  color: $background;
-  width: 100%;
-  padding: 0.5rem;
-  margin: 2rem auto 0;
-  min-height: 12rem;
-}
-
-select {
-  appearance: none;
-  display: block;
-  border: 1px solid $background;
-  border-radius: 4px;
-  padding: 0.5rem;
-  margin: 2rem auto 0;
-  width: 100%;
-  color: $background;
-  font-size: 0.9rem;
-  background-color: white;
-}
-.react-datetime-picker {
-  background-color: white;
-  border-radius: 4px;
-  padding: .5rem;
-  margin: 2rem 0 0;
-  width: 100%;
-}
-.react-datetime-picker input,
-.react-datetime-picker select {
-  margin-top: 0;
-  width: auto;
-}
-
-time {
-  display: block;
-}
-time:not(:first-of-type) {
-  margin-top: 1rem;
-}
+// time {
+//   display: block;
+// }
+// time:not(:first-of-type) {
+//   margin-top: 1rem;
+// }
