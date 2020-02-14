@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import { setToken } from '../../services/tokenService';
+
 import Button from '../Button/Button';
+import Input from '../FormComponents/Input';
 
 import loginStyles from './Login.module.scss';
 
@@ -10,6 +12,8 @@ const Login = ({ setUser, user, isLoggedIn }) => {
   const [message, setMessage] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorStatus, setErrorStatus] = useState(false);
+  const isMountedRef = useRef(null);
 
   const handleChange = e => {
     if (e.target.name === 'email') {
@@ -21,22 +25,35 @@ const Login = ({ setUser, user, isLoggedIn }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    try {
-      const res = await axios.post(`/api/users/login`, {
-        data: {
-          email: email,
-          password: password
+    if (!errorStatus) {
+      try {
+        const res = await axios.post(`/api/users/login`, {
+          data: {
+            email: email,
+            password: password
+          }
+        });
+        if (isMountedRef.current) {
+          const token = res.data.data.token;
+          setToken(token);
+          setUser(token, res.data.data.user);
+          setMessage(null);
         }
-      });
-      const token = res.data.data.token;
-      setToken(token);
-      setUser(token, res.data.data.user);
-      setMessage(null);
-    } catch (e) {
-      setMessage({ message: e });
-      console.log(e);
+      } catch (e) {
+        setMessage('Sorry, your login or password is incorrect!');
+        console.log(e);
+      }
+    } else {
+      setMessage('Please check the form for errors and try again!');
     }
   }
+
+  useEffect(() => {
+    // set flag that component is mounted and thus async functions can run
+    isMountedRef.current = true;
+    // return a function to set mounted flag to false, so async functions won't run
+    return () => isMountedRef.current = false;
+  }, []);
 
   return (
     <>
@@ -46,16 +63,30 @@ const Login = ({ setUser, user, isLoggedIn }) => {
         <div className='gridWrapper'>
           <form autoComplete='off' onSubmit={handleSubmit} className={loginStyles.loginForm}>
             <h4>Please log in to continue</h4>
-            <label htmlFor='email'>Email address</label>
-            <input name='email' type='email' placeholder='email' onChange={handleChange} required />
-            <label htmlFor='password'>Password</label>
-            <input name='password' type='password' placeholder='password' onChange={handleChange} required />
+            <Input 
+              inputName='email'
+              inputType='email'
+              inputValue={email}
+              labelText='Email address:'
+              inputPlaceholder='Enter email address'
+              isRequired
+              setErrorStatus={setErrorStatus}
+              changeHandler={handleChange} />
+            <Input 
+              inputName='password'
+              inputType='password'
+              inputValue={password}
+              labelText='Password:'
+              inputPlaceholder='Enter password'
+              isRequired
+              setErrorStatus={setErrorStatus}
+              changeHandler={handleChange} />
+            {message && <p className={loginStyles.error}>{message}</p>}
             <Button 
               buttonStyle='confirm'
-              buttonType='button' 
+              buttonType='submit' 
               eventHandler={handleSubmit}
               text='Log in' />
-            {message && <p className={loginStyles.error}>Sorry, your login or password was incorrect!</p>}
             <p className={loginStyles.signup}>Don't have an account? <Link to='/signup'>Sign up!</Link></p>
           </form>
         </div>
