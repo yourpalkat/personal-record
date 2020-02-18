@@ -47,6 +47,10 @@ class EditRun extends Component {
     this.setState({ runStart: date });
   }
 
+  setRedirect = status => {
+    this.setState({ redirect: status });
+  }
+
   handleSubmit = async e => {
     e.preventDefault();
     if (!this.state.errorStatus) {

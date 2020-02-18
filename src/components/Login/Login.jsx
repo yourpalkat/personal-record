@@ -62,25 +62,29 @@ const Login = ({ setUser, user, isLoggedIn }) => {
       ) : (
         <div className='gridWrapper'>
           <form autoComplete='off' onSubmit={handleSubmit} className={loginStyles.loginForm}>
-            <h4>Please log in to continue</h4>
-            <Input 
-              inputName='email'
-              inputType='email'
-              inputValue={email}
-              labelText='Email address:'
-              inputPlaceholder='Enter email address'
-              isRequired
-              setErrorStatus={setErrorStatus}
-              changeHandler={handleChange} />
-            <Input 
-              inputName='password'
-              inputType='password'
-              inputValue={password}
-              labelText='Password:'
-              inputPlaceholder='Enter password'
-              isRequired
-              setErrorStatus={setErrorStatus}
-              changeHandler={handleChange} />
+            <h2>Please log in to continue</h2>
+            <div className={loginStyles.inputBlock}>
+              <Input 
+                inputName='email'
+                inputType='email'
+                inputValue={email}
+                labelText='Email address:'
+                inputPlaceholder='Enter email address'
+                isRequired
+                setErrorStatus={setErrorStatus}
+                changeHandler={handleChange} />
+            </div>
+            <div className={loginStyles.inputBlock}>
+              <Input 
+                inputName='password'
+                inputType='password'
+                inputValue={password}
+                labelText='Password:'
+                inputPlaceholder='Enter password'
+                isRequired
+                setErrorStatus={setErrorStatus}
+                changeHandler={handleChange} />
+            </div>
             {message && <p className={loginStyles.error}>{message}</p>}
             <Button 
               buttonStyle='confirm'

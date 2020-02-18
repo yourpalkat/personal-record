@@ -1,13 +1,18 @@
 @import '../../styles/variables.scss';
 
 .dashboard {
-  grid-column: 2 / -2;
-  color: white;
+  grid-column: 6 / -2;
 }
 
-.dashboard h2 {
+.titleBlock {
   color: $white;
   margin-bottom: 4rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.titleBlock h2 {
+  margin-right: 4rem;
 }
 
 .calendarContainer {

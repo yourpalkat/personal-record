@@ -6,7 +6,7 @@ import ButtonStyles from './Button.module.scss';
 const Button = ({ buttonType, linkPath, href, buttonStyle, text, eventHandler}) => {
   if (buttonType === 'submit') {
     return (
-      <button className={ButtonStyles[buttonStyle]} type="submit">
+      <button className={`btn ${ButtonStyles[buttonStyle]}`} type="submit">
         {text}
       </button>
     );
@@ -14,7 +14,7 @@ const Button = ({ buttonType, linkPath, href, buttonStyle, text, eventHandler}) 
 
   if (buttonType === 'link') {
     return (
-      <Link className={ButtonStyles[buttonStyle]} to={linkPath}>
+      <Link className={`btn ${ButtonStyles[buttonStyle]}`} to={linkPath}>
         {text}
       </Link>
     );
@@ -22,7 +22,7 @@ const Button = ({ buttonType, linkPath, href, buttonStyle, text, eventHandler}) 
 
   if (buttonType === 'href') {
     return (
-      <a className={ButtonStyles[buttonStyle]} href={href} onClick={eventHandler}>
+      <a className={`btn ${ButtonStyles[buttonStyle]}`} href={href} onClick={eventHandler}>
         {text}
       </a>
     );
@@ -30,7 +30,7 @@ const Button = ({ buttonType, linkPath, href, buttonStyle, text, eventHandler}) 
 
   if (buttonType === 'button') {
     return (
-      <button className={ButtonStyles[buttonStyle]} type="button" onClick={eventHandler}>
+      <button className={`btn ${ButtonStyles[buttonStyle]}`} type="button" onClick={eventHandler}>
         {text}
       </button>
     );
