@@ -23,17 +23,8 @@
     url('../assets/fonts/RobotoSlab-VariableFont.ttf') format('truetype');
 }
 
-.test {
-  color: $white;
-  grid-column: 2 / -2;
-  margin-bottom: 2rem;
-}
-
 h1, h2, h3, h4, h5, button {
   font-family: $font-heading;
-}
-button {
-  font-size: 1.2rem;
 }
 
 p, label, input, h6 {

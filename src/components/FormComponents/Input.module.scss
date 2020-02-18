@@ -4,15 +4,14 @@
 .inputContainer {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
 }
 
 .inputContainer label {
   color: $white;
   font-family: $font-condensed;
-  font-size: 1rem;
+  font-size: 1.8rem;
   letter-spacing: 0.05rem;
-  margin: 0 0 1rem;
+  margin-bottom: 1rem;
   padding: 0;
 }
 
@@ -25,10 +24,24 @@
   border-radius: 4px 4px 0 0;
   color: $white;
   font-family: $font-condensed;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   letter-spacing: 0.05rem;
   margin-bottom: 0.5rem;
-  padding: 0.75rem 0.5rem;
+  padding: 1.25rem 0.5rem;
+  width: 100%;
+}
+.inputContainer textarea {
+  min-height: 18rem;
+}
+.inputContainer input[type="number"] {
+  max-width: 6rem;
+  min-height: 2rem;
+  margin-right: 3rem;
+}
+.inputContainer input[type=number]::-webkit-inner-spin-button, 
+.inputContainer input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
 
 .inputContainer input.error, 
@@ -41,8 +54,36 @@
 
 .errorText {
   color: $danger;
-  font-size: 1rem;
+  font-size: 1.4rem;
   letter-spacing: 0.05rem;
-  min-height: 1.4rem;
+  min-height: 1.6rem;
   margin-top: 0;
+}
+
+.required {
+  position: relative;
+}
+.required::after {
+  color: $primary;
+  font-size: 1.4rem;
+  content: " *";
+  position: relative;
+  top: -5px;
+  left: 5px;
+}
+
+.inputContainer select {
+  appearance: none;
+  color: $white;
+  font-family: $font-condensed;
+  background: $background;
+  border: 1px solid white;
+  border-radius: 4px;
+  margin-bottom: 3rem;
+  padding: 0.75rem 0.5rem;
+  width: 85%;
+  background-image: url(../../assets/images/chevron-down-solid.svg);
+  background-repeat: no-repeat;
+  background-position: 95% center;
+  background-size: 10%;
 }

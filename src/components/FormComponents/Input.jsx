@@ -40,7 +40,7 @@ const Input = ({
 
   return (
     <div className={inputStyles.inputContainer}>
-      <label htmlFor={inputName}>{labelText}</label>
+      <label htmlFor={inputName} className={isRequired ? inputStyles.required : null}>{labelText}</label>
       <input 
         name={inputName} 
         id={inputName} 

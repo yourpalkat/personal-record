@@ -64,14 +64,14 @@ const Dashboard = ({ user, setRun, selectedRun, location }) => {
       {selectedRun._id ? <Redirect to={`/users/${user._id}/runs/${selectedRun._id}`} /> : (
         <div className='gridWrapper'>
           <section className={dashStyles.dashboard}>
-            <h2>
-              {user.firstName}’s workouts &emsp;
+            <div className={dashStyles.titleBlock}>
+              <h2>{user.firstName}’s workouts &emsp;</h2>
               <Button 
                 buttonType='link'
                 linkPath={`${location}/runs/add`}
                 buttonStyle='confirm'
                 text='Add New Run' />
-            </h2>
+            </div>
             <div className={dashStyles.calendarContainer} style={{height: 700}}>
               <Calendar 
                 localizer={localizer}

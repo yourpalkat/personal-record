@@ -1,6 +1,8 @@
 @import '../../styles/variables.scss';
 
 header {
+  background-color: $background;
+  border-bottom: 3px solid $primary;
   color: $white;
   padding: 2rem 0;
   margin-bottom: 4rem;
