@@ -4,7 +4,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Layout from './components/Layout/Layout';
 import Dashboard from './components/Dashboard/Dashboard';
 import AddNew from './components/AddNew/AddNew';
-import Home from './components/Home/Home';
+import Home from './components/HomePageComponents/Home';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import RunDetail from './components/RunDetail/RunDetail';
@@ -73,7 +73,10 @@ class App extends Component {
               <Dashboard user={this.state.user} setRun={this.setRun} selectedRun={this.state.selectedRun} />
             </PrivateRoute>
             <Route exact path="/">
-              <Home />
+              <Home
+                user={this.state.user}
+                setUser={this.setUser}
+                isLoggedIn={this.state.isLoggedIn} />
             </Route>
           </Switch>
         </Layout>
