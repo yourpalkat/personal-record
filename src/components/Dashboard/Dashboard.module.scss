@@ -1,7 +1,14 @@
+@import '../../styles/mixins.scss';
 @import '../../styles/variables.scss';
 
 .dashboard {
   grid-column: 6 / -2;
+  @include respond-to('tablet') {
+    grid-column: 4 / -2;
+  }
+  @include respond-to('mobile') {
+    grid-column: 2 / -2;
+  }
 }
 
 .titleBlock {

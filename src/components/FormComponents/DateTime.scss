@@ -1,8 +1,10 @@
+@import '../../styles/variables.scss';
+
 .react-datetime-picker__wrapper {
   border: none;
 }
 .react-datetime-picker__button svg {
-  stroke: #fff;
+  stroke: $white;
 }
 .react-datetime-picker__inputGroup {
   padding: 0;
@@ -31,4 +33,23 @@
 }
 .react-datetime-picker__inputGroup__divider {
   display: none;
+}
+.react-calendar {
+  background-color: $background;
+  border-radius: 4px;
+  border: 1px solid $white;
+}
+.react-calendar__month-view__weekdays__weekday,
+.react-calendar button {
+  color: $white;
+  font-family: $font-condensed;
+}
+.react-calendar__month-view__days__day {
+  color: $white;
+}
+.react-calendar button.react-calendar__month-view__days__day--weekend {
+  color: $primary;
+}
+.react-calendar button.react-calendar__month-view__days__day--neighboringMonth {
+  color: #999;
 }

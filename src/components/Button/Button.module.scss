@@ -56,8 +56,8 @@ a.ghost, a.primary, a.secondary, a.confirm, a.danger {
   background-color: transparent;
   border: none;
   color: $white;
-  padding: 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0 !important;
   display: inline;
   text-decoration-color: $white;
   font-size: inherit !important;
