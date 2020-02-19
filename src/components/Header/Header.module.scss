@@ -1,3 +1,4 @@
+@import '../../styles/mixins.scss';
 @import '../../styles/variables.scss';
 
 header {
@@ -11,10 +12,16 @@ header {
 
 .logo {
   grid-column: 2 / 10;
+  @include respond-to('mobile') {
+    grid-column: 2 / 6;
+  }
 }
 
 .login {
   grid-column: -8 / -2;
   text-align: right;
   align-self: center;
+  @include respond-to('tablet') {
+    grid-column: -6 / -2;
+  }
 }
