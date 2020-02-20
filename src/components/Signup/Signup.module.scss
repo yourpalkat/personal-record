@@ -3,41 +3,36 @@
 .signupForm {
   grid-column: 2 / -2;
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   margin: 0 auto 0;
 }
 
-.signupForm input {
-  display: block;
-  appearance: none;
-  margin: 1rem auto 2rem;
-  font-size: 1.0rem;
-  padding: 0.75rem 0.5rem;
-  border: none;
-  border-radius: 6px;
-  width: 100%;
+.headlineBlock {
+  color: $white;
+  margin-bottom: 4rem;
 }
-.signupForm input:last-of-type {
+.headlineBlock p {
+  font-size: 1.8rem;
+}
+
+.inputBlock {
   margin-bottom: 3rem;
 }
-.signupForm button:last-of-type {
-  margin-left: 2rem;
-}
 
-label {
-  display: block;
-  margin: 0.5rem 0 0;
-  color: $white;
-  font-size: 0.9rem;
-  text-align: left;
-  padding-left: 0.5rem;
-}
-
-.signupForm h4 {
-  color: $white;
+.buttonBlock button:last-of-type {
+  margin-left: 3rem;
 }
 
 .login {
   color: $white;
-  margin-top: 3rem;
+  font-size: 1.8rem;
+  margin-top: 5rem;
+}
+
+.error {
+  color: $danger;
+  font-size: 1.6rem;
+  letter-spacing: 0.05rem;
+  margin-top: -2rem;
+  margin-bottom: 3rem;
 }

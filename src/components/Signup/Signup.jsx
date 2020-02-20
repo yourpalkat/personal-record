@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { setToken } from '../../services/tokenService';
 
+import Input from '../FormComponents/Input';
 import Button from '../Button/Button';
 
 import signupStyles from './Signup.module.scss';
@@ -14,6 +15,14 @@ const Signup = ({ user, setUser, isLoggedIn }) => {
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [errorStatus, setErrorStatus] = useState({
+    email: false,
+    password: false,
+    firstName: false,
+    lastName: false,
+  });
+
+  const isMountedRef = useRef(null);
 
   const handleChange = e => {
     if (e.target.name === 'email') {
@@ -26,27 +35,47 @@ const Signup = ({ user, setUser, isLoggedIn }) => {
       setLastName(e.target.value)
     }
   }
+
+  const updateErrorStatus = (key, value) => {
+    setErrorStatus({
+      ...errorStatus,
+      [key]: value
+    });
+  };
   
   const handleSubmit = async e => {
     e.preventDefault();
-    try {
-      const res = await axios.post(`/api/users/signup`, {
-        data: {
-          email: email,
-          password: password,
-          firstName: firstName,
-          lastName: lastName
+    if (Object.values(errorStatus).indexOf(true) === -1) {
+      try {
+        const res = await axios.post(`/api/users/signup`, {
+          data: {
+            email: email,
+            password: password,
+            firstName: firstName,
+            lastName: lastName
+          }
+        });
+        if (isMountedRef.current) {
+          const token = res.data.data.token;
+          setToken(token);
+          setUser(token, res.data.data[0]);
+          setMessage(null);
         }
-      });
-      const token = res.data.data.token;
-      setToken(token);
-      setUser(token, res.data.data.user);
-      setMessage(null);
-    } catch (e) {
-      setMessage(e);
-      console.log(message);
+      } catch (e) {
+        setMessage('That email address is taken! Please use another.');
+        console.log(e);
+      }
+    } else {
+      setMessage('Please check the form for errors and try again!');
     }
   }
+
+  useEffect(() => {
+    // set flag that component is mounted and thus async functions can run
+    isMountedRef.current = true;
+    // return a function to set mounted flag to false, so async functions won't run
+    return () => isMountedRef.current = false;
+  }, []);
 
   return (
     <>
@@ -55,26 +84,73 @@ const Signup = ({ user, setUser, isLoggedIn }) => {
       ) : (
         <div className='gridWrapper'>
           <form autoComplete='off' onSubmit={handleSubmit} className={signupStyles.signupForm}>
-            <h4>Please sign up to continue</h4>
-            <label htmlFor='email'>Email address</label>
-            <input name='email' type='email' placeholder='email' required onChange={handleChange} />
-            <label htmlFor='password'>Password</label>
-            <input name='password' type='password' placeholder='password' required onChange={handleChange} />
-            <label htmlFor='firstName'>First name</label>
-            <input name='firstName' type='text' placeholder='first name' required onChange={handleChange} />
-            <label htmlFor='lastName'>Last name</label>
-            <input name='lastName' type='text' placeholder='last name' required onChange={handleChange} />
+            <div className={signupStyles.headlineBlock}>
+              <h2>Please create an account to continue</h2>
+              <p>Fields marked with a star are required.</p>
+            </div>
+            <div className={signupStyles.inputBlock}>
+              <Input
+                inputName='email'
+                inputType='email'
+                inputValue={email}
+                labelText='Email address:'
+                inputPlaceholder='Enter email address'
+                isRequired
+                updateErrorStatus={updateErrorStatus}
+                changeHandler={handleChange} />
+            </div>
 
-            <Button
-              buttonType='link'
-              linkPath='/'
-              text='Cancel'
-              buttonStyle='ghost' />
-            <Button 
-              buttonType='button' 
-              eventHandler={handleSubmit}
-              buttonStyle='confirm'
-              text='Sign up!' />
+            <div className={signupStyles.inputBlock}>
+              <Input
+                inputName='password'
+                inputType='password'
+                inputValue={password}
+                labelText='Password:'
+                inputPlaceholder='Enter password'
+                isRequired
+                updateErrorStatus={updateErrorStatus}
+                changeHandler={handleChange} />
+            </div>
+
+            <div className={signupStyles.inputBlock}>
+              <Input
+                inputName='firstName'
+                inputType='text'
+                inputValue={firstName}
+                labelText='First name:'
+                inputPlaceholder='Enter first name'
+                isRequired
+                updateErrorStatus={updateErrorStatus}
+                changeHandler={handleChange} />
+            </div>
+
+            <div className={signupStyles.inputBlock}>
+              <Input
+                inputName='lastName'
+                inputType='text'
+                inputValue={lastName}
+                labelText='Last name:'
+                inputPlaceholder='Enter last name'
+                isRequired
+                updateErrorStatus={updateErrorStatus}
+                changeHandler={handleChange} />
+            </div>
+
+            {message && <p className={signupStyles.error}>{message}</p>}
+
+            <div className={signupStyles.buttonBlock}>
+              <Button
+                buttonType='link'
+                linkPath='/'
+                text='Cancel'
+                buttonStyle='ghost' />
+              <Button 
+                buttonType='button' 
+                eventHandler={handleSubmit}
+                buttonStyle='confirm'
+                text='Sign up!' />
+            </div>
+
             <p className={signupStyles.login}>Already have an account? <Link to='/login'>Log in!</Link></p>
           </form>
         </div>

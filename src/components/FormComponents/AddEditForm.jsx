@@ -9,12 +9,12 @@ import DateTime from './DateTime';
 import formStyles from './AddEditForm.module.scss';
 import './DateTime.scss';
 
-const AddEditForm = ({ handleSubmit, formTitle, setErrorStatus, handleChange, handleTimeChange, distance, title, elapsedHours, elapsedMinutes, elapsedSeconds, runStart, workoutType, notes, setRedirect }) => {
+const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange, handleTimeChange, distance, title, elapsedHours, elapsedMinutes, elapsedSeconds, runStart, workoutType, notes, setRedirect }) => {
   return (
     <form autoComplete='off' onSubmit={handleSubmit} className={formStyles.addEditForm}>
       <div className={formStyles.headlineBlock}>
         <h2>{formTitle}</h2>
-        <p>Note: fields marked with a star are required</p>
+        <p>Fields marked with a star are required</p>
       </div>
 
       <fieldset className={formStyles.distanceBlock}>
@@ -27,7 +27,7 @@ const AddEditForm = ({ handleSubmit, formTitle, setErrorStatus, handleChange, ha
           inputPlaceholder='0'
           isRequired
           min={0}
-          setErrorStatus={setErrorStatus}
+          updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
       </fieldset>
 
@@ -42,7 +42,7 @@ const AddEditForm = ({ handleSubmit, formTitle, setErrorStatus, handleChange, ha
           isRequired
           min={0}
           max={12}
-          setErrorStatus={setErrorStatus}
+          updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
         <Input
           inputName='elapsedMinutes'
@@ -53,7 +53,7 @@ const AddEditForm = ({ handleSubmit, formTitle, setErrorStatus, handleChange, ha
           isRequired
           min={0}
           max={59}
-          setErrorStatus={setErrorStatus}
+          updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
         <Input
           inputName='elapsedSeconds'
@@ -64,7 +64,7 @@ const AddEditForm = ({ handleSubmit, formTitle, setErrorStatus, handleChange, ha
           isRequired
           min={0}
           max={59}
-          setErrorStatus={setErrorStatus}
+          updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
       </fieldset>
 
@@ -74,7 +74,7 @@ const AddEditForm = ({ handleSubmit, formTitle, setErrorStatus, handleChange, ha
           inputValue={workoutType}
           labelText='Workout type:'
           optionsArray={['Default', 'Easy', 'Recovery', 'Hills', 'Tempo', 'Intervals', 'Long', 'Race']}
-          setErrorStatus={setErrorStatus}
+          updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
       </div>
 
@@ -85,7 +85,7 @@ const AddEditForm = ({ handleSubmit, formTitle, setErrorStatus, handleChange, ha
           inputValue={title}
           labelText='Workout name:'
           inputPlaceholder={`${distance}km ${workoutType}`}
-          setErrorStatus={setErrorStatus}
+          updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
       </div>
 
@@ -103,7 +103,7 @@ const AddEditForm = ({ handleSubmit, formTitle, setErrorStatus, handleChange, ha
           inputValue={notes}
           labelText='Notes:'
           inputPlaceholder='Add notes here. What was the workout? How did it go?'
-          setErrorStatus={setErrorStatus}
+          updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
       </div>
 

@@ -12,29 +12,29 @@ const Input = ({
   inputValue, 
   inputPlaceholder, 
   isRequired,
-  setErrorStatus }) => {
+  updateErrorStatus }) => {
   const [errorText, setErrorText] = useState('');
 
-  const validate = () => {
-    setErrorStatus(false);
+  const validate = (e) => {
+    updateErrorStatus(e.target.name, false);
     setErrorText('');
 
     if (isRequired && inputValue === '') {
       setErrorText('This field is required!');
-      setErrorStatus(true);
+      updateErrorStatus(e.target.name, true);
     } else if (inputType === 'email' && inputValue) {
       // eslint-disable-next-line no-useless-escape
       const regex = /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/gi;
       if (!regex.test(inputValue)) {
         setErrorText('Please use a valid email address.');
-        setErrorStatus(true);
+        updateErrorStatus(e.target.name, true);
       }
     } else if (inputValue && min && inputValue < min) {
       setErrorText(`Must be greater than ${min}`);
-      setErrorStatus(true);
+      updateErrorStatus(e.target.name, true);
     } else if (inputValue && min && inputValue > max) {
       setErrorText(`Must be less than ${max}`);
-      setErrorStatus(true);
+      updateErrorStatus(e.target.name, true);
     }
   }
 

@@ -35,7 +35,7 @@ class AddNew extends Component {
   handleTimeChange = date => {
     this.setState({ runStart: date });
   }
-
+// update this to the new updateErrorStatus on login/signup - refactor for state
   setErrorStatus = status => {
     this.setState({ errorStatus: status });
   }

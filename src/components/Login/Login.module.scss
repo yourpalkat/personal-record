@@ -3,25 +3,30 @@
 .loginForm {
   grid-column: 2 / -2;
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   margin: 0 auto 0;
 }
 .inputBlock {
   margin-bottom: 3rem;
 }
 
-.loginForm h2 {
+.headlineBlock {
   color: $white;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
+}
+.headlineBlock p {
+  font-size: 1.8rem;
 }
 
 .error {
   color: $danger;
   letter-spacing: 0.05rem;
-  margin-bottom: 2rem;
+  margin-top: -2rem;
+  margin-bottom: 4rem;
 }
 
 .signup {
   color: $white;
-  margin-top: 3rem;
+  font-size: 1.8rem;
+  margin-top: 5rem;
 }
