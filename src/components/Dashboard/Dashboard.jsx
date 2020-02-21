@@ -62,30 +62,28 @@ const Dashboard = ({ user, setRun, selectedRun, location }) => {
   return(
     <>
       {selectedRun._id ? <Redirect to={`/users/${user._id}/runs/${selectedRun._id}`} /> : (
-        <div className='gridWrapper'>
-          <section className={dashStyles.dashboard}>
-            <div className={dashStyles.titleBlock}>
-              <h2>{user.firstName}’s workouts &emsp;</h2>
-              <Button 
-                buttonType='link'
-                linkPath={`${location}/runs/add`}
-                buttonStyle='confirm'
-                text='Add New Run' />
-            </div>
-            <div className={dashStyles.calendarContainer} style={{height: 700}}>
-              <Calendar 
-                localizer={localizer}
-                events={runs} 
-                step={30} 
-                defaultView='month' 
-                views={['month', 'week']} 
-                defaultDate={new Date()} 
-                onSelectEvent={(event) => selectRun(event)}
-                eventPropGetter={(event) => { return { className: `${event.workoutType}Run`} }}
-              />
-            </div>
-          </section>
-        </div>
+        <section className={dashStyles.dashboard}>
+          <div className={dashStyles.titleBlock}>
+            <h2>{user.firstName}’s workouts &emsp;</h2>
+            <Button 
+              buttonType='link'
+              linkPath={`${location}/runs/add`}
+              buttonStyle='confirm'
+              text='Add New Run' />
+          </div>
+          <div className={dashStyles.calendarContainer} style={{height: 700}}>
+            <Calendar 
+              localizer={localizer}
+              events={runs} 
+              step={30} 
+              defaultView='month' 
+              views={['month', 'week']} 
+              defaultDate={new Date()} 
+              onSelectEvent={(event) => selectRun(event)}
+              eventPropGetter={(event) => { return { className: `${event.workoutType}Run`} }}
+            />
+          </div>
+        </section>
       )}
     </>
   );

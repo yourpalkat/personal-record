@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+
+.sideNav {
+  grid-column: 2 / 6;
+  padding-top: 2.4rem;
+}
+.sideNav li {
+  margin-bottom: 2.25rem;
+}
+.sideNav a {
+  color: $white;
+  font-family: $font-condensed;
+  font-size: 2.1rem;
+  text-decoration: none;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+}
+.sideNav a:hover,
+.sideNav a:focus {
+  color: $primary;
+  font-weight: 800;
+}
+.sideNav a.active {
+  color: $primary;
+  font-weight: 800;
+}

@@ -1,10 +1,7 @@
 @import '../../styles/variables.scss';
 
-.moreInfo {
-  grid-column: 2 / -2;
-}
-
-.moreInfo h3, .moreInfo h5, .moreInfo p {
+.runDetailSection {
+  grid-column: 6 / -2;
   color: $white;
 }
 
