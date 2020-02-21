@@ -19,9 +19,9 @@ const RunDetail = ({ user, run, setRun }) => {
   return (
     <>
       {!run._id ? <Redirect to={`/users/${user._id}`} /> : (
-        <div className='gridWrapper'>
+        <>
           {showDelete && <DeleteRun setRun={setRun} closeModal={() => setShowDelete(false)} run={displayRun} />}
-          <div className={runStyles.moreInfo}>
+          <section className={runStyles.runDetailSection}>
             <div className={runStyles.closeContainer}>
               <Button 
                 buttonType='button'
@@ -47,8 +47,8 @@ const RunDetail = ({ user, run, setRun }) => {
                 text='Edit run'
                 linkPath={`/users/${user._id}/runs/${run._id}/edit`} />
             </div>
-          </div>
-        </div>
+          </section>
+        </>
       )}
     </>
   );

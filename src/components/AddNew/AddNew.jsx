@@ -98,23 +98,21 @@ class AddNew extends Component {
         {this.state.redirect ? (
           <Redirect to={`/users/${this.props.user._id}`} />
         ) : (
-          <div className='gridWrapper'>
-            <AddEditForm 
-              formTitle='Add new run'
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-              handleTimeChange={this.handleTimeChange}
-              updateErrorStatus={this.updateErrorStatus} 
-              distance={this.state.distance}
-              title={this.state.title}
-              notes={this.state.notes}
-              elapsedHours={this.state.elapsedHours}
-              elapsedMinutes={this.state.elapsedMinutes}
-              elapsedSeconds={this.state.elapsedSeconds}
-              runStart={this.state.runStart}
-              workoutType={this.state.workoutType}
-              setRedirect={this.setRedirect} />
-          </div>
+          <AddEditForm 
+            formTitle='Add new run'
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            handleTimeChange={this.handleTimeChange}
+            updateErrorStatus={this.updateErrorStatus} 
+            distance={this.state.distance}
+            title={this.state.title}
+            notes={this.state.notes}
+            elapsedHours={this.state.elapsedHours}
+            elapsedMinutes={this.state.elapsedMinutes}
+            elapsedSeconds={this.state.elapsedSeconds}
+            runStart={this.state.runStart}
+            workoutType={this.state.workoutType}
+            setRedirect={this.setRedirect} />
         )}
       </>
     );

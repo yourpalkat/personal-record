@@ -119,7 +119,6 @@ class EditRun extends Component {
         {this.state.redirect ? (
           <Redirect to={`/users/${this.props.user._id}`} />
         ) : (
-        <div className='gridWrapper'>
           <AddEditForm
             formTitle='Edit run'
             handleChange={this.handleChange}
@@ -135,8 +134,7 @@ class EditRun extends Component {
             runStart={this.state.runStart}
             workoutType={this.state.workoutType}
             setRedirect={this.setRedirect} />
-        </div>
-      )}
+        )}
       </>
     );
   }
