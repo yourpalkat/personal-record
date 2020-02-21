@@ -9,16 +9,16 @@ const Textarea = ({
   inputValue,
   inputPlaceholder,
   isRequired,
-  setErrorStatus }) => {
+  updateErrorStatus }) => {
   const [errorText, setErrorText] = useState('');
 
-  const validate = () => {
-    setErrorStatus(false);
+  const validate = (e) => {
+    updateErrorStatus(e.target.name, false);
     setErrorText('');
 
     if (isRequired && inputValue === '') {
       setErrorText('This field is required!');
-      setErrorStatus(true);
+      updateErrorStatus(e.target.name, true);
     }
   }
 

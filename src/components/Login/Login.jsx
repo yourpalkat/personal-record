@@ -12,7 +12,10 @@ const Login = ({ setUser, user, isLoggedIn }) => {
   const [message, setMessage] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorStatus, setErrorStatus] = useState(false);
+  const [errorStatus, setErrorStatus] = useState({
+    email: false,
+    password: false,
+  });
   const isMountedRef = useRef(null);
 
   const handleChange = e => {
@@ -23,9 +26,16 @@ const Login = ({ setUser, user, isLoggedIn }) => {
     }
   }
 
+  const updateErrorStatus = (key, value) => {
+    setErrorStatus({
+      ...errorStatus,
+      [key]: value
+    });
+  };
+
   const handleSubmit = async e => {
     e.preventDefault();
-    if (!errorStatus) {
+    if (Object.values(errorStatus).indexOf(true) === -1) {
       try {
         const res = await axios.post(`/api/users/login`, {
           data: {
@@ -62,7 +72,10 @@ const Login = ({ setUser, user, isLoggedIn }) => {
       ) : (
         <div className='gridWrapper'>
           <form autoComplete='off' onSubmit={handleSubmit} className={loginStyles.loginForm}>
-            <h2>Please log in to continue</h2>
+            <div className={loginStyles.headlineBlock}>
+              <h2>Please log in to continue</h2>
+              <p>Fields marked with a star are required.</p>
+            </div>
             <div className={loginStyles.inputBlock}>
               <Input 
                 inputName='email'
@@ -71,7 +84,7 @@ const Login = ({ setUser, user, isLoggedIn }) => {
                 labelText='Email address:'
                 inputPlaceholder='Enter email address'
                 isRequired
-                setErrorStatus={setErrorStatus}
+                updateErrorStatus={updateErrorStatus}
                 changeHandler={handleChange} />
             </div>
             <div className={loginStyles.inputBlock}>
@@ -82,7 +95,7 @@ const Login = ({ setUser, user, isLoggedIn }) => {
                 labelText='Password:'
                 inputPlaceholder='Enter password'
                 isRequired
-                setErrorStatus={setErrorStatus}
+                updateErrorStatus={updateErrorStatus}
                 changeHandler={handleChange} />
             </div>
             {message && <p className={loginStyles.error}>{message}</p>}

@@ -9,7 +9,7 @@ const PrivateRoute = ({ isLoggedIn, children, ...rest }) => {
         isLoggedIn ? (
           children
         ) : (
-          <Redirect to="/login" />
+          <Redirect to="/" />
         )
       }
     />
