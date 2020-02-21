@@ -7,7 +7,8 @@ const Input = ({
   inputName, 
   inputType, 
   min, 
-  max, 
+  max,
+  step,
   changeHandler, 
   inputValue, 
   inputPlaceholder, 
@@ -46,6 +47,9 @@ const Input = ({
         id={inputName} 
         type={inputType} 
         value={inputValue} 
+        min={min}
+        max={max}
+        step={step ? step : 'any'}
         placeholder={inputPlaceholder}
         className={errorText && inputStyles.error}
         onChange={changeHandler}

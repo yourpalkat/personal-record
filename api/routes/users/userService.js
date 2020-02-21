@@ -8,10 +8,9 @@ exports.createUser = async (userData) => {
   const user = new User(userData);
   try {
     // 2. Make sure new user's email does not exist in db, as they have to be unique
-    // I've commented this out because not only is it not working, it's breaking the sign-up function
-    console.log(userData.email);
     const checkEmail = userData.email;
     const [checkUser] = await User.find({ checkEmail });
+    console.log(checkUser);
     if (!checkUser) {
       // 3. Save user to database
       const newUser = await user.save();

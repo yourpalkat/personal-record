@@ -22,7 +22,12 @@ class AddNew extends Component {
       notes: '',
       message: '',
       redirect: false,
-      errorStatus: false,
+      errorStatus: {
+        distance: false,
+        elapsedHours: false,
+        elapsedMinutes: false,
+        elapsedSeconds: false,
+      },
     }
   }
 
@@ -36,9 +41,16 @@ class AddNew extends Component {
     this.setState({ runStart: date });
   }
 // update this to the new updateErrorStatus on login/signup - refactor for state
-  setErrorStatus = status => {
-    this.setState({ errorStatus: status });
-  }
+  // setErrorStatus = status => {
+  //   this.setState({ errorStatus: status });
+  // }
+  updateErrorStatus = (key, value) => {
+    const newStatus = this.state.errorStatus;
+    newStatus[key] = value;
+    this.setState({
+      errorStatus: newStatus,
+    });
+  };
 
   setRedirect = status => {
     this.setState({ redirect: status });
@@ -46,7 +58,7 @@ class AddNew extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    if (!this.state.errorStatus) {
+    if (Object.values(this.state.errorStatus).indexOf(true) === -1) {
       const runEnd = moment(this.state.runStart).add(this.state.elapsedHours, 'hours').add(this.state.elapsedMinutes, 'minutes').add(this.state.elapsedSeconds, 'seconds').toDate();
   
       let assignedTitle = '';
@@ -92,7 +104,7 @@ class AddNew extends Component {
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
               handleTimeChange={this.handleTimeChange}
-              setErrorStatus={this.setErrorStatus} 
+              updateErrorStatus={this.updateErrorStatus} 
               distance={this.state.distance}
               title={this.state.title}
               notes={this.state.notes}

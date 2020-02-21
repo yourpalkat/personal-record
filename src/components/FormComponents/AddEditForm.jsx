@@ -42,6 +42,7 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           isRequired
           min={0}
           max={12}
+          step={1}
           updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
         <Input
@@ -53,6 +54,7 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           isRequired
           min={0}
           max={59}
+          step={1}
           updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
         <Input
@@ -64,6 +66,7 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           isRequired
           min={0}
           max={59}
+          step={1}
           updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
       </fieldset>
