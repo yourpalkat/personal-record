@@ -3,6 +3,7 @@
 
 .dashboard {
   grid-column: 6 / -2;
+  padding: 4rem 0;
   @include respond-to('tablet') {
     grid-column: 4 / -2;
   }

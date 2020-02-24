@@ -7,7 +7,7 @@
   grid-template-columns: repeat(5, 1fr);
   grid-column-gap: 1.5%;
   grid-row-gap: 4rem;
-  padding-bottom: 4rem;
+  padding: 4rem 0;
   @include respond-to('tablet') {
     grid-column: 4 / -2;
   }
