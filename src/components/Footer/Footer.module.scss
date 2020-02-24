@@ -1,0 +1,30 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.footerSection {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 2rem 0;
+  color: $white;
+  font-size: 1.2rem;
+}
+
+.left {
+  grid-column: 2 / 12;
+  @include respond-to('tablet') {
+    grid-column: 2 / 8;
+  }
+  @include respond-to('mobile') {
+    grid-column: 2 / -2;
+  }
+}
+.right {
+  grid-column: 14 / -2;
+  text-align: right;
+  @include respond-to('tablet') {
+    grid-column: 8 / -2;
+  }
+  @include respond-to('mobile') {
+    grid-column: 2 / -2;
+    text-align: left;
+  }
+}

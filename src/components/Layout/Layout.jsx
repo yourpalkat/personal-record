@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 import layoutStyles from './Layout.module.scss';
 
@@ -13,6 +14,7 @@ const Layout = ({ children, logOut, isLoggedIn, user }) => {
       <main role='main' id='main'>
         {children}
       </main>
+      <Footer />
     </div>
   );
 };

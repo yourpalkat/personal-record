@@ -1,6 +1,8 @@
 /* Global Typography styles
 ========================================================================== */
 
+@import './functions.scss';
+
 @font-face {
   font-family: 'Roboto Condensed';
   font-style: normal;
@@ -32,6 +34,6 @@ p, label, input, h6 {
 }
 
 a {
-  color: $primary;
+  color: tint($primary, 40);
   transition: background 0.3s ease, color 0.3s ease, text-decoration-color 0.3s ease;
 }
