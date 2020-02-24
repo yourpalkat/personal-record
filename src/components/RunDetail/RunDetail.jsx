@@ -15,6 +15,10 @@ const RunDetail = ({ user, run, setRun }) => {
   let start = new moment(displayRun.start);
   let end = new moment(displayRun.end);
   displayRun.elapsedTime = moment.duration(end.diff(start));
+  const seconds = moment.duration(end.diff(start)).as('seconds');
+  const pace = seconds / displayRun.distance;
+  const paceMinutes = Math.floor(pace / 60);
+  const paceSeconds = Math.round(pace % 60);
 
   return (
     <>
@@ -29,12 +33,13 @@ const RunDetail = ({ user, run, setRun }) => {
                 text='Close'
                 eventHandler={() => setRun({})} />
             </div>
-            <h5><Moment date={displayRun.start} format='Do MMMM, YYYY, h:mm a' /></h5>
-            <h3>{displayRun.title}</h3>
+            <h2>{displayRun.title}</h2>
+            <h3><Moment date={displayRun.start} format='Do MMMM, YYYY, h:mm a' /></h3>
             <p>Distance: {displayRun.distance}km</p>
             <p>Elapsed time: {displayRun.elapsedTime.format('h:mm:ss')}</p>
+            <p>Pace: {paceMinutes}:{paceSeconds < 10 ? `0${paceSeconds}` : paceSeconds}/km</p>
             <p>Workout type: {displayRun.workoutType}</p>
-            <p>Notes: {displayRun.notes}</p>
+            {displayRun.notes && <p>Notes: {displayRun.notes}</p>}
             <div className={runStyles.buttonContainer}>
               <Button
                 buttonType='button'
