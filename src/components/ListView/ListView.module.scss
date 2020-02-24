@@ -5,3 +5,14 @@
   color: $white;
   padding: 4rem 0;
 }
+
+.titleBlock {
+  color: $white;
+  margin-bottom: 4rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.titleBlock h2 {
+  margin-right: 4rem;
+}

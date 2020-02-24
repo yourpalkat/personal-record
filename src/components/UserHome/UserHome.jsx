@@ -11,7 +11,7 @@ import RunDetail from '../RunDetail/RunDetail';
 
 import homeStyles from './UserHome.module.scss';
 
-const UserHome = ({ user, setRun, selectedRun }) => {
+const UserHome = ({ user, userRuns, setRun, selectedRun }) => {
   let { path, url } = useRouteMatch();
 
   return (
@@ -35,7 +35,7 @@ const UserHome = ({ user, setRun, selectedRun }) => {
 
       <Switch>
         <Route path={`${path}/list`}>
-          <ListView />
+          <ListView user={user} userRuns={userRuns} setRun={setRun} selectedRun={selectedRun} />
         </Route>
         <Route path={`${path}/shoes`}>
           <Shoes />
@@ -53,7 +53,7 @@ const UserHome = ({ user, setRun, selectedRun }) => {
           <RunDetail user={user} run={selectedRun} setRun={setRun} />
         </Route>
         <Route path={path}>
-          <Dashboard user={user} setRun={setRun} selectedRun={selectedRun} />
+          <Dashboard user={user} userRuns={userRuns} setRun={setRun} selectedRun={selectedRun} />
         </Route>
       </Switch>
     </div>

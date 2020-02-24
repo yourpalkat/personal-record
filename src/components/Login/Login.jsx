@@ -2,13 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import { setToken } from '../../services/tokenService';
+import { fetchRuns } from '../../services/fetchRuns';
 
 import Button from '../Button/Button';
 import Input from '../FormComponents/Input';
 
 import loginStyles from './Login.module.scss';
 
-const Login = ({ setUser, user, isLoggedIn }) => {
+const Login = ({ setUser, setUserRuns, user, isLoggedIn }) => {
   const [message, setMessage] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -47,6 +48,8 @@ const Login = ({ setUser, user, isLoggedIn }) => {
           const token = res.data.data.token;
           setToken(token);
           setUser(token, res.data.data.user);
+          const userRuns = await fetchRuns(res.data.data.user._id);
+          setUserRuns(userRuns);
           setMessage(null);
         }
       } catch (e) {
