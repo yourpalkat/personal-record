@@ -25,9 +25,6 @@ const UserHome = ({ user, userRuns, setRun, selectedRun }) => {
             <NavLink to={`${url}/list`}>All runs</NavLink>
           </li>
           <li>
-            <NavLink to={`${url}/shoes`}>Shoes</NavLink>
-          </li>
-          <li>
             <NavLink to={`${url}/profile`}>Profile</NavLink>
           </li>
         </ul>
