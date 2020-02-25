@@ -95,3 +95,28 @@ ol {
   text-decoration-color: transparent;
   transition: background 0.3s ease, color 0.3s ease, text-decoration-color 0.3s ease;
 }
+
+.runTypeEasy::after {
+  background-color: $easy;
+}
+.runTypeTempo::after {
+  background-color: $tempo;
+}
+.runTypeIntervals::after {
+  background-color: $interval;
+}
+.runTypeHill::after {
+  background-color: $hill;
+}
+.runTypeRace::after {
+  background-color: $race;
+}
+.runTypeDefault::after {
+  background-color: $default;
+}
+.runTypeLong::after {
+  background-color: $long;
+}
+.runTypeRecovery::after {
+  background-color: $recovery;
+}

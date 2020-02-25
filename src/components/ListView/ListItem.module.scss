@@ -12,6 +12,20 @@
   border-bottom: 1px solid $white;
 }
 
+.runType {
+  position: relative;
+  margin-left: 1.8rem;
+}
+.runType::after {
+  position: absolute;
+  content: '';
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  right: calc(100% + 1rem);
+  top: calc(50% - 0.4rem);
+}
+
 .viewEdit {
   appearance: none;
   background: transparent;
