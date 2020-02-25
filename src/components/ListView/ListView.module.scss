@@ -1,7 +1,71 @@
+@import '../../styles/functions.scss';
 @import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 .listSection {
   grid-column: 6 / -2;
   color: $white;
   padding: 4rem 0;
+  @include respond-to('tablet') {
+    grid-column: 4 / -2;
+  }
+  @include respond-to('mobile') {
+    grid-column: 2 / -2;
+  }
+}
+
+.titleBlock {
+  color: $white;
+  margin-bottom: 4rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.titleBlock h2 {
+  margin-right: 4rem;
+}
+
+.listHeader {
+  display: grid;
+  grid-template-columns: repeat(3, 25%) 1fr 1fr;
+  grid-column-gap: 1fr;
+  border-bottom: 2px solid $primary;
+}
+.headerTotals {
+  grid-column: 4 / -1;
+  color: $white;
+  font-size: 1.4rem;
+  align-self: center;
+  justify-self: end;
+}
+.headerButton {
+  appearance: none;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  color: $white;
+  text-align: left;
+}
+.activeUp h4,
+.activeDown h4 {
+  position: relative;
+}
+.activeUp h4::after,
+.activeDown h4::after {
+  position: absolute;
+  content: '';
+  left: 8rem;
+  width: 1.85rem;
+  height: 1.85rem;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.activeDown h4::after {
+  background-image: url(../../assets/images/arrow-down-solid.svg);
+}
+.activeUp h4::after {
+  background-image: url(../../assets/images/arrow-up-solid.svg);
 }
