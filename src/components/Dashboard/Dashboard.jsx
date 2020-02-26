@@ -29,7 +29,7 @@ const Dashboard = ({ user, userRuns, setRun, selectedRun }) => {
               buttonStyle='confirm'
               text='Add New Run' />
           </div>
-          <div className={dashStyles.calendarContainer} style={{height: 700}}>
+          <div className={dashStyles.calendarContainer}>
             <Calendar 
               localizer={localizer}
               events={userRuns} 

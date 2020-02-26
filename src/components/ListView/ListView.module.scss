@@ -37,6 +37,10 @@
   font-size: 1.4rem;
   align-self: center;
   justify-self: end;
+  @include respond-to('mobile') {
+    grid-column: 1 / -1;
+    grid-row-start: 1;
+  }
 }
 .headerButton {
   appearance: none;
@@ -47,6 +51,7 @@
   cursor: pointer;
   color: $white;
   text-align: left;
+  justify-self: start;
 }
 .activeUp h4,
 .activeDown h4 {
@@ -56,12 +61,18 @@
 .activeDown h4::after {
   position: absolute;
   content: '';
-  left: 8rem;
-  width: 1.85rem;
-  height: 1.85rem;
+  right: -2.2rem;
+  width: 1.6rem;
+  height: 1.6rem;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  @include respond-to('mobile') {
+    right: -1.8rem;
+    width: 1.3rem;
+    height: 1.3rem;
+    bottom: 0.2rem;
+  }
 }
 .activeDown h4::after {
   background-image: url(../../assets/images/arrow-down-solid.svg);

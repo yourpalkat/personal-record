@@ -76,33 +76,36 @@ class EditRun extends Component {
       } else {
         assignedTitle = this.state.title;
       }
+      const newRun = {
+        _id: this.props.run._id,
+        distance: this.state.distance,
+        title: assignedTitle,
+        start: this.state.runStart,
+        end: runEnd,
+        userId: this.state.userId,
+        workoutType: this.state.workoutType,
+        notes: this.state.notes
+      };
 
       try {
+
         const res = await axios.post(`/api/runs/edit`, {
           headers: {
             'Authorization': `Bearer ${getToken()}`,
             'runId': this.state.runId
           },
           data: {
-            distance: this.state.distance,
-            title: assignedTitle,
-            start: this.state.runStart,
-            end: runEnd,
-            userId: this.state.userId,
-            workoutType: this.state.workoutType,
-            notes: this.state.notes
+            runId: newRun._id,
+            distance: newRun.distance,
+            title: newRun.title,
+            start: newRun.start,
+            end: newRun.end,
+            userId: newRun.userId,
+            workoutType: newRun.workoutType,
+            notes: newRun.notes
           }
         });
-
-        const newRun = {
-          distance: this.state.distance,
-          title: assignedTitle,
-          start: this.state.runStart,
-          end: runEnd,
-          userId: this.state.userId,
-          workoutType: this.state.workoutType,
-          notes: this.state.notes
-        }
+        this.props.replaceEditedRun(newRun);
         this.props.setRun(newRun);
         console.log(`Edited record: ${res}`);
         this.setState({ redirect: true });

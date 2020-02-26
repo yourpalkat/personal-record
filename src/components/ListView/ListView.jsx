@@ -81,11 +81,11 @@ const ListView = ({ user, userRuns, setRun, selectedRun }) => {
             <button
               className={`${listStyles.headerButton} ${sortedBy === 'distAsc' ? listStyles.activeUp : null}  ${sortedBy === 'distDesc' ? listStyles.activeDown : null}`}
               type='button'
-              onClick={() => sortRuns('dist')}><h4>Distance</h4></button>
+              onClick={() => sortRuns('dist')}><h4>Dist</h4></button>
             <button
               className={`${listStyles.headerButton} ${sortedBy === 'typeAsc' ? listStyles.activeUp : null}  ${sortedBy === 'typeDesc' ? listStyles.activeDown : null}`}
               type='button'
-              onClick={() => sortRuns('type')}><h4>Workout</h4></button>
+              onClick={() => sortRuns('type')}><h4>Type</h4></button>
             <p className={listStyles.headerTotals}>Runs 1&ndash;{displayRuns.length} of {displayRuns.length}</p>
           </div>
           {displayRuns.map((run, i) => <ListItem key={`runItem${i}`} run={run} setRun={setRun} user={user} setNavTo={setNavTo} />)}
