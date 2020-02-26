@@ -4,7 +4,7 @@
 .runDetailSection {
   grid-column: 6 / -2;
   color: $white;
-  padding: 6rem 0;
+  padding: 8rem 0;
   @include respond-to('tablet') {
     grid-column: 4 / -2;
   }
@@ -13,10 +13,12 @@
   }
 }
 .runDetailSection h2 {
-  color: $primary;
+  color: $white;
   font-size: 3.2rem;
   margin-top: -4.8rem;
   margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid $primary;
 }
 .runDetailSection h4 {
   margin-bottom: 5rem;
@@ -28,7 +30,29 @@
 }
 .closeContainer {
   text-align: right;
+  position: relative;
 }
+.closeButton {
+  appearance: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  height: 2.5rem;
+  width: 2.5rem;
+  fill: $white;
+  transition: fill 0.3s ease;
+  position: relative;
+  bottom: 0.7rem;
+}
+.closeButton:hover {
+  fill: $primary;
+}
+.closeButton svg {
+  width: 100%;
+}
+
 .buttonContainer {
   margin-top: 6rem;
 }

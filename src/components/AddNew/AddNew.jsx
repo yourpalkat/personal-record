@@ -69,21 +69,31 @@ class AddNew extends Component {
       }
   
       try {
+        const newRun = {
+          distance: this.state.distance,
+          title: assignedTitle,
+          start: this.state.runStart,
+          end: runEnd,
+          userId: this.props.user._id,
+          workoutType: this.state.workoutType,
+          notes: this.state.notes
+        };
         const res = await axios.post(`/api/runs/new`, {
           headers: {
             'Authorization': `Bearer ${getToken()}`
           },
           data: {
-            distance: this.state.distance,
-            title: assignedTitle,
-            start: this.state.runStart,
-            end: runEnd,
-            userId: this.props.user._id,
-            workoutType: this.state.workoutType,
-            notes: this.state.notes
+            distance: newRun.distance,
+            title: newRun.title,
+            start: newRun.start,
+            end: newRun.end,
+            userId: newRun.userId,
+            workoutType: newRun.workoutType,
+            notes: newRun.notes
           }
         });
         console.log(`Created new record: ${res}`);
+        this.props.addRunToState(newRun);
         this.setState({ redirect: true });
       } catch (e) {
         this.setState({ message: e });

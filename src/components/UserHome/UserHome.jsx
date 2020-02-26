@@ -11,7 +11,7 @@ import RunDetail from '../RunDetail/RunDetail';
 
 import homeStyles from './UserHome.module.scss';
 
-const UserHome = ({ user, userRuns, setRun, selectedRun }) => {
+const UserHome = ({ user, userRuns, setRun, selectedRun, addRunToState, replaceEditedRun }) => {
   let { path, url } = useRouteMatch();
 
   return (
@@ -38,13 +38,13 @@ const UserHome = ({ user, userRuns, setRun, selectedRun }) => {
           <Shoes />
         </Route>
         <Route path={`${path}/profile`}>
-          <Profile />
+          <Profile user={user} userRuns={userRuns} />
         </Route>
         <Route path={`${path}/runs/add`}>
-          <AddNew user={user} />
+          <AddNew user={user} addRunToState={addRunToState} />
         </Route>
         <Route path={`${path}/runs/:runId/edit`}>
-          <EditRun user={user} run={selectedRun} setRun={setRun} />
+          <EditRun user={user} run={selectedRun} setRun={setRun} replaceEditedRun={replaceEditedRun} />
         </Route>
         <Route path={`${path}/runs/:runId`}>
           <RunDetail user={user} run={selectedRun} setRun={setRun} />

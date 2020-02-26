@@ -26,4 +26,8 @@
 .calendarContainer {
   color: $white;
   font-family: $font-condensed;
+  height: 660px;
+  @include respond-to('mobile') {
+    height: 360px;
+  }
 }

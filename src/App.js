@@ -40,6 +40,21 @@ class App extends Component {
     });
   }
 
+  addRunToState = (run) => {
+    const allRuns = this.state.userRuns;
+    allRuns.push(run);
+    this.setState({ userRuns: allRuns });
+  }
+  
+  replaceEditedRun = (newRun) => {
+    const allRuns = [...this.state.userRuns];
+    const index = allRuns.findIndex(run => run._id === newRun._id);
+    if (index !== -1) {
+      allRuns[index] = {...newRun};
+      this.setState({ userRuns: allRuns });
+    }
+  }
+
   logOut = (e) => {
     e.preventDefault();
     this.setState({
@@ -65,7 +80,13 @@ class App extends Component {
               <Signup setUser={this.setUser} setUserRuns={this.setUserRuns} user={this.state.user} isLoggedIn={this.state.isLoggedIn} />
             </Route>
             <PrivateRoute path="/users/:userId" isLoggedIn={this.state.isLoggedIn}>
-              <UserHome user={this.state.user} userRuns={this.state.userRuns} setRun={this.setRun} selectedRun={this.state.selectedRun} />
+              <UserHome 
+                user={this.state.user} 
+                userRuns={this.state.userRuns} 
+                setRun={this.setRun} 
+                selectedRun={this.state.selectedRun} 
+                addRunToState={this.addRunToState}
+                replaceEditedRun={this.replaceEditedRun} />
             </PrivateRoute>
             <Route exact path="/">
               <Home

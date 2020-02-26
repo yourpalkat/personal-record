@@ -1,7 +1,9 @@
 @import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 .EasyRun {
   background-color: $easy;
+  color: $background;
 }
 
 .DefaultRun {
@@ -10,10 +12,12 @@
 
 .RecoveryRun {
   background-color: $recovery;
+  color: $background;
 } 
 
 .HillsRun {
   background-color: $hill;
+  color: $background;
 }
 
 .TempoRun {
@@ -22,6 +26,7 @@
 
 .IntervalsRun {
   background-color: $interval;
+  color: $background;
 }
 .LongRun {
   background-color: $long;
@@ -45,6 +50,9 @@
 }
 .rbc-event-content {
   padding: 0.5rem 0;
+  @include respond-to('mobile') {
+    color: transparent;
+  }
 }
 .rbc-toolbar-label {
   text-align: left !important;
