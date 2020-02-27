@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/derekmurr/personal-record/static/css/main.152388d4.chunk.css",
+    "main.js": "/derekmurr/personal-record/static/js/main.32a09d67.chunk.js",
+    "main.js.map": "/derekmurr/personal-record/static/js/main.32a09d67.chunk.js.map",
+    "runtime~main.js": "/derekmurr/personal-record/static/js/runtime~main.eeb8af5c.js",
+    "runtime~main.js.map": "/derekmurr/personal-record/static/js/runtime~main.eeb8af5c.js.map",
+    "static/css/2.93f1c839.chunk.css": "/derekmurr/personal-record/static/css/2.93f1c839.chunk.css",
+    "static/js/2.f2610bc7.chunk.js": "/derekmurr/personal-record/static/js/2.f2610bc7.chunk.js",
+    "static/js/2.f2610bc7.chunk.js.map": "/derekmurr/personal-record/static/js/2.f2610bc7.chunk.js.map",
+    "index.html": "/derekmurr/personal-record/index.html",
+    "precache-manifest.e46755bac678c4d4ed4ba90687dba92d.js": "/derekmurr/personal-record/precache-manifest.e46755bac678c4d4ed4ba90687dba92d.js",
+    "service-worker.js": "/derekmurr/personal-record/service-worker.js",
+    "static/css/2.93f1c839.chunk.css.map": "/derekmurr/personal-record/static/css/2.93f1c839.chunk.css.map",
+    "static/css/main.152388d4.chunk.css.map": "/derekmurr/personal-record/static/css/main.152388d4.chunk.css.map",
+    "static/media/App.scss": "/derekmurr/personal-record/static/media/RobotoSlab-VariableFont.0b2aeb1c.ttf",
+    "static/media/ListView.module.scss": "/derekmurr/personal-record/static/media/arrow-up-solid.960adab1.svg",
+    "static/media/Input.module.scss": "/derekmurr/personal-record/static/media/chevron-down-solid.3b05929c.svg",
+    "static/media/Hero.module.scss": "/derekmurr/personal-record/static/media/splash.e164ccff.jpg"
+  }
+}
