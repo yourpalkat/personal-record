@@ -46,6 +46,15 @@ class App extends Component {
     this.setState({ userRuns: allRuns });
   }
   
+  removeRunFromState = (runToRemove) => {
+    const allRuns = [...this.state.userRuns];
+    const index = allRuns.findIndex(run => run._id === runToRemove._id);
+    if (index !== -1) {
+      allRuns.splice(index, 1);
+      this.setState({ userRuns: allRuns });
+    }
+  }
+
   replaceEditedRun = (newRun) => {
     const allRuns = [...this.state.userRuns];
     const index = allRuns.findIndex(run => run._id === newRun._id);
@@ -86,6 +95,7 @@ class App extends Component {
                 setRun={this.setRun} 
                 selectedRun={this.state.selectedRun} 
                 addRunToState={this.addRunToState}
+                removeRunFromState={this.removeRunFromState}
                 replaceEditedRun={this.replaceEditedRun} />
             </PrivateRoute>
             <Route exact path="/">

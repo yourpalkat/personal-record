@@ -8,7 +8,7 @@ import DeleteRun from '../DeleteRun/DeleteRun';
 
 import runStyles from './RunDetail.module.scss';
 
-const RunDetail = ({ user, run, setRun }) => {
+const RunDetail = ({ user, run, setRun, removeRunFromState }) => {
   const [showDelete, setShowDelete] = useState(false);
 
   const displayRun = run;
@@ -24,7 +24,7 @@ const RunDetail = ({ user, run, setRun }) => {
     <>
       {!run._id ? <Redirect to={`/users/${user._id}`} /> : (
         <>
-          {showDelete && <DeleteRun setRun={setRun} closeModal={() => setShowDelete(false)} run={displayRun} />}
+          {showDelete && <DeleteRun setRun={setRun} closeModal={() => setShowDelete(false)} run={displayRun} removeRunFromState={removeRunFromState} />}
           <section className={runStyles.runDetailSection}>
             <div className={runStyles.closeContainer}>
               <button 

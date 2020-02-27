@@ -11,7 +11,7 @@ import RunDetail from '../RunDetail/RunDetail';
 
 import homeStyles from './UserHome.module.scss';
 
-const UserHome = ({ user, userRuns, setRun, selectedRun, addRunToState, replaceEditedRun }) => {
+const UserHome = ({ user, userRuns, setRun, selectedRun, addRunToState, removeRunFromState, replaceEditedRun }) => {
   let { path, url } = useRouteMatch();
 
   return (
@@ -47,7 +47,7 @@ const UserHome = ({ user, userRuns, setRun, selectedRun, addRunToState, replaceE
           <EditRun user={user} run={selectedRun} setRun={setRun} replaceEditedRun={replaceEditedRun} />
         </Route>
         <Route path={`${path}/runs/:runId`}>
-          <RunDetail user={user} run={selectedRun} setRun={setRun} />
+          <RunDetail user={user} run={selectedRun} setRun={setRun} removeRunFromState={removeRunFromState} />
         </Route>
         <Route path={path}>
           <Dashboard user={user} userRuns={userRuns} setRun={setRun} selectedRun={selectedRun} />
