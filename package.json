@@ -1,13 +1,12 @@
 {
   "name": "run-log",
   "version": "0.1.0",
-  "description": "HackerYou Fullstack Masterclass Project",
+  "description": "Personal Record is a simple web app to log running workouts",
   "main": "index.js",
   "scripts": {
     "test": "react-scripts test",
     "start:mongo": "mongod --config /usr/local/etc/mongod.conf",
-    "start:server": "nodemon api/server.js --ignore client",
-    "start:client": "react-scripts start",
+    "start": "nodemon server.js --ignore client",
     "build:client": "react-scripts build",
     "git:remote:set": "git remote set-url origin https://github.com/derekmurr/personal-record.git",
     "git:remote:create": "git remote add origin https://github.com/derekmurr/personal-record.git"

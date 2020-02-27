@@ -4,18 +4,19 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const express = require('express');
 const http = require('http');
-const { applyMiddleware } = require('./utils');
-const middleWare = require('./middleware');
+const path = require('path');
+const { applyMiddleware } = require('./api/utils');
+const middleWare = require('./api/middleware');
 
 // 1. Create main express intance
 const router = express();
 
 // 2. Require routes
-const { router: userRoutes } = require('./routes/users/userRoutes');
-const { router: runRoutes } = require('./routes/runs/runRoutes');
+const { router: userRoutes } = require('./api/routes/users/userRoutes');
+const { router: runRoutes } = require('./api/routes/runs/runRoutes');
 
 // 3. Require conatants
-const { URL, PORT } = require('./utils/constants');
+const { URL, PORT } = require('./api/utils/constants');
 
 // 4. Ensure that the router is using body parser to appropriately format incoming requests
 router.use(bodyParser.json());
@@ -27,6 +28,7 @@ applyMiddleware(middleWare, router);
 // 6. Utilise routes
 router.use('/api/users', userRoutes);
 router.use('/api/runs', runRoutes);
+router.use('/', express.static(path.join(__dirname, './build')))
 
 // 7. Create a server from express instance
 const server = http.createServer(router);
@@ -43,3 +45,7 @@ mongoose
   .catch((err) => {
     console.error(err);
   })
+
+router.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'))
+})
