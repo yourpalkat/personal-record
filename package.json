@@ -7,6 +7,8 @@
     "test": "react-scripts test",
     "start:mongo": "mongod --config /usr/local/etc/mongod.conf",
     "start": "nodemon server.js --ignore client",
+    "devserver": "nodemon devserver.js --ignore client",
+    "devclient": "react-scripts start",
     "build:client": "react-scripts build",
     "git:remote:set": "git remote set-url origin https://github.com/derekmurr/personal-record.git",
     "git:remote:create": "git remote add origin https://github.com/derekmurr/personal-record.git"

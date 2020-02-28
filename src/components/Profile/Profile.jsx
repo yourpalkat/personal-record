@@ -3,7 +3,7 @@ import React from 'react';
 import profileStyles from './Profile.module.scss';
 
 const Profile = ({ user, userRuns }) => {
-  const total = userRuns.reduce((acc, curr) => acc + curr.distance, 0);
+  const total = userRuns.reduce((acc, curr) => acc + curr.distance, 0).toFixed(2);
   return (
     <section className={profileStyles.profileSection}>
       <h2>{user.firstName} {user.lastName}</h2>

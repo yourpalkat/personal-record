@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
 import moment from 'moment';
@@ -8,8 +8,22 @@ import DeleteRun from '../DeleteRun/DeleteRun';
 
 import runStyles from './RunDetail.module.scss';
 
-const RunDetail = ({ user, run, setRun }) => {
+const RunDetail = ({ user, run, setRun, removeRunFromState }) => {
   const [showDelete, setShowDelete] = useState(false);
+  const isMountedRef = useRef(null);
+
+  const showDeleteModal = (show) => {
+    if (isMountedRef.current) {
+      setShowDelete(show);
+    }
+  }
+
+  useEffect(() => {
+    // set flag that component is mounted and thus async functions can run
+    isMountedRef.current = true;
+    // return a function to set mounted flag to false, so async functions won't run
+    return () => isMountedRef.current = false;
+  }, []);
 
   const displayRun = run;
   let start = new moment(displayRun.start);
@@ -24,7 +38,7 @@ const RunDetail = ({ user, run, setRun }) => {
     <>
       {!run._id ? <Redirect to={`/users/${user._id}`} /> : (
         <>
-          {showDelete && <DeleteRun setRun={setRun} closeModal={() => setShowDelete(false)} run={displayRun} />}
+          {showDelete && <DeleteRun setRun={setRun} closeModal={() => showDeleteModal(false)} run={displayRun} removeRunFromState={removeRunFromState} />}
           <section className={runStyles.runDetailSection}>
             <div className={runStyles.closeContainer}>
               <button 
@@ -47,7 +61,7 @@ const RunDetail = ({ user, run, setRun }) => {
                 buttonType='button'
                 buttonStyle='danger'
                 text='Delete run'
-                eventHandler={() => setShowDelete(true)} />
+                eventHandler={() => showDeleteModal(true)} />
               <Button 
                 buttonType='link'
                 buttonStyle='confirm'

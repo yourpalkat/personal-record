@@ -40,10 +40,7 @@ class AddNew extends Component {
   handleTimeChange = date => {
     this.setState({ runStart: date });
   }
-// update this to the new updateErrorStatus on login/signup - refactor for state
-  // setErrorStatus = status => {
-  //   this.setState({ errorStatus: status });
-  // }
+
   updateErrorStatus = (key, value) => {
     const newStatus = this.state.errorStatus;
     newStatus[key] = value;
@@ -69,31 +66,22 @@ class AddNew extends Component {
       }
   
       try {
-        const newRun = {
-          distance: this.state.distance,
-          title: assignedTitle,
-          start: this.state.runStart,
-          end: runEnd,
-          userId: this.props.user._id,
-          workoutType: this.state.workoutType,
-          notes: this.state.notes
-        };
         const res = await axios.post(`/api/runs/new`, {
           headers: {
             'Authorization': `Bearer ${getToken()}`
           },
           data: {
-            distance: newRun.distance,
-            title: newRun.title,
-            start: newRun.start,
-            end: newRun.end,
-            userId: newRun.userId,
-            workoutType: newRun.workoutType,
-            notes: newRun.notes
+            distance: this.state.distance,
+            title: assignedTitle,
+            start: this.state.runStart,
+            end: runEnd,
+            userId: this.props.user._id,
+            workoutType: this.state.workoutType,
+            notes: this.state.notes
           }
         });
-        console.log(`Created new record: ${res}`);
-        this.props.addRunToState(newRun);
+        console.log(`Created new run with id: ${res.data.data[0]._id}`);
+        this.props.addRunToState(res.data.data[0]);
         this.setState({ redirect: true });
       } catch (e) {
         this.setState({ message: e });
