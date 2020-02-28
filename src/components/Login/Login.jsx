@@ -36,6 +36,7 @@ const Login = ({ setUser, setUserRuns, user, isLoggedIn }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    setUserRuns([]);
     if (Object.values(errorStatus).indexOf(true) === -1) {
       try {
         const res = await axios.post(`/api/users/login`, {

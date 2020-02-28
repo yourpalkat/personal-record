@@ -8,7 +8,7 @@ import Button from '../Button/Button';
 
 import signupStyles from './Signup.module.scss';
 
-const Signup = ({ user, setUser, isLoggedIn }) => {
+const Signup = ({ user, setUser, setUserRuns, isLoggedIn }) => {
 
   const [message, setMessage] = useState(null);
   const [email, setEmail] = useState('');
@@ -45,6 +45,7 @@ const Signup = ({ user, setUser, isLoggedIn }) => {
   
   const handleSubmit = async e => {
     e.preventDefault();
+    setUserRuns([]);
     if (Object.values(errorStatus).indexOf(true) === -1) {
       try {
         const res = await axios.post(`/api/users/signup`, {
