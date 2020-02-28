@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/derekmurr/personal-record/static/css/main.d3221c7f.chunk.css",
-    "main.js": "/derekmurr/personal-record/static/js/main.383025bb.chunk.js",
-    "main.js.map": "/derekmurr/personal-record/static/js/main.383025bb.chunk.js.map",
-    "runtime~main.js": "/derekmurr/personal-record/static/js/runtime~main.eeb8af5c.js",
-    "runtime~main.js.map": "/derekmurr/personal-record/static/js/runtime~main.eeb8af5c.js.map",
-    "static/css/2.93f1c839.chunk.css": "/derekmurr/personal-record/static/css/2.93f1c839.chunk.css",
-    "static/js/2.e4fff2ce.chunk.js": "/derekmurr/personal-record/static/js/2.e4fff2ce.chunk.js",
-    "static/js/2.e4fff2ce.chunk.js.map": "/derekmurr/personal-record/static/js/2.e4fff2ce.chunk.js.map",
-    "index.html": "/derekmurr/personal-record/index.html",
-    "precache-manifest.2c1bb3a254be6167fcf64bc43b6f9dd1.js": "/derekmurr/personal-record/precache-manifest.2c1bb3a254be6167fcf64bc43b6f9dd1.js",
-    "service-worker.js": "/derekmurr/personal-record/service-worker.js",
-    "static/css/2.93f1c839.chunk.css.map": "/derekmurr/personal-record/static/css/2.93f1c839.chunk.css.map",
-    "static/css/main.d3221c7f.chunk.css.map": "/derekmurr/personal-record/static/css/main.d3221c7f.chunk.css.map",
-    "static/media/App.scss": "/derekmurr/personal-record/static/media/RobotoSlab-VariableFont.0b2aeb1c.ttf",
-    "static/media/ListView.module.scss": "/derekmurr/personal-record/static/media/arrow-up-solid.960adab1.svg",
-    "static/media/Input.module.scss": "/derekmurr/personal-record/static/media/chevron-down-solid.3b05929c.svg",
-    "static/media/Hero.module.scss": "/derekmurr/personal-record/static/media/splash.e164ccff.jpg"
+    "main.css": "./static/css/main.ec3aed57.chunk.css",
+    "main.js": "./static/js/main.550e1c35.chunk.js",
+    "main.js.map": "./static/js/main.550e1c35.chunk.js.map",
+    "runtime~main.js": "./static/js/runtime~main.5523f49d.js",
+    "runtime~main.js.map": "./static/js/runtime~main.5523f49d.js.map",
+    "static/css/2.93f1c839.chunk.css": "./static/css/2.93f1c839.chunk.css",
+    "static/js/2.e4fff2ce.chunk.js": "./static/js/2.e4fff2ce.chunk.js",
+    "static/js/2.e4fff2ce.chunk.js.map": "./static/js/2.e4fff2ce.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.5584611bbcfc26ab57c5b86b70ae2c36.js": "./precache-manifest.5584611bbcfc26ab57c5b86b70ae2c36.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/2.93f1c839.chunk.css.map": "./static/css/2.93f1c839.chunk.css.map",
+    "static/css/main.ec3aed57.chunk.css.map": "./static/css/main.ec3aed57.chunk.css.map",
+    "static/media/App.scss": "./static/media/RobotoSlab-VariableFont.0b2aeb1c.ttf",
+    "static/media/ListView.module.scss": "./static/media/arrow-up-solid.960adab1.svg",
+    "static/media/Input.module.scss": "./static/media/chevron-down-solid.3b05929c.svg",
+    "static/media/Hero.module.scss": "./static/media/splash.e164ccff.jpg"
   }
 }
