@@ -36,6 +36,12 @@
   background-color: $race;
 }
 
+.rbc-off-range-bg {
+  background: #171F25;
+}
+.rbc-today {
+  background-color: #465D71;
+}
 .rbc-header {
   padding: 0.5rem;
 }
@@ -44,6 +50,9 @@
 }
 .rbc-toolbar button {
   font-size: 1.2rem;
+}
+.rbc-btn-group button {
+  color: $white;
 }
 .rbc-btn-group:last-of-type {
   display: none;
