@@ -17,8 +17,8 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
         <p>Fields marked with a star are required</p>
       </div>
 
-      <fieldset className={formStyles.distanceBlock}>
-        <legend>Distance:</legend>
+      <div className={`${formStyles.inputGroup} ${formStyles.distanceBlock}`} role='group' aria-labelledby='distlabel'>
+        <p className={formStyles.legend} id='distlabel'>Distance:</p>
         <Input
           inputName='distance'
           inputType='number'
@@ -29,10 +29,10 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           min={0}
           updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
-      </fieldset>
+      </div>
 
-      <fieldset className={formStyles.durationBlock}>
-        <legend>Run duration:</legend>
+      <div className={`${formStyles.inputGroup} ${formStyles.durationBlock}`} rold='group' aria-labelledby='durlabel'>
+        <p className={formStyles.legend} id='durlabel'>Run duration:</p>
         <Input
           inputName='elapsedHours'
           inputType='number'
@@ -69,7 +69,7 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           step={1}
           updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
-      </fieldset>
+      </div>
 
       <div className={formStyles.runTypeBlock}>
         <Select
