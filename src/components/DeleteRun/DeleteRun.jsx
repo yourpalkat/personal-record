@@ -11,7 +11,7 @@ const Delete = ({ closeModal, setRun, run, removeRunFromState }) => {
   const handleDelete = async () => {
     try {
       const res = await axios.delete(`/api/runs/delete/${run._id}`);
-      console.log(`Deleted: ${res}`);
+      console.log(`Deleted run. ${res}`);
       if (isMountedRef.current) {
         removeRunFromState(run);
         setRun({});
