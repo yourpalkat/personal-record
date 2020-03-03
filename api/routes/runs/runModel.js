@@ -33,7 +33,32 @@ const runSchema = new Schema({
   notes: {
     type: String,
     maxlength: 500
-  }
+  },
+  tempInC: Number,
+  weather: {
+    type: [String],
+    enum: ['Sunny', 'Humid', 'Wind', 'Snow', 'Rain']
+  },
+  treadmill: {
+    type: Boolean,
+    default: false,
+  },
+  effort: {
+    type: Number,
+    enum: [1, 2, 3, 4, 5],
+  },
+  rating: {
+    type: Number,
+    enum: [1, 2, 3, 4, 5],
+  },
+  completed: {
+    type: Boolean,
+    default: true,
+  },
+  racePosition: Number,
+  raceFieldSize: Number,
+  raceAgePosition: Number,
+  raceAgeFieldSize: Number,
 });
 
 exports.model = mongoose.model('Run', runSchema, 'runs');
