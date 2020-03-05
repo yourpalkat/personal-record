@@ -1,5 +1,8 @@
 import React from 'react';
 import { Route, Switch, NavLink, useRouteMatch } from 'react-router-dom';
+import { FiCalendar } from 'react-icons/fi';
+import { FiList } from 'react-icons/fi';
+import { FiUser } from 'react-icons/fi';
 
 import Dashboard from '../Dashboard/Dashboard';
 import ListView from '../ListView/ListView';
@@ -19,13 +22,13 @@ const UserHome = ({ user, userRuns, setRun, selectedRun, addRunToState, removeRu
       <nav className={homeStyles.sideNav}>
         <ul>
           <li>
-            <NavLink to={url}>Calendar</NavLink>
+            <NavLink to={url}><FiCalendar /><span className={homeStyles.navText}>Calendar</span></NavLink>
           </li>
           <li>
-            <NavLink to={`${url}/list`}>All runs</NavLink>
+            <NavLink to={`${url}/list`}><FiList /><span className={homeStyles.navText}>All runs</span></NavLink>
           </li>
           <li>
-            <NavLink to={`${url}/profile`}>Profile</NavLink>
+            <NavLink to={`${url}/profile`}><FiUser /><span className={homeStyles.navText}>Profile</span></NavLink>
           </li>
         </ul>
       </nav>

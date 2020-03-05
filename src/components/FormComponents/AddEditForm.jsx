@@ -9,7 +9,7 @@ import DateTime from './DateTime';
 import formStyles from './AddEditForm.module.scss';
 import './DateTime.scss';
 
-const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange, handleTimeChange, distance, title, elapsedHours, elapsedMinutes, elapsedSeconds, runStart, workoutType, notes, setRedirect }) => {
+const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange, handleTimeChange, distance, title, elapsedHours, elapsedMinutes, elapsedSeconds, runStart, workoutType, notes, tempInC, weather, treadmill, effort, rating, completed, racePosition, raceFieldSize, raceAgePosition, raceAgeFieldSize, setRedirect }) => {
   return (
     <form autoComplete='off' onSubmit={handleSubmit} className={formStyles.addEditForm}>
       <div className={formStyles.headlineBlock}>
@@ -31,7 +31,7 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           changeHandler={handleChange} />
       </div>
 
-      <div className={`${formStyles.inputGroup} ${formStyles.durationBlock}`} rold='group' aria-labelledby='durlabel'>
+      <div className={`${formStyles.inputGroup} ${formStyles.durationBlock}`} role='group' aria-labelledby='durlabel'>
         <p className={formStyles.legend} id='durlabel'>Run duration:</p>
         <Input
           inputName='elapsedHours'
@@ -81,6 +81,52 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           changeHandler={handleChange} />
       </div>
 
+      {workoutType === 'Race' && (
+        <div className={`${formStyles.inputGroup} ${formStyles.raceBlock}`} role='group' aria-labelledby='racelabel'>
+          <p className={formStyles.legend} id='racelabel'>Race finish position:</p>
+          <div>
+            <Input
+              inputName='racePosition'
+              inputType='number'
+              inputValue={racePosition}
+              labelText='Overall:'
+              inputPlaceholder='1'
+              step={1}
+              updateErrorStatus={updateErrorStatus}
+              changeHandler={handleChange} />
+            <Input
+              inputName='raceFieldSize'
+              inputType='number'
+              inputValue={raceFieldSize}
+              labelText='Out of:'
+              inputPlaceholder='1'
+              step={1}
+              updateErrorStatus={updateErrorStatus}
+              changeHandler={handleChange} />
+          </div>
+          <div>
+            <Input
+              inputName='raceAgePosition'
+              inputType='number'
+              inputValue={raceAgePosition}
+              labelText='AG:'
+              inputPlaceholder='1'
+              step={1}
+              updateErrorStatus={updateErrorStatus}
+              changeHandler={handleChange} />
+            <Input
+              inputName='raceAgeFieldSize'
+              inputType='number'
+              inputValue={raceAgeFieldSize}
+              labelText='Out of:'
+              inputPlaceholder='1'
+              step={1}
+              updateErrorStatus={updateErrorStatus}
+              changeHandler={handleChange} />
+          </div>
+        </div>
+      )}
+
       <div className={formStyles.titleBlock}>
         <Input
           inputName='title'
@@ -98,6 +144,31 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           inputValue={runStart}
           labelText='Date & time:'
           changeHandler={handleTimeChange} />
+      </div>
+
+      <div className={formStyles.effortBlock}>
+        <Input
+          inputName='effort'
+          inputType='range'
+          inputValue={effort}
+          labelText='Effort'
+          min={1}
+          max={5}
+          step={1}
+          updateErrorStatus={updateErrorStatus}
+          changeHandler={handleChange} />
+      </div>
+      <div className={formStyles.ratingBlock}>
+        <Input
+          inputName='rating'
+          inputType='range'
+          inputValue={rating}
+          labelText='Rating'
+          min={1}
+          max={5}
+          step={1}
+          updateErrorStatus={updateErrorStatus}
+          changeHandler={handleChange} />
       </div>
 
       <div className={formStyles.notesBlock}>

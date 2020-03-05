@@ -37,6 +37,13 @@ body {
   letter-spacing: -0.025rem;
 }
 
+main {
+  background-color: $background;
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -66,14 +73,14 @@ ol {
   width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 4% repeat(24, 1fr) 4%;
+  grid-template-columns: 4% repeat(12, 1fr) 4%;
   grid-column-gap: 1%;
   @include respond-to('tablet') {
-    grid-template-columns: 4% repeat(12, 1fr) 4%;
+    grid-template-columns: 4% repeat(8, 1fr) 4%;
     grid-column-gap: 1%;
   }
   @include respond-to('mobile') {
-    grid-template-columns: 3% repeat(8, 1fr) 3%;
+    grid-template-columns: 3% repeat(6, 1fr) 3%;
     grid-column-gap: 2%;
   }
 }
