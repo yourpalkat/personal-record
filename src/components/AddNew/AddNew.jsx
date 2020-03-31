@@ -6,12 +6,11 @@ import moment from 'moment';
 
 import AddEditForm from '../FormComponents/AddEditForm';
 
-// import addStyles from './AddNew.module.scss';
-
 class AddNew extends Component {
   constructor() {
     super();
     this.state = {
+      completed: true,
       distance: 0,
       title: '',
       elapsedHours: 0,
@@ -20,6 +19,15 @@ class AddNew extends Component {
       runStart: new Date(),
       workoutType: 'Default',
       notes: '',
+      tempInC: 10,
+      weather: [],
+      treadmill: false,
+      effort: 3,
+      rating: 3,
+      racePosition: 0,
+      raceFieldSize: 0,
+      raceAgePosition: 0,
+      raceAgeFieldSize: 0,
       message: '',
       redirect: false,
       errorStatus: {
@@ -39,6 +47,30 @@ class AddNew extends Component {
 
   handleTimeChange = date => {
     this.setState({ runStart: date });
+  }
+
+  handleTreadmillChange = () => {
+    const newValue = !this.state.treadmill;
+      this.setState({
+        treadmill: newValue
+      });
+  }
+
+  handleWeatherChange = (e) => {
+    const weatherClicked = e.target.value;
+    const { weather } = this.state;
+    const weatherCopy = [...weather];
+    const currentIndex = weatherCopy.indexOf(weatherClicked);
+    if (e.target.checked) {
+      if (currentIndex === -1) {
+        weatherCopy.push(weatherClicked);
+      }
+    } else if (currentIndex > -1) {
+      weatherCopy.splice(currentIndex, 1);
+    }
+    this.setState({
+      weather: weatherCopy
+    });
   }
 
   updateErrorStatus = (key, value) => {
@@ -77,7 +109,16 @@ class AddNew extends Component {
             end: runEnd,
             userId: this.props.user._id,
             workoutType: this.state.workoutType,
-            notes: this.state.notes
+            notes: this.state.notes,
+            weather: this.state.weather,
+            tempInC: this.state.tempInC,
+            effort: this.state.effort,
+            rating: this.state.rating,
+            treadmill: this.state.treadmill,
+            racePosition: this.state.racePosition,
+            raceFieldSize: this.state.raceFieldSize,
+            raceAgePosition: this.state.raceAgePosition,
+            raceAgeFieldSize: this.state.raceAgeFieldSize,
           }
         });
         console.log(`Created new run with id: ${res.data.data[0]._id}`);
@@ -101,10 +142,21 @@ class AddNew extends Component {
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             handleTimeChange={this.handleTimeChange}
+            handleTreadmillChange={this.handleTreadmillChange}
+            handleWeatherChange={this.handleWeatherChange}
             updateErrorStatus={this.updateErrorStatus} 
             distance={this.state.distance}
             title={this.state.title}
             notes={this.state.notes}
+            effort={this.state.effort}
+            rating={this.state.rating}
+            treadmill={this.state.treadmill}
+            tempInC={this.state.tempInC}
+            weather={this.state.weather}
+            racePosition={this.state.racePosition}
+            raceFieldSize={this.state.raceFieldSize}
+            raceAgePosition={this.state.raceAgePosition}
+            raceAgeFieldSize={this.state.raceAgeFieldSize}
             elapsedHours={this.state.elapsedHours}
             elapsedMinutes={this.state.elapsedMinutes}
             elapsedSeconds={this.state.elapsedSeconds}

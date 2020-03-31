@@ -84,6 +84,19 @@
 .ratingBlock {
   grid-column: 4 / -1;
 }
+.weatherBlock {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+}
+.weather {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.weatherCheckbox {
+  flex-basis: 20%;
+}
 
 @include respond-to('tablet') {
   .notesBlock,

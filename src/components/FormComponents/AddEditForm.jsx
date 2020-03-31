@@ -9,7 +9,7 @@ import DateTime from './DateTime';
 import formStyles from './AddEditForm.module.scss';
 import './DateTime.scss';
 
-const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange, handleTimeChange, distance, title, elapsedHours, elapsedMinutes, elapsedSeconds, runStart, workoutType, notes, tempInC, weather, treadmill, effort, rating, completed, racePosition, raceFieldSize, raceAgePosition, raceAgeFieldSize, setRedirect }) => {
+const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange, handleTimeChange, handleTreadmillChange, handleWeatherChange, distance, title, elapsedHours, elapsedMinutes, elapsedSeconds, runStart, workoutType, notes, tempInC, weather, treadmill, effort, rating, completed, racePosition, raceFieldSize, raceAgePosition, raceAgeFieldSize, setRedirect }) => {
   return (
     <form autoComplete='off' onSubmit={handleSubmit} className={formStyles.addEditForm}>
       <div className={formStyles.headlineBlock}>
@@ -138,6 +138,11 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           changeHandler={handleChange} />
       </div>
 
+      <div className={formStyles.treadmillBlock}>
+        <label for="treadmill">Treadmill?</label>
+        <input type="checkbox" id="treadmill" name="treadmill" value='true' onChange={handleTreadmillChange} />
+      </div>
+
       <div className={formStyles.dateTimeBlock}>
         <DateTime
           inputName='runDate'
@@ -169,6 +174,42 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           step={1}
           updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
+      </div>
+
+      <div className={formStyles.weatherBlock}>
+        <Input
+          inputName='tempInC'
+          inputType='number'
+          inputValue={tempInC}
+          labelText='Temperature (C):'
+          inputPlaceholder='10'
+          step={1}
+          updateErrorStatus={updateErrorStatus}
+          changeHandler={handleChange} />
+        
+        <div className={formStyles.weather} role='group' aria-labelledby='weather'>
+          <p className={formStyles.legend} id='weather'>Weather:</p>
+          <div className={formStyles.weatherCheckbox}>
+            <input type="checkbox" id="weatherSun" name="weather" value="Sunny" onClick={handleWeatherChange} />
+            <label for="weatherSun">Sunny</label>
+          </div>
+          <div className={formStyles.weatherCheckbox}>
+            <input type="checkbox" id="weatherHumid" name="weather" value="Humid" onClick={handleWeatherChange} />
+            <label for="weatherHumid">Humid</label>
+          </div>
+          <div className={formStyles.weatherCheckbox}>
+            <input type="checkbox" id="weatherWind" name="weather" value="Wind" onClick={handleWeatherChange} />
+            <label for="weatherWind">Wind</label>
+          </div>
+          <div className={formStyles.weatherCheckbox}>
+            <input type="checkbox" id="weatherRain" name="weather" value="Rain" onClick={handleWeatherChange} />
+            <label for="weatherRain">Rain</label>
+          </div>
+          <div className={formStyles.weatherCheckbox}>
+            <input type="checkbox" id="weatherSnow" name="weather" value="Snow" onClick={handleWeatherChange} />
+            <label for="weatherSnow">Snow</label>
+          </div>
+        </div>
       </div>
 
       <div className={formStyles.notesBlock}>

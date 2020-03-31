@@ -32,6 +32,15 @@ class EditRun extends Component {
       elapsedSeconds,
       workoutType: this.props.run.workoutType,
       notes: this.props.run.notes,
+      tempInC: this.props.run.tempInC,
+      weather: this.props.run.weather,
+      treadmill: this.props.run.treadmill,
+      effort: this.props.run.effort,
+      rating: this.props.run.rating,
+      racePosition: this.props.run.racePosition,
+      raceFieldSize: this.props.run.raceFieldSize,
+      raceAgePosition: this.props.run.raceAgePosition,
+      raceAgeFieldSize: this.props.run.raceAgeFieldSize,
       message: '',
       redirect: false,
       errorStatus: {
@@ -61,6 +70,30 @@ class EditRun extends Component {
     this.setState({ runStart: date });
   }
 
+  handleTreadmillChange = () => {
+    const newValue = !this.state.treadmill;
+    this.setState({
+      treadmill: newValue
+    });
+  }
+
+  handleWeatherChange = (e) => {
+    const weatherClicked = e.target.value;
+    const { weather } = this.state;
+    const weatherCopy = [...weather];
+    const currentIndex = weatherCopy.indexOf(weatherClicked);
+    if (e.target.checked) {
+      if (currentIndex === -1) {
+        weatherCopy.push(weatherClicked);
+      }
+    } else if (currentIndex > -1) {
+      weatherCopy.splice(currentIndex, 1);
+    }
+    this.setState({
+      weather: weatherCopy
+    });
+  }
+
   setRedirect = status => {
     this.setState({ redirect: status });
   }
@@ -84,7 +117,16 @@ class EditRun extends Component {
         end: runEnd,
         userId: this.state.userId,
         workoutType: this.state.workoutType,
-        notes: this.state.notes
+        notes: this.state.notes,
+        weather: this.state.weather,
+        tempInC: this.state.tempInC,
+        effort: this.state.effort,
+        rating: this.state.rating,
+        treadmill: this.state.treadmill,
+        racePosition: this.state.racePosition,
+        raceFieldSize: this.state.raceFieldSize,
+        raceAgePosition: this.state.raceAgePosition,
+        raceAgeFieldSize: this.state.raceAgeFieldSize,
       };
 
       try {
@@ -102,7 +144,16 @@ class EditRun extends Component {
             end: newRun.end,
             userId: newRun.userId,
             workoutType: newRun.workoutType,
-            notes: newRun.notes
+            notes: newRun.notes,
+            weather: newRun.weather,
+            tempInC: newRun.tempInC,
+            effort: newRun.effort,
+            rating: newRun.rating,
+            treadmill: newRun.treadmill,
+            racePosition: newRun.racePosition,
+            raceFieldSize: newRun.raceFieldSize,
+            raceAgePosition: newRun.raceAgePosition,
+            raceAgeFieldSize: newRun.raceAgeFieldSize,
           }
         });
         this.props.replaceEditedRun(newRun);
@@ -127,10 +178,21 @@ class EditRun extends Component {
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             handleTimeChange={this.handleTimeChange}
+            handleTreadmillChange={this.handleTreadmillChange}
+            handleWeatherChange={this.handleWeatherChange}
             updateErrorStatus={this.updateErrorStatus}
             distance={this.state.distance}
             title={this.state.title}
             notes={this.state.notes}
+            effort={this.state.effort}
+            rating={this.state.rating}
+            treadmill={this.state.treadmill}
+            tempInC={this.state.tempInC}
+            weather={this.state.weather}
+            racePosition={this.state.racePosition}
+            raceFieldSize={this.state.raceFieldSize}
+            raceAgePosition={this.state.raceAgePosition}
+            raceAgeFieldSize={this.state.raceAgeFieldSize}
             elapsedHours={this.state.elapsedHours}
             elapsedMinutes={this.state.elapsedMinutes}
             elapsedSeconds={this.state.elapsedSeconds}
