@@ -19,6 +19,17 @@ class EditRun extends Component {
     const elapsedSeconds = Math.floor(totalInSeconds % 60);
     const startDate = moment(this.props.run.start).toDate();
     const endDate = moment(this.props.run.end).toDate();
+    const weatherFromDb = [
+      { value: 'Sunny', isSelected: false },
+      { value: 'Humid', isSelected: false },
+      { value: 'Wind', isSelected: false },
+      { value: 'Rain', isSelected: false },
+      { value: 'Snow', isSelected: false },
+    ];
+    this.props.run.weather.forEach(weatherFromProps => {
+      const index = weatherFromDb.findIndex(item => item.value === weatherFromProps);
+      weatherFromDb[index].isSelected = true;
+    });
 
     this.state = {
       runId: this.props.run._id,
@@ -33,7 +44,7 @@ class EditRun extends Component {
       workoutType: this.props.run.workoutType,
       notes: this.props.run.notes,
       tempInC: this.props.run.tempInC,
-      weather: this.props.run.weather,
+      weather: weatherFromDb,
       treadmill: this.props.run.treadmill,
       effort: this.props.run.effort,
       rating: this.props.run.rating,
@@ -79,16 +90,9 @@ class EditRun extends Component {
 
   handleWeatherChange = (e) => {
     const weatherClicked = e.target.value;
-    const { weather } = this.state;
-    const weatherCopy = [...weather];
-    const currentIndex = weatherCopy.indexOf(weatherClicked);
-    if (e.target.checked) {
-      if (currentIndex === -1) {
-        weatherCopy.push(weatherClicked);
-      }
-    } else if (currentIndex > -1) {
-      weatherCopy.splice(currentIndex, 1);
-    }
+    const weatherCopy = [...this.state.weather];
+    const index = weatherCopy.findIndex(item => item.value === weatherClicked);
+    weatherCopy[index].isSelected = !weatherCopy[index].isSelected;
     this.setState({
       weather: weatherCopy
     });
@@ -109,6 +113,7 @@ class EditRun extends Component {
       } else {
         assignedTitle = this.state.title;
       }
+      const weather = this.state.weather.filter(item => item.isSelected).map(item => item.value);
       const newRun = {
         _id: this.props.run._id,
         distance: this.state.distance,
@@ -118,7 +123,7 @@ class EditRun extends Component {
         userId: this.state.userId,
         workoutType: this.state.workoutType,
         notes: this.state.notes,
-        weather: this.state.weather,
+        weather: weather,
         tempInC: this.state.tempInC,
         effort: this.state.effort,
         rating: this.state.rating,

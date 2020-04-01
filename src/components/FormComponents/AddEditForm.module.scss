@@ -94,8 +94,8 @@
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-.weatherCheckbox {
-  flex-basis: 20%;
+.weatherCheckbox:not(:last-of-type) {
+  margin-right: 3rem;
 }
 
 @include respond-to('tablet') {

@@ -4,6 +4,7 @@ import Button from '../Button/Button';
 import Input from './Input';
 import Textarea from './Textarea';
 import Select from './Select';
+import Checkbox from './Checkbox';
 import DateTime from './DateTime';
 
 import formStyles from './AddEditForm.module.scss';
@@ -139,8 +140,12 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
       </div>
 
       <div className={formStyles.treadmillBlock}>
-        <label for="treadmill">Treadmill?</label>
-        <input type="checkbox" id="treadmill" name="treadmill" value='true' onChange={handleTreadmillChange} />
+        <Checkbox
+          labelText='Treadmill?'
+          name='treadmill'
+          value='treadmill'
+          isSelected={treadmill}
+          changeHandler={handleTreadmillChange} />
       </div>
 
       <div className={formStyles.dateTimeBlock}>
@@ -189,26 +194,16 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
         
         <div className={formStyles.weather} role='group' aria-labelledby='weather'>
           <p className={formStyles.legend} id='weather'>Weather:</p>
-          <div className={formStyles.weatherCheckbox}>
-            <input type="checkbox" id="weatherSun" name="weather" value="Sunny" onClick={handleWeatherChange} />
-            <label for="weatherSun">Sunny</label>
-          </div>
-          <div className={formStyles.weatherCheckbox}>
-            <input type="checkbox" id="weatherHumid" name="weather" value="Humid" onClick={handleWeatherChange} />
-            <label for="weatherHumid">Humid</label>
-          </div>
-          <div className={formStyles.weatherCheckbox}>
-            <input type="checkbox" id="weatherWind" name="weather" value="Wind" onClick={handleWeatherChange} />
-            <label for="weatherWind">Wind</label>
-          </div>
-          <div className={formStyles.weatherCheckbox}>
-            <input type="checkbox" id="weatherRain" name="weather" value="Rain" onClick={handleWeatherChange} />
-            <label for="weatherRain">Rain</label>
-          </div>
-          <div className={formStyles.weatherCheckbox}>
-            <input type="checkbox" id="weatherSnow" name="weather" value="Snow" onClick={handleWeatherChange} />
-            <label for="weatherSnow">Snow</label>
-          </div>
+          {weather.map(condition => 
+            <div className={formStyles.weatherCheckbox} key={condition.value}>
+              <Checkbox 
+                labelText={condition.value} 
+                name='weather' 
+                value={condition.value} 
+                isSelected={condition.isSelected} 
+                changeHandler={handleWeatherChange} />
+            </div>
+          )}
         </div>
       </div>
 

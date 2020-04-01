@@ -20,7 +20,13 @@ class AddNew extends Component {
       workoutType: 'Default',
       notes: '',
       tempInC: 10,
-      weather: [],
+      weather: [
+        { value: 'Sunny', isSelected: false },
+        { value: 'Humid', isSelected: false },
+        { value: 'Wind', isSelected: false },
+        { value: 'Rain', isSelected: false },
+        { value: 'Snow', isSelected: false },
+      ],
       treadmill: false,
       effort: 3,
       rating: 3,
@@ -58,16 +64,9 @@ class AddNew extends Component {
 
   handleWeatherChange = (e) => {
     const weatherClicked = e.target.value;
-    const { weather } = this.state;
-    const weatherCopy = [...weather];
-    const currentIndex = weatherCopy.indexOf(weatherClicked);
-    if (e.target.checked) {
-      if (currentIndex === -1) {
-        weatherCopy.push(weatherClicked);
-      }
-    } else if (currentIndex > -1) {
-      weatherCopy.splice(currentIndex, 1);
-    }
+    const weatherCopy = [...this.state.weather];
+    const index = weatherCopy.findIndex(item => item.value === weatherClicked);
+    weatherCopy[index].isSelected = !weatherCopy[index].isSelected;
     this.setState({
       weather: weatherCopy
     });
@@ -96,6 +95,7 @@ class AddNew extends Component {
       } else {
         assignedTitle = this.state.title;
       }
+      const weather = this.state.weather.filter(item => item.isSelected).map(item => item.value);
   
       try {
         const res = await axios.post(`/api/runs/new`, {
@@ -110,7 +110,7 @@ class AddNew extends Component {
             userId: this.props.user._id,
             workoutType: this.state.workoutType,
             notes: this.state.notes,
-            weather: this.state.weather,
+            weather: weather,
             tempInC: this.state.tempInC,
             effort: this.state.effort,
             rating: this.state.rating,
