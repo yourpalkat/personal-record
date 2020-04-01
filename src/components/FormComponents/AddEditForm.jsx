@@ -157,26 +157,20 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
       </div>
 
       <div className={formStyles.effortBlock}>
-        <Input
+        <Select
           inputName='effort'
-          inputType='range'
           inputValue={effort}
-          labelText='Effort'
-          min={1}
-          max={5}
-          step={1}
+          labelText='Effort (5 = max):'
+          optionsArray={['', '5', '4', '3', '2', '1']}
           updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
       </div>
       <div className={formStyles.ratingBlock}>
-        <Input
+        <Select
           inputName='rating'
-          inputType='range'
           inputValue={rating}
-          labelText='Rating'
-          min={1}
-          max={5}
-          step={1}
+          labelText='Rating (5 = best):'
+          optionsArray={['', '5', '4', '3', '2', '1']}
           updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
       </div>
@@ -186,7 +180,7 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           inputName='tempInC'
           inputType='number'
           inputValue={tempInC}
-          labelText='Temperature (C):'
+          labelText='Temp (°C):'
           inputPlaceholder='10'
           step={1}
           updateErrorStatus={updateErrorStatus}

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
 import moment from 'moment';
+import { AiOutlineCloseSquare } from 'react-icons/ai';
 
 import Button from '../Button/Button';
 import DeleteRun from '../DeleteRun/DeleteRun';
@@ -46,8 +47,8 @@ const RunDetail = ({ user, run, setRun, removeRunFromState }) => {
                 className={runStyles.closeButton}
                 aria-label='Close this view'
                 onClick={() => setRun({})}>
-                  <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="window-close" className="svg-inline--fa fa-window-close fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm0 394c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h404c3.3 0 6 2.7 6 6v340zM356.5 194.6L295.1 256l61.4 61.4c4.6 4.6 4.6 12.1 0 16.8l-22.3 22.3c-4.6 4.6-12.1 4.6-16.8 0L256 295.1l-61.4 61.4c-4.6 4.6-12.1 4.6-16.8 0l-22.3-22.3c-4.6-4.6-4.6-12.1 0-16.8l61.4-61.4-61.4-61.4c-4.6-4.6-4.6-12.1 0-16.8l22.3-22.3c4.6-4.6 12.1-4.6 16.8 0l61.4 61.4 61.4-61.4c4.6-4.6 12.1-4.6 16.8 0l22.3 22.3c4.7 4.6 4.7 12.1 0 16.8z"></path></svg>
-                </button>
+                <AiOutlineCloseSquare />
+              </button>
             </div>
             <h2>{displayRun.title}</h2>
             <h3><Moment date={displayRun.start} format='Do MMMM, YYYY, h:mm a' /></h3>
@@ -55,6 +56,36 @@ const RunDetail = ({ user, run, setRun, removeRunFromState }) => {
             <p>Elapsed time: {displayRun.elapsedTime.format('h:mm:ss')}</p>
             <p>Pace: {paceMinutes}:{paceSeconds < 10 ? `0${paceSeconds}` : paceSeconds}/km</p>
             <p>Workout type: {displayRun.workoutType}</p>
+            {displayRun.workoutType === 'Race' && (
+              <div>
+                {displayRun.racePosition && (
+                  <p>Race finish position: {displayRun.racePosition} {displayRun.raceFieldSize && ( 
+                      <span>out of {displayRun.raceFieldSize}</span>
+                    )}</p>
+                )}
+                {displayRun.raceAgePosition && (
+                  <p>Age Group position: {displayRun.raceAgePosition} {displayRun.raceAgeFieldSize && (
+                    <span>out of {displayRun.raceAgeFieldSize}</span>
+                  )}</p>
+                )}
+              </div>
+            )}
+            {displayRun.treadmill && <p>Treadmill run</p>}
+            {displayRun.tempInC && (
+              <p>Temperature: {displayRun.tempInC}°C</p>
+            )}
+            {displayRun.weather.length > 0 && (
+              <ul className={runStyles.weatherList}>
+              <li>Conditions:</li>
+                {displayRun.weather.map(condition => <li key={`weather-${condition}`}>{condition}</li>)}
+              </ul>
+            )}
+            {displayRun.effort && (
+              <p>Effort level: {displayRun.effort} / 5</p>
+            )}
+            {displayRun.rating && (
+              <p>Rating: {displayRun.rating} / 5</p>
+            )}
             {displayRun.notes && <p>Notes: {displayRun.notes}</p>}
             <div className={runStyles.buttonContainer}>
               <Button
