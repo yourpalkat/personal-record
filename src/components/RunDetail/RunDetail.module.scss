@@ -2,15 +2,9 @@
 @import '../../styles/mixins.scss';
 
 .runDetailSection {
-  grid-column: 6 / -2;
+  grid-column: 2 / -2;
   color: $white;
   padding: 8rem 0;
-  @include respond-to('tablet') {
-    grid-column: 4 / -2;
-  }
-  @include respond-to('mobile') {
-    grid-column: 2 / -2;
-  }
 }
 .runDetailSection h2 {
   color: $white;
@@ -39,18 +33,15 @@
   cursor: pointer;
   margin: 0;
   padding: 0;
-  height: 2.5rem;
-  width: 2.5rem;
-  fill: $white;
-  transition: fill 0.3s ease;
+  font-size: 2.5rem;
+  color: $white;
+  transition: color 0.3s ease;
   position: relative;
   bottom: 0.7rem;
 }
-.closeButton:hover {
-  fill: $primary;
-}
-.closeButton svg {
-  width: 100%;
+.closeButton:hover,
+.closeButton:focus {
+  color: $primary;
 }
 
 .buttonContainer {
@@ -58,4 +49,19 @@
 }
 .buttonContainer button:first-of-type {
   margin-right: 2rem;
+}
+
+.weatherList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.weatherList li {
+  margin-right: 3rem;
+  font-family: $font-condensed;
+  font-size: 2.0rem;
+  line-height: 1.6;
+  margin-bottom: 2.4rem;
 }
