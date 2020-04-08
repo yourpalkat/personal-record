@@ -8,6 +8,8 @@ const Header = ({isLoggedIn, firstName, logOut}) => {
     <header>
       <div className='gridWrapper'>
         <h4 className={headerStyles.logo}>Personal Record</h4>
+        {/* placeholder - will replace with proper logo svg once i design one */}
+        <h4 className={headerStyles.smallLogo}>PR</h4>
         <div className={headerStyles.login}>
           {isLoggedIn ? (
             <p>Hello, {firstName} &emsp; <Button buttonType='button' eventHandler={logOut} text='Log out' buttonStyle='text'/></p>
