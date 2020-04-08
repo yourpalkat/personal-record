@@ -5,7 +5,7 @@ header {
   background-color: $background;
   border-bottom: 3px solid $primary;
   color: $white;
-  padding: 2rem 0;
+  padding: 1rem 0;
   width: 100%;
 }
 
@@ -13,6 +13,16 @@ header {
   grid-column: 2 / 6;
   @include respond-to('tablet') {
     grid-column: 2 / 4;
+  }
+  @include respond-to('mobile') {
+    display: none;
+  }
+}
+.smallLogo {
+  display: none;
+  @include respond-to('mobile') {
+    display: block;
+    grid-column: 2 / 3;
   }
 }
 
@@ -22,5 +32,8 @@ header {
   align-self: center;
   @include respond-to('tablet') {
     grid-column: 4 / -2;
+  }
+  @include respond-to('mobile') {
+    grid-column: 3 / -2;
   }
 }

@@ -15,7 +15,7 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
     <form autoComplete='off' onSubmit={handleSubmit} className={formStyles.addEditForm}>
       <div className={formStyles.headlineBlock}>
         <h2>{formTitle}</h2>
-        <p>Fields marked with a star are required</p>
+        <p>Fields marked with a star <span className={formStyles.star}>*</span> are required</p>
       </div>
 
       <div className={`${formStyles.inputGroup} ${formStyles.distanceBlock}`} role='group' aria-labelledby='distlabel'>
@@ -139,15 +139,6 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           changeHandler={handleChange} />
       </div>
 
-      <div className={formStyles.treadmillBlock}>
-        <Checkbox
-          labelText='Treadmill?'
-          name='treadmill'
-          value='treadmill'
-          isSelected={treadmill}
-          changeHandler={handleTreadmillChange} />
-      </div>
-
       <div className={formStyles.dateTimeBlock}>
         <DateTime
           inputName='runDate'
@@ -173,6 +164,15 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           optionsArray={['', '5', '4', '3', '2', '1']}
           updateErrorStatus={updateErrorStatus}
           changeHandler={handleChange} />
+      </div>
+
+      <div className={formStyles.treadmillBlock}>
+        <Checkbox
+          labelText='Treadmill?'
+          name='treadmill'
+          value='treadmill'
+          isSelected={treadmill}
+          changeHandler={handleTreadmillChange} />
       </div>
 
       <div className={formStyles.weatherBlock}>

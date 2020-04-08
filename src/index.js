@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './index.css';
 import App from './App';
 
 // import { Provider } from 'react-redux';
@@ -11,6 +10,7 @@ import * as serviceWorker from './serviceWorker';
 const rootElement = document.getElementById('root');
 ReactDOM.render(
   <App />, rootElement
+  // Will implement Redux in a future PR, not that it's strictly needed, mostly for practice using it
   // <Provider store={store}>
   //   <App />
   // </Provider>, rootElement
