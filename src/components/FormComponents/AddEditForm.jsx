@@ -4,17 +4,18 @@ import Button from '../Button/Button';
 import Input from './Input';
 import Textarea from './Textarea';
 import Select from './Select';
+import Checkbox from './Checkbox';
 import DateTime from './DateTime';
 
 import formStyles from './AddEditForm.module.scss';
 import './DateTime.scss';
 
-const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange, handleTimeChange, distance, title, elapsedHours, elapsedMinutes, elapsedSeconds, runStart, workoutType, notes, setRedirect }) => {
+const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange, handleTimeChange, handleTreadmillChange, handleWeatherChange, distance, title, elapsedHours, elapsedMinutes, elapsedSeconds, runStart, workoutType, notes, tempInC, weather, treadmill, effort, rating, completed, racePosition, raceFieldSize, raceAgePosition, raceAgeFieldSize, setRedirect }) => {
   return (
     <form autoComplete='off' onSubmit={handleSubmit} className={formStyles.addEditForm}>
       <div className={formStyles.headlineBlock}>
         <h2>{formTitle}</h2>
-        <p>Fields marked with a star are required</p>
+        <p>Fields marked with a star <span className={formStyles.star}>*</span> are required</p>
       </div>
 
       <div className={`${formStyles.inputGroup} ${formStyles.distanceBlock}`} role='group' aria-labelledby='distlabel'>
@@ -31,7 +32,7 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           changeHandler={handleChange} />
       </div>
 
-      <div className={`${formStyles.inputGroup} ${formStyles.durationBlock}`} rold='group' aria-labelledby='durlabel'>
+      <div className={`${formStyles.inputGroup} ${formStyles.durationBlock}`} role='group' aria-labelledby='durlabel'>
         <p className={formStyles.legend} id='durlabel'>Run duration:</p>
         <Input
           inputName='elapsedHours'
@@ -81,6 +82,52 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           changeHandler={handleChange} />
       </div>
 
+      {workoutType === 'Race' && (
+        <div className={`${formStyles.inputGroup} ${formStyles.raceBlock}`} role='group' aria-labelledby='racelabel'>
+          <p className={formStyles.legend} id='racelabel'>Race finish position:</p>
+          <div>
+            <Input
+              inputName='racePosition'
+              inputType='number'
+              inputValue={racePosition}
+              labelText='Overall:'
+              inputPlaceholder='1'
+              step={1}
+              updateErrorStatus={updateErrorStatus}
+              changeHandler={handleChange} />
+            <Input
+              inputName='raceFieldSize'
+              inputType='number'
+              inputValue={raceFieldSize}
+              labelText='Out of:'
+              inputPlaceholder='1'
+              step={1}
+              updateErrorStatus={updateErrorStatus}
+              changeHandler={handleChange} />
+          </div>
+          <div>
+            <Input
+              inputName='raceAgePosition'
+              inputType='number'
+              inputValue={raceAgePosition}
+              labelText='AG:'
+              inputPlaceholder='1'
+              step={1}
+              updateErrorStatus={updateErrorStatus}
+              changeHandler={handleChange} />
+            <Input
+              inputName='raceAgeFieldSize'
+              inputType='number'
+              inputValue={raceAgeFieldSize}
+              labelText='Out of:'
+              inputPlaceholder='1'
+              step={1}
+              updateErrorStatus={updateErrorStatus}
+              changeHandler={handleChange} />
+          </div>
+        </div>
+      )}
+
       <div className={formStyles.titleBlock}>
         <Input
           inputName='title'
@@ -98,6 +145,60 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           inputValue={runStart}
           labelText='Date & time:'
           changeHandler={handleTimeChange} />
+      </div>
+
+      <div className={formStyles.effortBlock}>
+        <Select
+          inputName='effort'
+          inputValue={effort}
+          labelText='Effort (5 = max):'
+          optionsArray={['', '5', '4', '3', '2', '1']}
+          updateErrorStatus={updateErrorStatus}
+          changeHandler={handleChange} />
+      </div>
+      <div className={formStyles.ratingBlock}>
+        <Select
+          inputName='rating'
+          inputValue={rating}
+          labelText='Rating (5 = best):'
+          optionsArray={['', '5', '4', '3', '2', '1']}
+          updateErrorStatus={updateErrorStatus}
+          changeHandler={handleChange} />
+      </div>
+
+      <div className={formStyles.treadmillBlock}>
+        <Checkbox
+          labelText='Treadmill?'
+          name='treadmill'
+          value='treadmill'
+          isSelected={treadmill}
+          changeHandler={handleTreadmillChange} />
+      </div>
+
+      <div className={formStyles.weatherBlock}>
+        <Input
+          inputName='tempInC'
+          inputType='number'
+          inputValue={tempInC}
+          labelText='Temp (°C):'
+          inputPlaceholder='10'
+          step={1}
+          updateErrorStatus={updateErrorStatus}
+          changeHandler={handleChange} />
+        
+        <div className={formStyles.weather} role='group' aria-labelledby='weather'>
+          <p className={formStyles.legend} id='weather'>Weather:</p>
+          {weather.map(condition => 
+            <div className={formStyles.weatherCheckbox} key={condition.value}>
+              <Checkbox 
+                labelText={condition.value} 
+                name='weather' 
+                value={condition.value} 
+                isSelected={condition.isSelected} 
+                changeHandler={handleWeatherChange} />
+            </div>
+          )}
+        </div>
       </div>
 
       <div className={formStyles.notesBlock}>

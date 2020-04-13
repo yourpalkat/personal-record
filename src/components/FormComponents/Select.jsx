@@ -32,7 +32,7 @@ const Select = ({
         className={errorText && inputStyles.error}
         onChange={changeHandler}
         onBlur={validate} >
-        {optionsArray.map((option, i) => <option value={option} key={i}>{option}</option>)}
+        {optionsArray.map((option, i) => <option value={option} key={i} className={inputStyles.option}>{option}</option>)}
       </select>
       <p className={inputStyles.errorText}>{errorText ? errorText : `${' '}`}</p>
     </div>
