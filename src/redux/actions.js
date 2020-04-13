@@ -1,4 +1,4 @@
-import { ADD_RUN } from "./actionTypes";
+import { ADD_RUN, REPLACE_RUN } from "./actionTypes";
 
 export const addRun = content => ({
   type: ADD_RUN,
@@ -7,9 +7,9 @@ export const addRun = content => ({
   }
 });
 
-// export const toggleTodo = id => ({
-//   type: TOGGLE_TODO,
-//   payload: { id }
-// });
-
-// export const setFilter = filter => ({ type: SET_FILTER, payload: { filter } });
+export const replaceRun = content => ({
+  type: REPLACE_RUN,
+  payload: {
+    content
+  }
+});

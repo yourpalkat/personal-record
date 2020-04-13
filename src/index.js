@@ -9,11 +9,11 @@ import * as serviceWorker from './serviceWorker';
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
-  <App />, rootElement
+  // <App />, rootElement
   // Will implement Redux in a future PR, not that it's strictly needed, mostly for practice using it
-  // <Provider store={store}>
-  //   <App />
-  // </Provider>, rootElement
+  <Provider store={store}>
+    <App />
+  </Provider>, rootElement
 );
 
 // If you want your app to work offline and load faster, you can change
