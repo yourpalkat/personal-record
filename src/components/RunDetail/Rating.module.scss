@@ -1,0 +1,113 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.ratingContainer h4.heading {
+  font-family: $font-condensed;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1.4rem;
+  margin-bottom: 1.4rem;
+}
+
+.rating {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: $background-dark;
+}
+.ratingContainer .rating p,
+.ratingContainer .rating svg {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+.ratingContainer .rating p {
+  font-size: 3.4rem;
+  font-weight: 800;
+  margin: 0;
+}
+.rating svg circle {
+  stroke-width: 12;
+  fill: none;
+}
+
+p.rating5 {
+  color: $easy;
+}
+.rating5 circle {
+  stroke: $easy;
+}
+p.effort5 {
+  color: $danger;
+}
+.effort5 circle {
+  stroke: $danger;
+}
+
+p.rating4 {
+  color: $recovery;
+}
+.rating4 circle {
+  stroke: $recovery;
+}
+p.effort4 {
+  color: $interval;
+}
+.effort4 circle {
+  stroke: $interval;
+}
+svg.rating4,
+svg.effort4 {
+  clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 30%);
+}
+
+p.rating3,
+p.effort3 {
+  color: $hill;
+}
+.rating3 circle,
+.effort3 circle {
+  stroke: $hill;
+}
+svg.rating3,
+svg.effort3 {
+  clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 80%);
+}
+
+p.rating2 {
+  color: $interval;
+}
+.rating2 circle {
+  stroke: $interval;
+}
+p.effort2 {
+  color: $recovery;
+}
+.effort2 circle {
+  stroke: $recovery;
+}
+svg.rating2,
+svg.effort2 {
+  clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 100% 80%);
+}
+
+p.rating1 {
+  color: $danger;
+}
+.rating1 circle {
+  stroke: $danger;
+}
+p.effor1 {
+  color: $easy;
+}
+.effort1 circle {
+  stroke: $easy;
+}
+svg.rating1,
+svg.effort1 {
+  clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 30%);
+}

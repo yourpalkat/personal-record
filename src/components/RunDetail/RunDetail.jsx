@@ -5,6 +5,7 @@ import moment from 'moment';
 import { AiOutlineCloseSquare } from 'react-icons/ai';
 
 import Button from '../Button/Button';
+import Rating from './Rating';
 import DeleteRun from '../DeleteRun/DeleteRun';
 
 import runStyles from './RunDetail.module.scss';
@@ -81,10 +82,10 @@ const RunDetail = ({ user, run, setRun, removeRunFromState }) => {
               </ul>
             )}
             {displayRun.effort && (
-              <p>Effort level: {displayRun.effort} / 5</p>
+              <Rating number={displayRun.effort} heading='effort' type='effort' />
             )}
             {displayRun.rating && (
-              <p>Rating: {displayRun.rating} / 5</p>
+              <Rating number={displayRun.rating} heading='rating' type='rating' />
             )}
             {displayRun.notes && <p>Notes: {displayRun.notes}</p>}
             <div className={runStyles.buttonContainer}>
