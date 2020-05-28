@@ -19,17 +19,32 @@
   padding-bottom: 1rem;
   border-bottom: 2px solid $primary;
 }
-.runDetailSection h4 {
-  margin-bottom: 5rem;
+
+h4.heading {
+  font-family: $font-condensed;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1.4rem;
+  margin-bottom: 1.4rem;
 }
-.runDetailSection p {
-  font-size: 2.0rem;
-  line-height: 1.6;
-  margin-bottom: 2.4rem;
+.bigNumbers {
+  font-family: $font-heading;
+  font-weight: 800;
+  font-size: 6rem;
+  letter-spacing: 1px;
+  margin-top: -0.8rem;
+  margin-bottom: 0;
+}
+.units {
+  font-size: 1.6rem;
+  font-weight: 100;
+  letter-spacing: 1px;
+  margin-top: -0.4rem;
 }
 .closeContainer {
   text-align: right;
-  grid-column: span 1 / -1;
+  grid-column: -2 / -1;
   grid-row: 1 / 2;
   align-self: start;
 }
@@ -49,11 +64,37 @@
   color: $primary;
 }
 
-.buttonContainer {
+.editDeleteContainer {
   margin-top: 6rem;
+  grid-column: 1 / 4;
 }
-.buttonContainer button:first-of-type {
+.editDeleteContainer button:first-of-type {
   margin-right: 2rem;
+}
+
+.dateContainer {
+  grid-column: 1 / 2;
+  display: flex;
+  align-items: center;
+}
+.dateContainer > * {
+  margin-block: 0;
+}
+.dateContainer svg {
+  font-size: 2.4rem;
+  margin-inline-end: 2.4rem;
+}
+
+.weatherContainer {
+  grid-column: 2 / -1;
+  display: flex;
+  align-items: center;
+}
+.weatherContainer p {
+  font-weight: 800;
+  font-size: 2.4rem;
+  margin-inline-end: 3rem;
+  margin-block: 0;
 }
 
 .weatherList {
@@ -62,11 +103,28 @@
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-end;
 }
 .weatherList li {
-  margin-right: 3rem;
+  margin-block-start: 0;
+  margin-block-end: -6px;
+  margin-inline-end: 3rem;
+  font-size: 3.4rem;
+}
+
+.notesContainer {
+  grid-column: 1 / 4;
+}
+.notesContainer p {
   font-family: $font-condensed;
-  font-size: 2.0rem;
+  font-size: 1.8rem;
+  font-weight: 100;
   line-height: 1.6;
-  margin-bottom: 2.4rem;
+}
+
+@include respond-to('tablet') {
+  .dateContainer,
+  .weatherContainer {
+    grid-column: 1 / -1;
+  }
 }
