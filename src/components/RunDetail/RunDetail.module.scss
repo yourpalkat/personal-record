@@ -39,7 +39,6 @@ h4.heading {
 .units {
   font-size: 1.6rem;
   font-weight: 100;
-  letter-spacing: 1px;
   margin-top: -0.4rem;
 }
 .closeContainer {
@@ -66,7 +65,7 @@ h4.heading {
 
 .editDeleteContainer {
   margin-top: 6rem;
-  grid-column: 1 / 4;
+  grid-column: 1 / -1;
 }
 .editDeleteContainer button:first-of-type {
   margin-right: 2rem;
@@ -112,8 +111,17 @@ h4.heading {
   font-size: 3.4rem;
 }
 
+.raceInfoContainer {
+  grid-column: 1 / -1;
+  grid-row-start: 5;
+  display: flex;
+}
+.raceInfoContainer > div {
+  margin-inline-end: 6rem;
+}
+
 .notesContainer {
-  grid-column: 1 / 4;
+  grid-column: 1 / -1;
 }
 .notesContainer p {
   font-family: $font-condensed;
@@ -127,4 +135,11 @@ h4.heading {
   .weatherContainer {
     grid-column: 1 / -1;
   }
+  .raceInfoContainer {
+    grid-row-start: 6;
+  }
+}
+
+@include respond-to('mobile') {
+
 }

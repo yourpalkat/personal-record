@@ -1,0 +1,60 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+}
+.container > * {
+  margin-inline-end: 3rem;
+}
+
+.iconWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border: 7px solid;
+  border-radius: 50%;
+}
+.iconWrapper svg {
+  font-size: 3.3rem;
+}
+
+.container p {
+  font-family: $font-heading;
+  font-size: 3.4rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.runEasy {
+  border-color: $easy;
+  svg {
+    fill: $easy;
+    stroke: $easy;
+  }
+}
+.runRecovery {
+  color: $recovery;
+}
+.runTempo {
+  color: $tempo;
+}
+.runRace {
+  color: $race;
+}
+.runHills {
+  color: $hill;
+}
+.runIntervals {
+  color: $interval;
+}
+.runDefault {
+  color: $default;
+}
+.runLong {
+  color: $long;
+}

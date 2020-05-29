@@ -4,10 +4,12 @@ import Moment from 'react-moment';
 import moment from 'moment';
 import { AiOutlineCloseSquare, AiOutlineCalendar } from 'react-icons/ai';
 
+
 import Button from '../Button/Button';
 import Rating from './Rating';
 import DeleteRun from '../DeleteRun/DeleteRun';
 import WeatherConditions from './WeatherConditions';
+import RunTypeIndicator from './RunTypeIndicator';
 
 import runStyles from './RunDetail.module.scss';
 
@@ -36,6 +38,9 @@ const RunDetail = ({ user, run, setRun, removeRunFromState }) => {
   const pace = seconds / displayRun.distance;
   const paceMinutes = Math.floor(pace / 60);
   const paceSeconds = Math.round(pace % 60);
+
+  let displayDistance = displayRun.distance;
+  if (displayDistance && !displayDistance.toString().includes('.')) displayDistance = displayDistance + '.0';
 
   return (
     <>
@@ -72,7 +77,7 @@ const RunDetail = ({ user, run, setRun, removeRunFromState }) => {
 
             <div>
               <h4 className={runStyles.heading}>Distance:</h4>
-              <p className={runStyles.bigNumbers}>{displayRun.distance}</p>
+              <p className={runStyles.bigNumbers}>{displayDistance}</p>
               <p className={runStyles.units}>km</p>
             </div>
 
@@ -90,23 +95,29 @@ const RunDetail = ({ user, run, setRun, removeRunFromState }) => {
 
             <div>
               <h4 className={runStyles.heading}>Workout type:</h4>
-              <p className={runStyles.bigNumbers}>{displayRun.workoutType}</p>
+              <RunTypeIndicator runType={displayRun.workoutType} />
             </div>
 
             {displayRun.workoutType === 'Race' && (
-              <div>
+              <div className={runStyles.raceInfoContainer}>
                 {displayRun.racePosition && (
-                  <p>Race finish position: {displayRun.racePosition} {displayRun.raceFieldSize && ( 
-                      <span>out of {displayRun.raceFieldSize}</span>
-                    )}</p>
+                  <div>
+                    <h4 className={runStyles.heading}>Position:</h4>
+                    <p className={runStyles.bigNumbers}>{displayRun.racePosition}</p>
+                    {displayRun.raceFieldSize && <p className={runStyles.units}>out of {displayRun.raceFieldSize}</p>}
+                  </div>
+
                 )}
                 {displayRun.raceAgePosition && (
-                  <p>Age Group position: {displayRun.raceAgePosition} {displayRun.raceAgeFieldSize && (
-                    <span>out of {displayRun.raceAgeFieldSize}</span>
-                  )}</p>
+                  <div>
+                    <h4 className={runStyles.heading}>Age group:</h4>
+                    <p className={runStyles.bigNumbers}>{displayRun.raceAgePosition}</p>
+                    {displayRun.raceAgeFieldSize && <p className={runStyles.units}>out of {displayRun.raceAgeFieldSize}</p>}
+                  </div>
                 )}
               </div>
             )}
+
             {displayRun.treadmill && <p>Treadmill run</p>}
 
             {displayRun.effort && (
