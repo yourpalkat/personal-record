@@ -2,10 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
 import moment from 'moment';
-import { AiOutlineCloseSquare } from 'react-icons/ai';
+import { AiOutlineCloseSquare, AiOutlineCalendar } from 'react-icons/ai';
+
 
 import Button from '../Button/Button';
+import Rating from './Rating';
 import DeleteRun from '../DeleteRun/DeleteRun';
+import WeatherConditions from './WeatherConditions';
+import RunTypeIndicator from './RunTypeIndicator';
 
 import runStyles from './RunDetail.module.scss';
 
@@ -35,12 +39,16 @@ const RunDetail = ({ user, run, setRun, removeRunFromState }) => {
   const paceMinutes = Math.floor(pace / 60);
   const paceSeconds = Math.round(pace % 60);
 
+  let displayDistance = displayRun.distance;
+  if (displayDistance && !displayDistance.toString().includes('.')) displayDistance = displayDistance + '.0';
+
   return (
     <>
       {!run._id ? <Redirect to={`/users/${user._id}`} /> : (
         <>
           {showDelete && <DeleteRun setRun={setRun} closeModal={() => showDeleteModal(false)} run={displayRun} removeRunFromState={removeRunFromState} />}
           <section className={runStyles.runDetailSection}>
+            <h2>{displayRun.title}</h2>
             <div className={runStyles.closeContainer}>
               <button 
                 type='button'
@@ -50,44 +58,83 @@ const RunDetail = ({ user, run, setRun, removeRunFromState }) => {
                 <AiOutlineCloseSquare />
               </button>
             </div>
-            <h2>{displayRun.title}</h2>
-            <h3><Moment date={displayRun.start} format='Do MMMM, YYYY, h:mm a' /></h3>
-            <p>Distance: {displayRun.distance}km</p>
-            <p>Elapsed time: {displayRun.elapsedTime.format('h:mm:ss')}</p>
-            <p>Pace: {paceMinutes}:{paceSeconds < 10 ? `0${paceSeconds}` : paceSeconds}/km</p>
-            <p>Workout type: {displayRun.workoutType}</p>
+
+            <div className={runStyles.dateContainer}>
+              <AiOutlineCalendar />
+              <h3><Moment date={displayRun.start} format='D MMMM YYYY, h:mm a' /></h3>
+            </div>
+
+            <div className={runStyles.weatherContainer}>
+              {displayRun.tempInC && (
+                <p>{displayRun.tempInC}°C</p>
+              )}
+              {displayRun.weather.length > 0 && (
+                <ul className={runStyles.weatherList}>
+                  {displayRun.weather.map(condition => <li key={`weather-${condition}`} title={condition}><WeatherConditions weatherCondition={condition} /></li>)}
+                </ul>
+              )}
+            </div>
+
+            <div className={runStyles.distanceContainer}>
+              <h4 className={runStyles.heading}>Distance:</h4>
+              <p className={runStyles.bigNumbers}>{displayDistance}</p>
+              <p className={runStyles.units}>km</p>
+            </div>
+
+            <div className={runStyles.durationContainer}>
+              <h4 className={runStyles.heading}>Duration:</h4>
+              <p className={runStyles.bigNumbers}>{displayRun.elapsedTime.format('h:mm:ss')}</p>
+              <p className={runStyles.units}>hh:mm:ss</p>
+            </div>
+
+            <div className={runStyles.paceContainer}>
+              <h4 className={runStyles.heading}>Pace:</h4>
+              <p className={runStyles.bigNumbers}>{paceMinutes}:{paceSeconds < 10 ? `0${paceSeconds}` : paceSeconds}</p>
+              <p className={runStyles.units}>min/km</p>
+            </div>
+
+            <div className={runStyles.workoutTypeContainer}>
+              <h4 className={runStyles.heading}>Workout type:</h4>
+              <RunTypeIndicator runType={displayRun.workoutType} />
+            </div>
+
             {displayRun.workoutType === 'Race' && (
-              <div>
+              <div className={runStyles.raceInfoContainer}>
                 {displayRun.racePosition && (
-                  <p>Race finish position: {displayRun.racePosition} {displayRun.raceFieldSize && ( 
-                      <span>out of {displayRun.raceFieldSize}</span>
-                    )}</p>
+                  <div>
+                    <h4 className={runStyles.heading}>Position:</h4>
+                    <p className={runStyles.bigNumbers}>{displayRun.racePosition}</p>
+                    {displayRun.raceFieldSize && <p className={runStyles.units}>out of {displayRun.raceFieldSize}</p>}
+                  </div>
+
                 )}
                 {displayRun.raceAgePosition && (
-                  <p>Age Group position: {displayRun.raceAgePosition} {displayRun.raceAgeFieldSize && (
-                    <span>out of {displayRun.raceAgeFieldSize}</span>
-                  )}</p>
+                  <div>
+                    <h4 className={runStyles.heading}>Age group:</h4>
+                    <p className={runStyles.bigNumbers}>{displayRun.raceAgePosition}</p>
+                    {displayRun.raceAgeFieldSize && <p className={runStyles.units}>out of {displayRun.raceAgeFieldSize}</p>}
+                  </div>
                 )}
               </div>
             )}
-            {displayRun.treadmill && <p>Treadmill run</p>}
-            {displayRun.tempInC && (
-              <p>Temperature: {displayRun.tempInC}°C</p>
+            
+            {displayRun.effort || displayRun.rating ? (
+              <div className={runStyles.effortRatingContainer}>
+                {displayRun.effort && <Rating number={displayRun.effort} heading='effort' type='effort' />}
+                {displayRun.rating && <Rating number={displayRun.rating} heading='rating' type='rating' />}
+              </div>
+            ) : ( null )}
+
+            {displayRun.treadmill && <div className={runStyles.treadmillContainer}><p>Treadmill run</p></div>}
+
+            {displayRun.notes && (
+              <div className={runStyles.notesContainer}>
+                <h4 className={runStyles.heading}>Notes:</h4>
+                <p>{displayRun.notes}</p>
+              </div>
             )}
-            {displayRun.weather.length > 0 && (
-              <ul className={runStyles.weatherList}>
-              <li>Conditions:</li>
-                {displayRun.weather.map(condition => <li key={`weather-${condition}`}>{condition}</li>)}
-              </ul>
-            )}
-            {displayRun.effort && (
-              <p>Effort level: {displayRun.effort} / 5</p>
-            )}
-            {displayRun.rating && (
-              <p>Rating: {displayRun.rating} / 5</p>
-            )}
-            {displayRun.notes && <p>Notes: {displayRun.notes}</p>}
-            <div className={runStyles.buttonContainer}>
+
+            <div className={runStyles.editDeleteContainer}>
               <Button
                 buttonType='button'
                 buttonStyle='danger'
