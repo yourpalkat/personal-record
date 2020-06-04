@@ -5,22 +5,16 @@
   display: flex;
   align-items: center;
 }
-.container > * {
-  margin-inline-end: 3rem;
-}
 
 .iconWrapper {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   place-items: center;
-  width: 60px;
-  height: 60px;
-  border: 7px solid;
-  border-radius: 50%;
+  margin-inline-end: 2.4rem;
 }
 .iconWrapper svg {
-  font-size: 3.3rem;
+  font-size: 4.2rem;
 }
 
 .container p {
@@ -31,11 +25,7 @@
 }
 
 .runEasy {
-  border-color: $easy;
-  svg {
-    fill: $easy;
-    stroke: $easy;
-  }
+  color: $easy;
 }
 .runRecovery {
   color: $recovery;

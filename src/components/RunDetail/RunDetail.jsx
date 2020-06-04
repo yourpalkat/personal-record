@@ -75,25 +75,25 @@ const RunDetail = ({ user, run, setRun, removeRunFromState }) => {
               )}
             </div>
 
-            <div>
+            <div className={runStyles.distanceContainer}>
               <h4 className={runStyles.heading}>Distance:</h4>
               <p className={runStyles.bigNumbers}>{displayDistance}</p>
               <p className={runStyles.units}>km</p>
             </div>
 
-            <div>
+            <div className={runStyles.durationContainer}>
               <h4 className={runStyles.heading}>Duration:</h4>
               <p className={runStyles.bigNumbers}>{displayRun.elapsedTime.format('h:mm:ss')}</p>
               <p className={runStyles.units}>hh:mm:ss</p>
             </div>
 
-            <div>
+            <div className={runStyles.paceContainer}>
               <h4 className={runStyles.heading}>Pace:</h4>
               <p className={runStyles.bigNumbers}>{paceMinutes}:{paceSeconds < 10 ? `0${paceSeconds}` : paceSeconds}</p>
               <p className={runStyles.units}>min/km</p>
             </div>
 
-            <div>
+            <div className={runStyles.workoutTypeContainer}>
               <h4 className={runStyles.heading}>Workout type:</h4>
               <RunTypeIndicator runType={displayRun.workoutType} />
             </div>
@@ -117,21 +117,23 @@ const RunDetail = ({ user, run, setRun, removeRunFromState }) => {
                 )}
               </div>
             )}
+            
+            {displayRun.effort || displayRun.rating ? (
+              <div className={runStyles.effortRatingContainer}>
+                {displayRun.effort && <Rating number={displayRun.effort} heading='effort' type='effort' />}
+                {displayRun.rating && <Rating number={displayRun.rating} heading='rating' type='rating' />}
+              </div>
+            ) : ( null )}
 
-            {displayRun.treadmill && <p>Treadmill run</p>}
+            {displayRun.treadmill && <div className={runStyles.treadmillContainer}><p>Treadmill run</p></div>}
 
-            {displayRun.effort && (
-              <Rating number={displayRun.effort} heading='effort' type='effort' />
-            )}
-            {displayRun.rating && (
-              <Rating number={displayRun.rating} heading='rating' type='rating' />
-            )}
             {displayRun.notes && (
               <div className={runStyles.notesContainer}>
                 <h4 className={runStyles.heading}>Notes:</h4>
                 <p>{displayRun.notes}</p>
               </div>
             )}
+
             <div className={runStyles.editDeleteContainer}>
               <Button
                 buttonType='button'

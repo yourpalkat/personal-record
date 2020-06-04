@@ -116,8 +116,26 @@ h4.heading {
   grid-row-start: 5;
   display: flex;
 }
-.raceInfoContainer > div {
+.raceInfoContainer > div:first-of-type {
   margin-inline-end: 6rem;
+}
+
+.effortRatingContainer {
+  grid-column: 2 / -1;
+  display: flex;
+}
+.effortRatingContainer > div:first-of-type {
+  margin-inline-end: 6rem;
+}
+
+.treadmillContainer {
+  padding-top: 3.2rem;
+  grid-column: 1 / -1;
+}
+.treadmillContainer p {
+  font-size: 1.8rem;
+  font-weight: 100;
+  margin-top: -0.4rem;
 }
 
 .notesContainer {
@@ -141,5 +159,59 @@ h4.heading {
 }
 
 @include respond-to('mobile') {
+  .bigNumbers {
+    font-size: 4.2rem;
+  }
+}
 
+@include respond-to('mobile-med') {
+  .runDetailSection {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .distanceContainer {
+    grid-column: 1 / 2;
+  }
+
+  .durationContainer {
+    grid-column: 2 / -1;
+  }
+
+  .paceContainer {
+    grid-column: 1 / 2;
+    grid-row: 5 / 6;
+  }
+
+  .effortRatingContainer {
+    grid-column: 2 / -1;
+    grid-row: 5 / 6;
+  }
+  .workoutTypeContainer {
+    grid-column: 1 / -1;
+  }
+  .raceInfoContainer {
+    grid-column: 1 / -1;
+    grid-row-start: 7;
+  }
+}
+
+@include respond-to('mobile-small') {
+  .paceContainer {
+    grid-column: 2 / -1;
+    grid-row: 4 / 5;
+  }
+
+  .durationContainer,
+  .effortRatingContainer {
+    grid-column: 1 / -1;
+  }
+  .effortRatingContainer {
+    grid-row: 6 / 7;
+  }
+  .workoutTypeContainer {
+    grid-row: 7 / 8;
+  }
+  .raceInfoContainer {
+    grid-row: 8 / 9;
+  }
 }

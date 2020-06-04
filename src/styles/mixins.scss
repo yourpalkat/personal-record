@@ -11,6 +11,10 @@
     @media (max-width: 375px) {
       @content;
     }
+  } @else if $breakpoint== 'mobile-med' {
+    @media (max-width: 600px) {
+      @content;
+    }
   } @else if $breakpoint== 'mobile' {
     @media (max-width: 749px) {
       @content;
