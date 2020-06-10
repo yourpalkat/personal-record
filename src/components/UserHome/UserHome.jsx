@@ -1,5 +1,8 @@
 import React from 'react';
 import { Route, Switch, NavLink, useRouteMatch } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSelectedRun, addRun, removeRun, replaceRun } from '../../redux/actions';
+
 import { FiCalendar } from 'react-icons/fi';
 import { FiList } from 'react-icons/fi';
 import { FiUser } from 'react-icons/fi';
@@ -14,8 +17,12 @@ import RunDetail from '../RunDetail/RunDetail';
 
 import homeStyles from './UserHome.module.scss';
 
-const UserHome = ({ user, userRuns, setRun, selectedRun, addRunToState, removeRunFromState, replaceEditedRun }) => {
+const UserHome = () => {
   let { path, url } = useRouteMatch();
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+  const userRuns = useSelector(state => state.userRuns);
+  const selectedRun = useSelector(state => state.selectedRun);
 
   return (
     <div className='gridWrapper'>
@@ -35,7 +42,11 @@ const UserHome = ({ user, userRuns, setRun, selectedRun, addRunToState, removeRu
 
       <Switch>
         <Route path={`${path}/list`}>
-          <ListView user={user} userRuns={userRuns} setRun={setRun} selectedRun={selectedRun} />
+          <ListView 
+            user={user} 
+            userRuns={userRuns} 
+            setRun={(run) => dispatch(setSelectedRun(run))} 
+            selectedRun={selectedRun} />
         </Route>
         <Route path={`${path}/shoes`}>
           <Shoes />
@@ -44,16 +55,28 @@ const UserHome = ({ user, userRuns, setRun, selectedRun, addRunToState, removeRu
           <Profile user={user} userRuns={userRuns} />
         </Route>
         <Route path={`${path}/runs/add`}>
-          <AddNew user={user} addRunToState={addRunToState} />
+          <AddNew user={user} addRunToState={(run) => dispatch(addRun(run))} />
         </Route>
         <Route path={`${path}/runs/:runId/edit`}>
-          <EditRun user={user} run={selectedRun} setRun={setRun} replaceEditedRun={replaceEditedRun} />
+          <EditRun 
+            user={user} 
+            run={selectedRun} 
+            setRun={(run) => dispatch(setSelectedRun(run))} 
+            replaceEditedRun={(run) => dispatch(replaceRun(run))} />
         </Route>
         <Route path={`${path}/runs/:runId`}>
-          <RunDetail user={user} run={selectedRun} setRun={setRun} removeRunFromState={removeRunFromState} />
+          <RunDetail 
+            user={user} 
+            run={selectedRun} 
+            setRun={(run) => dispatch(setSelectedRun(run))} 
+            removeRun={(run) => dispatch(removeRun(run))} />
         </Route>
         <Route path={path}>
-          <Dashboard user={user} userRuns={userRuns} setRun={setRun} selectedRun={selectedRun} />
+          <Dashboard 
+            user={user} 
+            userRuns={userRuns} 
+            setRun={(run) => dispatch(setSelectedRun(run))} 
+            selectedRun={selectedRun} />
         </Route>
       </Switch>
     </div>

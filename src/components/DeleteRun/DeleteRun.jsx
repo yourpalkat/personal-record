@@ -5,7 +5,7 @@ import Button from '../Button/Button';
 
 import deleteStyles from './DeleteRun.module.scss';
 
-const Delete = ({ closeModal, setRun, run, removeRunFromState }) => {
+const Delete = ({ closeModal, setRun, run, removeRun }) => {
   const isMountedRef = useRef(null);
 
   const handleDelete = async () => {
@@ -13,7 +13,7 @@ const Delete = ({ closeModal, setRun, run, removeRunFromState }) => {
       const res = await axios.delete(`/api/runs/delete/${run._id}`);
       console.log(`Deleted run. ${res}`);
       if (isMountedRef.current) {
-        removeRunFromState(run);
+        removeRun(run);
         setRun({});
         closeModal();
       }

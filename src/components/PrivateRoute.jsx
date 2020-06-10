@@ -1,7 +1,9 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const PrivateRoute = ({ isLoggedIn, children, ...rest }) => {
+const PrivateRoute = ({ children, ...rest }) => {
+  const isLoggedIn = useSelector(state => state.isLoggedIn)
   return(
     <Route
       {...rest}

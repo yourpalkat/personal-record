@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser, setRuns } from '../../redux/actions';
 import { setToken } from '../../services/tokenService';
 import { fetchRuns } from '../../services/fetchRuns';
 
@@ -8,7 +10,10 @@ import Button from '../Button/Button';
 
 import heroStyles from './Hero.module.scss';
 
-const Hero = ({ setUser, setUserRuns, user, isLoggedIn }) => {
+const Hero = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
   const isMountedRef = useRef(null);
   const [message, setMessage] = useState(null);
 
@@ -24,9 +29,11 @@ const Hero = ({ setUser, setUserRuns, user, isLoggedIn }) => {
       if (isMountedRef.current) {
         const token = res.data.data.token;
         setToken(token);
-        setUser(token, res.data.data.user);
+        // setUser(token, res.data.data.user);
+        dispatch(setUser(res.data.data.user, token));
         const userRuns = await fetchRuns(res.data.data.user._id);
-        setUserRuns(userRuns);
+        // setUserRuns(userRuns);
+        dispatch(setRuns(userRuns));
         setMessage(null);
       }
     } catch (e) {

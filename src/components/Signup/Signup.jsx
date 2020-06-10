@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser, setRuns } from '../../redux/actions';
 import { setToken } from '../../services/tokenService';
 
 import Input from '../FormComponents/Input';
@@ -8,7 +10,10 @@ import Button from '../Button/Button';
 
 import signupStyles from './Signup.module.scss';
 
-const Signup = ({ user, setUser, setUserRuns, isLoggedIn }) => {
+const Signup = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
 
   const [message, setMessage] = useState(null);
   const [email, setEmail] = useState('');
@@ -45,7 +50,8 @@ const Signup = ({ user, setUser, setUserRuns, isLoggedIn }) => {
   
   const handleSubmit = async e => {
     e.preventDefault();
-    setUserRuns([]);
+    // setUserRuns([]);
+    dispatch(setRuns([]));
     if (Object.values(errorStatus).indexOf(true) === -1) {
       try {
         const res = await axios.post(`/api/users/signup`, {
@@ -59,7 +65,8 @@ const Signup = ({ user, setUser, setUserRuns, isLoggedIn }) => {
         if (isMountedRef.current) {
           const token = res.data.data.token;
           setToken(token);
-          setUser(token, res.data.data[0]);
+          // setUser(token, res.data.data[0]);
+          dispatch(setUser(res.data.data[0], token));
           setMessage(null);
         }
       } catch (e) {
