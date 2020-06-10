@@ -19,26 +19,26 @@ const Hero = () => {
 
   const handleTestLogin = async e => {
     e.preventDefault();
-    try {
-      const res = await axios.post(`/api/users/login`, {
-        data: {
-          email: `test@test.com`,
-          password: `test`
+    if (isMountedRef.current === true) {
+      try {
+        const res = await axios.post(`/api/users/login`, {
+          data: {
+            email: `test@test.com`,
+            password: `test`
+          }
+        });
+        if (isMountedRef.current) {
+          const token = res.data.data.token;
+          setToken(token);
+          dispatch(setUser(res.data.data.user, token));
+          const userRuns = await fetchRuns(res.data.data.user._id);
+          dispatch(setRuns(userRuns));
+          setMessage(null);
         }
-      });
-      if (isMountedRef.current) {
-        const token = res.data.data.token;
-        setToken(token);
-        // setUser(token, res.data.data.user);
-        dispatch(setUser(res.data.data.user, token));
-        const userRuns = await fetchRuns(res.data.data.user._id);
-        // setUserRuns(userRuns);
-        dispatch(setRuns(userRuns));
-        setMessage(null);
+      } catch (e) {
+        setMessage('Error logging in as test account.')
+        console.log(message, e);
       }
-    } catch (e) {
-      setMessage('Error logging in as test account.')
-      console.log(message, e);
     }
   }
 

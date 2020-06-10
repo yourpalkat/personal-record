@@ -50,31 +50,31 @@ const Signup = () => {
   
   const handleSubmit = async e => {
     e.preventDefault();
-    // setUserRuns([]);
-    dispatch(setRuns([]));
-    if (Object.values(errorStatus).indexOf(true) === -1) {
-      try {
-        const res = await axios.post(`/api/users/signup`, {
-          data: {
-            email: email,
-            password: password,
-            firstName: firstName,
-            lastName: lastName
+    if (isMountedRef.current === true) {
+      dispatch(setRuns([]));
+      if (Object.values(errorStatus).indexOf(true) === -1) {
+        try {
+          const res = await axios.post(`/api/users/signup`, {
+            data: {
+              email: email,
+              password: password,
+              firstName: firstName,
+              lastName: lastName
+            }
+          });
+          if (isMountedRef.current) {
+            const token = res.data.data.token;
+            setToken(token);
+            dispatch(setUser(res.data.data.user, token));
+            setMessage(null);
           }
-        });
-        if (isMountedRef.current) {
-          const token = res.data.data.token;
-          setToken(token);
-          // setUser(token, res.data.data[0]);
-          dispatch(setUser(res.data.data[0], token));
-          setMessage(null);
+        } catch (e) {
+          setMessage('That email address is taken! Please use another.');
+          console.log(e);
         }
-      } catch (e) {
-        setMessage('That email address is taken! Please use another.');
-        console.log(e);
+      } else {
+        setMessage('Please check the form for errors and try again!');
       }
-    } else {
-      setMessage('Please check the form for errors and try again!');
     }
   }
 

@@ -41,32 +41,31 @@ const Login = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    dispatch(setRuns([]));
-    // setUserRuns([]);
-    if (Object.values(errorStatus).indexOf(true) === -1) {
-      try {
-        const res = await axios.post(`/api/users/login`, {
-          data: {
-            email: email,
-            password: password
+    if(isMountedRef.current === true) {
+      dispatch(setRuns([]));
+      if (Object.values(errorStatus).indexOf(true) === -1) {
+        try {
+          const res = await axios.post(`/api/users/login`, {
+            data: {
+              email: email,
+              password: password
+            }
+          });
+          if (isMountedRef.current) {
+            const token = res.data.data.token;
+            setToken(token);
+            dispatch(setUser(res.data.data.user, token));
+            const userRuns = await fetchRuns(res.data.data.user._id);
+            dispatch(setRuns(userRuns));
+            setMessage(null);
           }
-        });
-        if (isMountedRef.current) {
-          const token = res.data.data.token;
-          setToken(token);
-          // setUser(token, res.data.data.user);
-          dispatch(setUser(res.data.data.user, token));
-          const userRuns = await fetchRuns(res.data.data.user._id);
-          // setUserRuns(userRuns);
-          dispatch(setRuns(userRuns));
-          setMessage(null);
+        } catch (e) {
+          setMessage('Sorry, your login or password is incorrect!');
+          console.log(e);
         }
-      } catch (e) {
-        setMessage('Sorry, your login or password is incorrect!');
-        console.log(e);
+      } else {
+        setMessage('Please check the form for errors and try again!');
       }
-    } else {
-      setMessage('Please check the form for errors and try again!');
     }
   }
 

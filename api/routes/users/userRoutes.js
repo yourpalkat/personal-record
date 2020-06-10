@@ -9,8 +9,12 @@ router.route('/signup')
   .post(async (req, res, next) => {
     try {
       const user = await userService.createUser(req.body.data);
+      const token = await tokenService.issueToken(user);
       res.status(201).json({
-        data: [user]
+        data: {
+          token,
+          user
+        }
       });
     } catch (e) {
       next(e);
