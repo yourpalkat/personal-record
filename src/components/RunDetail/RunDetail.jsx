@@ -13,7 +13,7 @@ import RunTypeIndicator from './RunTypeIndicator';
 
 import runStyles from './RunDetail.module.scss';
 
-const RunDetail = ({ user, run, setRun, removeRunFromState }) => {
+const RunDetail = ({ user, run, setRun, removeRun }) => {
   const [showDelete, setShowDelete] = useState(false);
   const isMountedRef = useRef(null);
 
@@ -46,7 +46,7 @@ const RunDetail = ({ user, run, setRun, removeRunFromState }) => {
     <>
       {!run._id ? <Redirect to={`/users/${user._id}`} /> : (
         <>
-          {showDelete && <DeleteRun setRun={setRun} closeModal={() => showDeleteModal(false)} run={displayRun} removeRunFromState={removeRunFromState} />}
+          {showDelete && <DeleteRun setRun={setRun} closeModal={() => showDeleteModal(false)} run={displayRun} removeRun={removeRun} />}
           <section className={runStyles.runDetailSection}>
             <h2>{displayRun.title}</h2>
             <div className={runStyles.closeContainer}>

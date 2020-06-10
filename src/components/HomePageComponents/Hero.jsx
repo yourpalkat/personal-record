@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser, setRuns } from '../../redux/actions';
 import { setToken } from '../../services/tokenService';
 import { fetchRuns } from '../../services/fetchRuns';
 
@@ -8,30 +10,35 @@ import Button from '../Button/Button';
 
 import heroStyles from './Hero.module.scss';
 
-const Hero = ({ setUser, setUserRuns, user, isLoggedIn }) => {
+const Hero = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
   const isMountedRef = useRef(null);
   const [message, setMessage] = useState(null);
 
   const handleTestLogin = async e => {
     e.preventDefault();
-    try {
-      const res = await axios.post(`/api/users/login`, {
-        data: {
-          email: `test@test.com`,
-          password: `test`
+    if (isMountedRef.current === true) {
+      try {
+        const res = await axios.post(`/api/users/login`, {
+          data: {
+            email: `test@test.com`,
+            password: `test`
+          }
+        });
+        if (isMountedRef.current) {
+          const token = res.data.data.token;
+          setToken(token);
+          dispatch(setUser(res.data.data.user, token));
+          const userRuns = await fetchRuns(res.data.data.user._id);
+          dispatch(setRuns(userRuns));
+          setMessage(null);
         }
-      });
-      if (isMountedRef.current) {
-        const token = res.data.data.token;
-        setToken(token);
-        setUser(token, res.data.data.user);
-        const userRuns = await fetchRuns(res.data.data.user._id);
-        setUserRuns(userRuns);
-        setMessage(null);
+      } catch (e) {
+        setMessage('Error logging in as test account.')
+        console.log(message, e);
       }
-    } catch (e) {
-      setMessage('Error logging in as test account.')
-      console.log(message, e);
     }
   }
 

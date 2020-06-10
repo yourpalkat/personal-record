@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser, setRuns } from '../../redux/actions';
 import { setToken } from '../../services/tokenService';
 import { fetchRuns } from '../../services/fetchRuns';
 
@@ -9,7 +11,10 @@ import Input from '../FormComponents/Input';
 
 import loginStyles from './Login.module.scss';
 
-const Login = ({ setUser, setUserRuns, user, isLoggedIn }) => {
+const Login = () => {
+  const user = useSelector(state => state.user);
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
+  const dispatch = useDispatch();
   const [message, setMessage] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,29 +41,31 @@ const Login = ({ setUser, setUserRuns, user, isLoggedIn }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setUserRuns([]);
-    if (Object.values(errorStatus).indexOf(true) === -1) {
-      try {
-        const res = await axios.post(`/api/users/login`, {
-          data: {
-            email: email,
-            password: password
+    if(isMountedRef.current === true) {
+      dispatch(setRuns([]));
+      if (Object.values(errorStatus).indexOf(true) === -1) {
+        try {
+          const res = await axios.post(`/api/users/login`, {
+            data: {
+              email: email,
+              password: password
+            }
+          });
+          if (isMountedRef.current) {
+            const token = res.data.data.token;
+            setToken(token);
+            dispatch(setUser(res.data.data.user, token));
+            const userRuns = await fetchRuns(res.data.data.user._id);
+            dispatch(setRuns(userRuns));
+            setMessage(null);
           }
-        });
-        if (isMountedRef.current) {
-          const token = res.data.data.token;
-          setToken(token);
-          setUser(token, res.data.data.user);
-          const userRuns = await fetchRuns(res.data.data.user._id);
-          setUserRuns(userRuns);
-          setMessage(null);
+        } catch (e) {
+          setMessage('Sorry, your login or password is incorrect!');
+          console.log(e);
         }
-      } catch (e) {
-        setMessage('Sorry, your login or password is incorrect!');
-        console.log(e);
+      } else {
+        setMessage('Please check the form for errors and try again!');
       }
-    } else {
-      setMessage('Please check the form for errors and try again!');
     }
   }
 

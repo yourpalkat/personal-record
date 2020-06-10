@@ -1,18 +1,49 @@
-import { ADD_TODO, TOGGLE_TODO, SET_FILTER } from "./actionTypes";
+import { SET_USER, SET_RUNS, SET_SELECTED_RUN, ADD_RUN, REPLACE_RUN, REMOVE_RUN, LOG_OUT } from './actionTypes';
 
-let nextTodoId = 0;
-
-export const addTodo = content => ({
-  type: ADD_TODO,
+export const setUser = (user, token) => ({ 
+  type: SET_USER,
   payload: {
-    id: ++nextTodoId,
-    content
+    user,
+    token,
+  },
+});
+
+export const setRuns = (userRuns) => ({
+  type: SET_RUNS,
+  payload: {
+    userRuns,
   }
 });
 
-export const toggleTodo = id => ({
-  type: TOGGLE_TODO,
-  payload: { id }
+export const setSelectedRun = (selectedRun) => ({
+  type: SET_SELECTED_RUN,
+  payload: {
+    selectedRun,
+  }
 });
 
-export const setFilter = filter => ({ type: SET_FILTER, payload: { filter } });
+export const addRun = (newRun) => ({
+  type: ADD_RUN,
+  payload: {
+    newRun,
+  }
+});
+
+export const replaceRun = (newRun) => ({
+  type: REPLACE_RUN,
+  payload: {
+    newRun,
+  }
+});
+
+export const removeRun = (runToRemove) => ({
+  type: REMOVE_RUN,
+  payload: {
+    runToRemove,
+  }
+});
+
+export const logOut = () => ({
+  type: LOG_OUT,
+});
+

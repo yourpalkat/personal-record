@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser, setRuns } from '../../redux/actions';
 import { setToken } from '../../services/tokenService';
 
 import Input from '../FormComponents/Input';
@@ -8,7 +10,10 @@ import Button from '../Button/Button';
 
 import signupStyles from './Signup.module.scss';
 
-const Signup = ({ user, setUser, setUserRuns, isLoggedIn }) => {
+const Signup = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
 
   const [message, setMessage] = useState(null);
   const [email, setEmail] = useState('');
@@ -45,29 +50,31 @@ const Signup = ({ user, setUser, setUserRuns, isLoggedIn }) => {
   
   const handleSubmit = async e => {
     e.preventDefault();
-    setUserRuns([]);
-    if (Object.values(errorStatus).indexOf(true) === -1) {
-      try {
-        const res = await axios.post(`/api/users/signup`, {
-          data: {
-            email: email,
-            password: password,
-            firstName: firstName,
-            lastName: lastName
+    if (isMountedRef.current === true) {
+      dispatch(setRuns([]));
+      if (Object.values(errorStatus).indexOf(true) === -1) {
+        try {
+          const res = await axios.post(`/api/users/signup`, {
+            data: {
+              email: email,
+              password: password,
+              firstName: firstName,
+              lastName: lastName
+            }
+          });
+          if (isMountedRef.current) {
+            const token = res.data.data.token;
+            setToken(token);
+            dispatch(setUser(res.data.data.user, token));
+            setMessage(null);
           }
-        });
-        if (isMountedRef.current) {
-          const token = res.data.data.token;
-          setToken(token);
-          setUser(token, res.data.data[0]);
-          setMessage(null);
+        } catch (e) {
+          setMessage('That email address is taken! Please use another.');
+          console.log(e);
         }
-      } catch (e) {
-        setMessage('That email address is taken! Please use another.');
-        console.log(e);
+      } else {
+        setMessage('Please check the form for errors and try again!');
       }
-    } else {
-      setMessage('Please check the form for errors and try again!');
     }
   }
 

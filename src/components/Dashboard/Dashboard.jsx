@@ -19,7 +19,7 @@ const Dashboard = ({ user, userRuns, setRun, selectedRun }) => {
 
   return(
     <>
-      {selectedRun._id && viewRun ? <Redirect to={`/users/${user._id}/runs/${selectedRun._id}`} /> : (
+      {selectedRun && selectedRun._id && viewRun ? <Redirect to={`/users/${user._id}/runs/${selectedRun._id}`} /> : (
         <section className={dashStyles.dashboard}>
           <div className={dashStyles.titleBlock}>
             <h2>{user.firstName}’s workouts &emsp;</h2>
