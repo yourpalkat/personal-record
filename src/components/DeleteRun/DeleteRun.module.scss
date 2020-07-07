@@ -1,21 +1,6 @@
 @import '../../styles/variables.scss';
 
-.modalOuter {
-  background-color: rgba(0, 0, 0, 0.7);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-}
-
 .modalInner {
-  width: 50%;
-  max-width: 500px;
   border: 1px solid $white;
   border-radius: 4px;
   background-color: $background;

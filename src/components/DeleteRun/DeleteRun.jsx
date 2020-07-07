@@ -5,7 +5,7 @@ import Button from '../Button/Button';
 
 import deleteStyles from './DeleteRun.module.scss';
 
-const Delete = ({ closeModal, setRun, run, removeRun }) => {
+const Delete = ({ toggle, setRun, run, removeRun }) => {
   const isMountedRef = useRef(null);
 
   const handleDelete = async () => {
@@ -15,7 +15,7 @@ const Delete = ({ closeModal, setRun, run, removeRun }) => {
       if (isMountedRef.current) {
         removeRun(run);
         setRun({});
-        closeModal();
+        toggle();
       }
     } catch (e) {
       console.error(e);
@@ -30,21 +30,19 @@ const Delete = ({ closeModal, setRun, run, removeRun }) => {
   }, []);
 
   return (
-    <div className={deleteStyles.modalOuter}>
-      <div className={deleteStyles.modalInner}>
-        <h4>Are you sure you want to delete this run?</h4>
-        <p>This cannot be undone.</p>
-        <Button 
-          buttonType='button'
-          buttonStyle='ghost'
-          text='Cancel'
-          eventHandler={closeModal} />
-        <Button 
-          buttonType='button'
-          buttonStyle='danger'
-          text='Yes, delete'
-          eventHandler={handleDelete} />
-      </div>
+    <div className={deleteStyles.modalInner}>
+      <h4>Are you sure you want to delete this run?</h4>
+      <p>This cannot be undone.</p>
+      <Button 
+        buttonType='button'
+        buttonStyle='ghost'
+        text='Cancel'
+        eventHandler={toggle} />
+      <Button 
+        buttonType='button'
+        buttonStyle='danger'
+        text='Yes, delete'
+        eventHandler={handleDelete} />
     </div>
   );
 }
