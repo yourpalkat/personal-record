@@ -3,13 +3,14 @@ import { Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
 import moment from 'moment';
 import { AiOutlineCloseSquare, AiOutlineCalendar } from 'react-icons/ai';
-
+import { Toggle } from '../../utilities';
 
 import Button from '../Button/Button';
 import Rating from './Rating';
 import DeleteRun from '../DeleteRun/DeleteRun';
 import WeatherConditions from './WeatherConditions';
 import RunTypeIndicator from './RunTypeIndicator';
+import Modal from '../Modal';
 
 import runStyles from './RunDetail.module.scss';
 
@@ -135,11 +136,21 @@ const RunDetail = ({ user, run, setRun, removeRun }) => {
             )}
 
             <div className={runStyles.editDeleteContainer}>
-              <Button
-                buttonType='button'
-                buttonStyle='danger'
-                text='Delete run'
-                eventHandler={() => showDeleteModal(true)} />
+              <Toggle>
+                {({ on, toggle }) => (
+                  <>
+                    <Button
+                      buttonType='button'
+                      buttonStyle='danger'
+                      text='Delete run'
+                      eventHandler={toggle} />
+                    <Modal on={on} toggle={toggle}>
+                      <DeleteRun setRun={setRun} toggle={toggle} run={displayRun} removeRun={removeRun} />
+                    </Modal>
+                  </>
+                )}
+              </Toggle>
+
               <Button 
                 buttonType='link'
                 buttonStyle='confirm'
