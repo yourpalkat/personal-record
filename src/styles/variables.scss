@@ -1,23 +1,26 @@
 /* Global variables
 ========================================================================== */
 
-$white: #ffffff;
-$background: #1F2932;
-$background-dark: #171F26;
-$primary: #C0268B;
-$secondary: #6C50D8;
-
-$confirm: #50C376;
-$danger: #EE6461;
-$default: #4F6970;
-$easy: #67E4AA;
-$recovery: #829FD6;
-$long: #6C50D8;
-$tempo: #BE3BCE;
-$race: #C0268B;
-$interval: #F37542;
-$hill: #ECAB47;
-
-$font-condensed: 'Roboto Condensed';
-$font-italic: 'Roboto Condensed Italic';
-$font-heading: 'Roboto Slab';
+:root {
+  --color-white: #ffffff;
+  --color-background: #1F2932;
+  --color-background-dark: #171F26;
+  --color-primary: #C0268B;
+  --color-secondary: #6C50D8;
+  --color-link-primary: #e179bc;
+  
+  --color-confirm: #50C376;
+  --color-danger: #EE6461;
+  --color-default: #4F6970;
+  --color-easy: #67E4AA;
+  --color-recovery: #829FD6;
+  --color-long: #6C50D8;
+  --color-tempo: #BE3BCE;
+  --color-race: #C0268B;
+  --color-interval: #F37542;
+  --color-hill: #ECAB47;
+  
+  --font-condensed: 'Roboto Condensed';
+  --font-italic: 'Roboto Condensed Italic';
+  --font-heading: 'Roboto Slab';
+}

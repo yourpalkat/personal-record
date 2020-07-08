@@ -1,15 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
+import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser, setRuns } from '../../redux/actions';
 import { setToken } from '../../services/tokenService';
 import { fetchRuns } from '../../services/fetchRuns';
 
+import { GridWrapper } from '../../elements/Layouts';
 import Button from '../Button/Button';
 import Input from '../FormComponents/Input';
-
-import loginStyles from './Login.module.scss';
 
 const Login = () => {
   const user = useSelector(state => state.user);
@@ -81,13 +81,13 @@ const Login = () => {
       {isLoggedIn ? (
         <Redirect to={`users/${user._id}`} />
       ) : (
-        <div className='gridWrapper'>
-          <form autoComplete='off' onSubmit={handleSubmit} className={loginStyles.loginForm}>
-            <div className={loginStyles.headlineBlock}>
+        <GridWrapper>
+          <LoginForm autoComplete='off' onSubmit={handleSubmit}>
+            <HeadlineBlock>
               <h2>Please log in to continue</h2>
               <p>Fields marked with a star are required.</p>
-            </div>
-            <div className={loginStyles.inputBlock}>
+            </HeadlineBlock>
+            <InputBlock>
               <Input 
                 inputName='email'
                 inputType='email'
@@ -97,8 +97,8 @@ const Login = () => {
                 isRequired
                 updateErrorStatus={updateErrorStatus}
                 changeHandler={handleChange} />
-            </div>
-            <div className={loginStyles.inputBlock}>
+            </InputBlock>
+            <InputBlock>
               <Input 
                 inputName='password'
                 inputType='password'
@@ -108,19 +108,53 @@ const Login = () => {
                 isRequired
                 updateErrorStatus={updateErrorStatus}
                 changeHandler={handleChange} />
-            </div>
-            {message && <p className={loginStyles.error}>{message}</p>}
+            </InputBlock>
+            {message && <ErrorMessage>{message}</ErrorMessage>}
             <Button 
               buttonStyle='confirm'
               buttonType='submit' 
               eventHandler={handleSubmit}
               text='Log in' />
-            <p className={loginStyles.signup}>Don't have an account? <Link to='/signup'>Sign up!</Link></p>
-          </form>
-        </div>
+            <SignUp>Don't have an account? <Link to='/signup'>Sign up!</Link></SignUp>
+          </LoginForm>
+        </GridWrapper>
       )}
     </>
   );
 }
 
 export default Login;
+
+const LoginForm = styled.form`
+  grid-column: 2 / -2;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto 0;
+  padding: 4rem 0;
+`;
+
+const InputBlock = styled.div`
+  margin-bottom: 3rem;
+`;
+
+const HeadlineBlock = styled.div`
+  color: var(--color-white);
+  margin-bottom: 4rem;
+
+  p {
+    font-size: 1.8rem;
+  }
+`;
+
+const ErrorMessage = styled.p`
+  color: var(--color-danger);
+  letter-spacing: 0.05rem;
+  margin-top: -2rem;
+  margin-bottom: 4rem;
+`;
+
+const SignUp = styled.p`
+  color: var(--color-white);
+  font-size: 1.8rem;
+  margin-top: 5rem;
+`;

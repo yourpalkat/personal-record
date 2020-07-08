@@ -1,10 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { logOut } from '../../redux/actions';
+import styled from 'styled-components';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-
-import layoutStyles from './Layout.module.scss';
 
 const Layout = ({ children }) => {
   const user = useSelector(state => state.user);
@@ -16,7 +15,7 @@ const Layout = ({ children }) => {
   }
 
   return (
-    <div className={layoutStyles.wrapper}>
+    <Wrapper>
       <Header 
         logOut={handleLogout} 
         isLoggedIn={isLoggedIn} 
@@ -25,8 +24,14 @@ const Layout = ({ children }) => {
         {children}
       </main>
       <Footer />
-    </div>
+    </Wrapper>
   );
 };
 
 export default Layout;
+
+const Wrapper = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+`;

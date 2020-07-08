@@ -2,7 +2,7 @@
 @import '../../styles/mixins.scss';
 
 .ratingContainer h4.heading {
-  font-family: $font-condensed;
+  font-family: var(--font-condensed);
   font-weight: 100;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -18,7 +18,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: $background-dark;
+  background-color: var(--color-background-dark);
 }
 .ratingContainer .rating p,
 .ratingContainer .rating svg {
@@ -26,7 +26,7 @@
   grid-row: 1 / 2;
 }
 .ratingContainer .rating p {
-  font-family: $font-heading;
+  font-family: var(--font-heading);
   font-size: 3.4rem;
   font-weight: 800;
   margin: 0;
@@ -37,29 +37,29 @@
 }
 
 p.rating5 {
-  color: $easy;
+  color: var(--color-easy);
 }
 .rating5 circle {
-  stroke: $easy;
+  stroke: var(--color-easy);
 }
 p.effort5 {
-  color: $danger;
+  color: var(--color-danger);
 }
 .effort5 circle {
-  stroke: $danger;
+  stroke: var(--color-danger);
 }
 
 p.rating4 {
-  color: $recovery;
+  color: var(--color-recovery);
 }
 .rating4 circle {
-  stroke: $recovery;
+  stroke: var(--color-recovery);
 }
 p.effort4 {
-  color: $interval;
+  color: var(--color-interval);
 }
 .effort4 circle {
-  stroke: $interval;
+  stroke: var(--color-interval);
 }
 svg.rating4,
 svg.effort4 {
@@ -68,11 +68,11 @@ svg.effort4 {
 
 p.rating3,
 p.effort3 {
-  color: $hill;
+  color: var(--color-hill);
 }
 .rating3 circle,
 .effort3 circle {
-  stroke: $hill;
+  stroke: var(--color-hill);
 }
 svg.rating3,
 svg.effort3 {
@@ -80,16 +80,16 @@ svg.effort3 {
 }
 
 p.rating2 {
-  color: $interval;
+  color: var(--color-interval);
 }
 .rating2 circle {
-  stroke: $interval;
+  stroke: var(--color-interval);
 }
 p.effort2 {
-  color: $recovery;
+  color: var(--color-recovery);
 }
 .effort2 circle {
-  stroke: $recovery;
+  stroke: var(--color-recovery);
 }
 svg.rating2,
 svg.effort2 {
@@ -97,16 +97,16 @@ svg.effort2 {
 }
 
 p.rating1 {
-  color: $danger;
+  color: var(--color-danger);
 }
 .rating1 circle {
-  stroke: $danger;
+  stroke: var(--color-danger);
 }
 p.effort1 {
-  color: $easy;
+  color: var(--color-easy);
 }
 .effort1 circle {
-  stroke: $easy;
+  stroke: var(--color-easy);
 }
 svg.rating1,
 svg.effort1 {

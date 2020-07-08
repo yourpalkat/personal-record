@@ -1,5 +1,4 @@
 @import '../../styles/variables.scss';
-@import '../../styles/functions.scss';
 
 .inputContainer {
   display: flex;
@@ -7,8 +6,8 @@
 }
 
 .inputContainer label {
-  color: $white;
-  font-family: $font-condensed;
+  color: var(--color-white);
+  font-family: var(--font-condensed);
   font-size: 1.8rem;
   letter-spacing: 0.05rem;
   margin-bottom: 1rem;
@@ -18,12 +17,12 @@
 .inputContainer input,
 .inputContainer textarea {
   appearance: none;
-  background-color: shade($background, 30);
+  background-color: var(--color-background-dark);
   border: none;
-  border-bottom: 3px solid white;
+  border-bottom: 3px solid var(--color-white);
   border-radius: 4px 4px 0 0;
-  color: $white;
-  font-family: $font-condensed;
+  color: var(--color-white);
+  font-family: var(--font-condensed);
   font-size: 1.8rem;
   letter-spacing: 0.05rem;
   margin-bottom: 0.5rem;
@@ -49,11 +48,11 @@
 .inputContainer textarea.error {
   border: none;
   box-shadow: none;
-  border-bottom: 3px solid $danger;
+  border-bottom: 3px solid var(--color-danger);
 }
 
 .errorText {
-  color: $danger;
+  color: var(--color-danger);
   font-size: 1.4rem;
   letter-spacing: 0.05rem;
   min-height: 1.6rem;
@@ -64,7 +63,7 @@
   position: relative;
 }
 .required::after {
-  color: $primary;
+  color: var(--color-primary);
   font-size: 1.4rem;
   content: " *";
   position: relative;
@@ -74,10 +73,10 @@
 
 .inputContainer select {
   appearance: none;
-  color: $white;
-  font-family: $font-condensed;
-  background: $background-dark;
-  border: 1px solid $white;
+  color: var(--color-white);
+  font-family: var(--font-condensed);
+  background: var(--color-background-dark);
+  border: 1px solid var(--color-white);
   border-radius: 4px;
   margin-bottom: 3rem;
   padding: 1rem 0.75rem;
@@ -90,8 +89,8 @@
 
 .option {
   appearance: none;
-  color: $white;
-  font-family: $font-condensed;
-  background: $background-dark;
+  color: var(--color-white);
+  font-family: var(--font-condensed);
+  background: var(--color-background-dark);
   padding: 0.75rem 0.5rem;
 }

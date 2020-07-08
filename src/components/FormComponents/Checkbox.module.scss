@@ -8,8 +8,8 @@
 }
 
 .checkLabel {
-  color: $white;
-  font-family: $font-condensed;
+  color: var(--color-white);
+  font-family: var(--font-condensed);
   font-size: 1.8rem;
   letter-spacing: 0.05rem;
   margin-bottom: 1rem;
@@ -28,7 +28,7 @@
   content: '\2716';
   font-size: 20px;
   font-weight: 800;
-  color: $background-dark;
+  color: var(--color-background-dark);
   display: grid;
   place-items: center;
   position: absolute;
@@ -37,29 +37,29 @@
   left: 0;
   bottom: 0;
   border-radius: 4px;
-  background-color: $background-dark;
-  border: 1px solid $white;
+  background-color: var(--color-background-dark);
+  border: 1px solid var(--color-white);
   transition: color 0.3s ease, border-color 0.3s ease;
 }
 // Focus and hover styles: box outline and label text change colour to primary highlight
 .checkbox:focus + .checkLabel::before,
 .checkbox:hover + .checkLabel::before {
-  border-color: $primary;     
+  border-color: var(--color-primary);
 }
 .checkbox:focus + .checkLabel,
 .checkbox:hover + .checkLabel {
-  color: $primary;     
+  color: var(--color-primary);
 }
 // If the checkbox is selected, show the X in the box
 .checkbox:checked + .checkLabel::before {
-  color: $primary;
+  color: var(--color-primary);
 }
 // This is the round highlight that appears on selection
 .checkbox:checked + .checkLabel::after {
   content: '';
   display: block;
   position: absolute;
-  background: $primary;
+  background: var(--color-primary);
   z-index: 5;
   left: 0;
   top: 0;

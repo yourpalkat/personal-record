@@ -18,33 +18,33 @@
 }
 
 .container p {
-  font-family: $font-heading;
+  font-family: var(--font-heading);
   font-size: 3.4rem;
   font-weight: 800;
   margin: 0;
 }
 
 .runEasy {
-  color: $easy;
+  color: var(--color-easy);
 }
 .runRecovery {
-  color: $recovery;
+  color: var(--color-recovery);
 }
 .runTempo {
-  color: $tempo;
+  color: var(--color-tempo);
 }
 .runRace {
-  color: $race;
+  color: var(--color-race);
 }
 .runHills {
-  color: $hill;
+  color: var(--color-hill);
 }
 .runIntervals {
-  color: $interval;
+  color: var(--color-interval);
 }
 .runDefault {
-  color: $default;
+  color: var(--color-default);
 }
 .runLong {
-  color: $long;
+  color: var(--color-long);
 }

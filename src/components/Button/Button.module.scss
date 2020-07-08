@@ -1,11 +1,10 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
-@import '../../styles/functions.scss';
 
 a.ghost, a.primary, a.secondary, a.confirm, a.danger {
   border-radius: 4px;
-  color: $white;
-  font-family: $font-heading;
+  color: var(--color-white);
+  font-family: var(--font-heading);
   font-size: 2.1rem;
   padding: 1rem 2.4rem;
   display: inline-flex;
@@ -21,65 +20,65 @@ a.ghost, a.primary, a.secondary, a.confirm, a.danger {
 }
 
 .primary {
-  background: $primary;
+  background: var(--color-primary);
 }
 .primary:hover,
 .primary:focus {
-  background: shade($primary, 15);
-  text-decoration-color: $white;
+  background: var(--color-secondary);
+  text-decoration-color: var(--color-white);
 }
 
 .secondary {
-  background: $secondary;
+  background: var(--color-secondary);
 }
 .secondary:hover,
 .secondary:focus {
-  background: shade($secondary, 15);
-  text-decoration-color: $white;
+  background: var(--color-primary);
+  text-decoration-color: var(--color-white);
 }
 
 .confirm {
-  background: $confirm;
+  background: var(--color-confirm);
 }
 .confirm:hover,
 .confirm:focus {
-  background: tint($confirm, 35);
-  color: $background;
-  text-decoration-color: $background;
+  background: var(--color-long);
+  color: var(--color-background);
+  text-decoration-color: var(--color-background);
 }
 
 .danger {
-  background: $danger;
+  background: var(--color-danger);
 }
 .danger:hover,
 .danger:focus {
-  background: shade($danger, 15);
-  text-decoration-color: $white;
+  background: var(--color-race);
+  text-decoration-color: var(--color-white);
 }
 
 .text {
   background-color: transparent;
   border: none;
-  color: $white;
+  color: var(--color-white);
   padding: 0 !important;
   margin: 0 !important;
   display: inline;
-  text-decoration-color: $white;
+  text-decoration-color: var(--color-white);
   font-size: inherit !important;
   font-family: inherit !important;
 }
 .text:hover,
 .text:focus {
-  color: $primary;
-  text-decoration-color: $primary;
+  color: var(--color-primary);
+  text-decoration-color: var(--color-primary);
 }
 
 .ghost {
   background: transparent;
-  border: 1px solid $white !important;
+  border: 1px solid var(--color-white) !important;
 }
 .ghost:hover,
 .ghost:focus {
   background: rgba(255, 255, 255, 0.1);
-  text-decoration-color: $white;
+  text-decoration-color: var(--color-white);
 }

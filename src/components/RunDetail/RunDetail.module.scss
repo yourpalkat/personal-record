@@ -3,7 +3,7 @@
 
 .runDetailSection {
   grid-column: 2 / -2;
-  color: $white;
+  color: var(--color-white);
   padding: 8rem 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -12,16 +12,16 @@
 .runDetailSection h2 {
   grid-column: 1 / -1;
   grid-row: 1 / 2;
-  color: $white;
+  color: var(--color-white);
   font-size: 3.2rem;
   margin-top: 0;
   margin-bottom: 3rem;
   padding-bottom: 1rem;
-  border-bottom: 2px solid $primary;
+  border-bottom: 2px solid var(--color-primary);
 }
 
 h4.heading {
-  font-family: $font-condensed;
+  font-family: var(--font-condensed);
   font-weight: 100;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -29,7 +29,7 @@ h4.heading {
   margin-bottom: 1.4rem;
 }
 .bigNumbers {
-  font-family: $font-heading;
+  font-family: var(--font-heading);
   font-weight: 800;
   font-size: 6rem;
   letter-spacing: 1px;
@@ -55,12 +55,12 @@ h4.heading {
   margin: 0;
   padding: 0;
   font-size: 2.5rem;
-  color: $white;
+  color: var(--color-white);
   transition: color 0.3s ease;
 }
 .closeButton:hover,
 .closeButton:focus {
-  color: $primary;
+  color: var(--color-primary);
 }
 
 .editDeleteContainer {
@@ -142,7 +142,7 @@ h4.heading {
   grid-column: 1 / -1;
 }
 .notesContainer p {
-  font-family: $font-condensed;
+  font-family: var(--font-condensed);
   font-size: 1.8rem;
   font-weight: 100;
   line-height: 1.6;
