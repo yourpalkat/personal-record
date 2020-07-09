@@ -109,7 +109,7 @@ const Navigation = styled.nav`
     margin-right: 2rem;
   }
 
-  @media(min-width: 749px) {
+  @media(max-width: 749px) {
     span {
       display: none;
     }
@@ -125,7 +125,7 @@ const NavUl = styled.ul`
 
   li:not(:last-of-type) {
     margin-right: 8rem;
-    @media(min-width: 749px) {
+    @media(max-width: 749px) {
       margin-right: 4rem;
     }
   }

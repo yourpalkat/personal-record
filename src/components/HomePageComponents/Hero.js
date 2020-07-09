@@ -76,10 +76,13 @@ const Hero = () => {
 export default Hero;
 
 const HeroSection = styled.section`
-  background-image: linear-gradient(135deg, rgba(192, 38, 139, 0.8) 0%, rgba(108, 80, 216, 0.8) 55%, rgba(130, 159, 214, 0.8) 100%), url(../../assets/images/splash.jpg);
+  background-image: 
+    linear-gradient(135deg, rgba(192, 38, 139, 0.8) 0%, rgba(108, 80, 216, 0.8) 55%, rgba(130, 159, 214, 0.8) 100%), 
+    url('./assets/splash.jpg');
   background-position: center left;
   background-repeat: no-repeat;
   background-size: cover;
+  padding: 4rem 0;
 `;
 
 const ContentBlock = styled.div`
@@ -89,11 +92,11 @@ const ContentBlock = styled.div`
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.45);
 
-  @media(min-width: 1024px) {
+  @media(max-width: 1024px) {
     grid-column: 4 / -2;
   }
 
-  @media(min-width: 749px) {
+  @media(max-width: 749px) {
     grid-column: 2 / -2;
   }
 
@@ -109,7 +112,7 @@ const HeroPara = styled.p`
   letter-spacing: -0.05rem;
   margin-bottom: 2rem;
 
-  @media(min-width: 749px) {
+  @media(max-width: 749px) {
     font-size: 1.9rem;
   }
 

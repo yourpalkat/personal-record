@@ -34,16 +34,17 @@ const HeaderSection = styled.header`
 
 const Logo = styled.h4`
   grid-column: 2 / 6;
-  @media(min-width: 1024px) {
+  @media(max-width: 1024px) {
     grid-column: 2 / 4;
   }
-  @media(min-width: 749px) {
+  @media(max-width: 749px) {
     display: none;
   }
 `;
 
 const SmallLogo = styled.h4`
-  @media(min-width: 749px) {
+  display: none;
+  @media(max-width: 749px) {
     display: block;
     grid-column: 2 / 3;
   }
@@ -53,10 +54,10 @@ const LoginDiv = styled.div`
   grid-column: 6 / -2;
   text-align: right;
   align-self: center;
-  @media(min-width: 1024px) {
+  @media(max-width: 1024px) {
     grid-column: 4 / -2;
   }
-  @media(min-width: 749px) {
+  @media(max-width: 749px) {
     grid-column: 3 / -2;
   }
 `;

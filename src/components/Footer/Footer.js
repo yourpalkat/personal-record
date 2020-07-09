@@ -32,10 +32,10 @@ const FooterSection = styled.footer`
 
 const FooterLeft = styled.div`
   grid-column: 2 / 8;
-  @media(min-width: 1024px) {
+  @media(max-width: 1024px) {
     grid-column: 2 / 6;
   }
-  @media(min-width: 749px) {
+  @media(max-width: 749px) {
     grid-column: 2 / -2;
   }
 `;
@@ -43,10 +43,10 @@ const FooterLeft = styled.div`
 const FooterRight = styled.div`
   grid-column: 8 / -2;
   text-align: right;
-  @media(min-width: 1024px) {
+  @media(max-width: 1024px) {
     grid-column: 6 / -2;
   }
-  @media(min-width: 749px) {
+  @media(max-width: 749px) {
     grid-column: 2 / -2;
     text-align: left;
   }

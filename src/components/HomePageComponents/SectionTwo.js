@@ -50,10 +50,10 @@ const SecondSection = styled.section`
 
 const LeftSide = styled.div`
   grid-column: 2 / 6;
-  @media(min-width: 1024px) {
+  @media(max-width: 1024px) {
     grid-column: 2 / 5;
   }
-  @media(min-width: 749px) {
+  @media(max-width: 749px) {
     grid-column: 2 / -2;
     padding-bottom: 6rem;
   }
@@ -61,10 +61,10 @@ const LeftSide = styled.div`
 
 const RightSide = styled.div`
   grid-column: 7 / -2;
-  @median(min-width: 1024px) {
+  @media(max-width: 1024px) {
     grid-column: 6 / -2;
   }
-  @median(min-width: 749px) {
+  @media(max-width: 749px) {
     grid-column: 2 / -2;
     padding-bottom: 4rem;
   }
