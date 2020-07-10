@@ -31,7 +31,6 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalCard = styled.div`
-  position: fixed;
   max-width: 500px;
   min-width: 320px;
   z-index: 15;
