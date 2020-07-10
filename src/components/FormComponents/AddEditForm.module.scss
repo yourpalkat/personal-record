@@ -12,9 +12,9 @@
 .headlineBlock {
   grid-column: 1 / -1;
   margin-bottom: 4rem;
-  color: $white;
+  color: var(--color-white);
   padding-bottom: 1rem;
-  border-bottom: 2px solid $primary;
+  border-bottom: 2px solid var(--color-primary);
   display: flex;
   align-items: flex-end;
 }
@@ -26,8 +26,8 @@
 }
 .star {
   font-weight: 800;
-  font-family: $font-heading;
-  color: $primary;
+  font-family: var(--font-heading);
+  color: var(--color-primary);
 }
 
 .addEditForm .inputgroup {
@@ -36,8 +36,8 @@
 }
 .addEditForm .legend {
   flex-basis: 100%;
-  color: $white;
-  font-family: $font-condensed;
+  color: var(--color-white);
+  font-family: var(--font-condensed);
   font-size: 2rem;
   margin-top: 0;
   margin-bottom: 1rem;

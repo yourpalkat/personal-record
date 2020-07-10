@@ -1,15 +1,14 @@
-@import '../../styles/functions.scss';
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
 
 .listSection {
   grid-column: 2 / -2;
-  color: $white;
+  color: var(--color-white);
   padding: 4rem 0;
 }
 
 .titleBlock {
-  color: $white;
+  color: var(--color-white);
   margin-bottom: 4rem;
   display: flex;
   justify-content: flex-start;
@@ -23,11 +22,11 @@
   display: grid;
   grid-template-columns: repeat(3, 25%) 1fr 1fr;
   grid-column-gap: 1fr;
-  border-bottom: 2px solid $primary;
+  border-bottom: 2px solid var(--color-primary);
 }
 .headerTotals {
   grid-column: 4 / -1;
-  color: $white;
+  color: var(--color-white);
   font-size: 1.4rem;
   align-self: center;
   justify-self: end;
@@ -43,7 +42,7 @@
   padding: 0;
   border: none;
   cursor: pointer;
-  color: $white;
+  color: var(--color-white);
   text-align: left;
   justify-self: start;
 }

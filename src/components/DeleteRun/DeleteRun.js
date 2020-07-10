@@ -1,9 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import axios from 'axios';
-
+import styled from 'styled-components';
 import Button from '../Button/Button';
-
-import deleteStyles from './DeleteRun.module.scss';
 
 const Delete = ({ toggle, setRun, run, removeRun }) => {
   const isMountedRef = useRef(null);
@@ -30,7 +28,7 @@ const Delete = ({ toggle, setRun, run, removeRun }) => {
   }, []);
 
   return (
-    <div className={deleteStyles.modalInner}>
+    <ModalInner>
       <h4>Are you sure you want to delete this run?</h4>
       <p>This cannot be undone.</p>
       <Button 
@@ -43,8 +41,24 @@ const Delete = ({ toggle, setRun, run, removeRun }) => {
         buttonStyle='danger'
         text='Yes, delete'
         eventHandler={handleDelete} />
-    </div>
+    </ModalInner>
   );
 }
 
 export default Delete;
+
+const ModalInner = styled.div`
+  border: 1px solid var(--color-white);
+  border-radius: 4px;
+  background-color: var(--color-background);
+  color: var(--color-white);
+  padding: 2rem;
+
+  p {
+    margin-bottom: 3rem;
+  }
+
+  button:last-of-type {
+    margin-left: 2rem;
+  }
+`;

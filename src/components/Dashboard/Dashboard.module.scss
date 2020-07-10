@@ -7,7 +7,7 @@
 }
 
 .titleBlock {
-  color: $white;
+  color: var(--color-white);
   margin-bottom: 4rem;
   display: flex;
   justify-content: flex-start;
@@ -18,8 +18,8 @@
 }
 
 .calendarContainer {
-  color: $white;
-  font-family: $font-condensed;
+  color: var(--color-white);
+  font-family: var(--font-condensed);
   height: 660px;
   @include respond-to('mobile') {
     height: 360px;

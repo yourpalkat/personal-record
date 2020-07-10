@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser, setRuns } from '../../redux/actions';
 import { setToken } from '../../services/tokenService';
 
+import { GridWrapper } from '../../elements/Layouts';
 import Input from '../FormComponents/Input';
 import Button from '../Button/Button';
-
-import signupStyles from './Signup.module.scss';
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -90,13 +90,13 @@ const Signup = () => {
     { isLoggedIn ? (
         <Redirect to = {`users/${user._id}`} />
       ) : (
-        <div className='gridWrapper'>
-          <form autoComplete='off' onSubmit={handleSubmit} className={signupStyles.signupForm}>
-            <div className={signupStyles.headlineBlock}>
+        <GridWrapper>
+          <SignupForm autoComplete='off' onSubmit={handleSubmit}>
+            <HeadlineBlock>
               <h2>Please create an account to continue</h2>
               <p>Fields marked with a star are required.</p>
-            </div>
-            <div className={signupStyles.inputBlock}>
+            </HeadlineBlock>
+            <InputBlock>
               <Input
                 inputName='email'
                 inputType='email'
@@ -106,9 +106,9 @@ const Signup = () => {
                 isRequired
                 updateErrorStatus={updateErrorStatus}
                 changeHandler={handleChange} />
-            </div>
+            </InputBlock>
 
-            <div className={signupStyles.inputBlock}>
+            <InputBlock>
               <Input
                 inputName='password'
                 inputType='password'
@@ -118,9 +118,9 @@ const Signup = () => {
                 isRequired
                 updateErrorStatus={updateErrorStatus}
                 changeHandler={handleChange} />
-            </div>
+            </InputBlock>
 
-            <div className={signupStyles.inputBlock}>
+            <InputBlock>
               <Input
                 inputName='firstName'
                 inputType='text'
@@ -130,9 +130,9 @@ const Signup = () => {
                 isRequired
                 updateErrorStatus={updateErrorStatus}
                 changeHandler={handleChange} />
-            </div>
+            </InputBlock>
 
-            <div className={signupStyles.inputBlock}>
+            <InputBlock>
               <Input
                 inputName='lastName'
                 inputType='text'
@@ -142,11 +142,11 @@ const Signup = () => {
                 isRequired
                 updateErrorStatus={updateErrorStatus}
                 changeHandler={handleChange} />
-            </div>
+            </InputBlock>
 
-            {message && <p className={signupStyles.error}>{message}</p>}
+            {message && <ErrorText>{message}</ErrorText>}
 
-            <div className={signupStyles.buttonBlock}>
+            <ButtonBlock>
               <Button
                 buttonType='link'
                 linkPath='/'
@@ -157,14 +157,55 @@ const Signup = () => {
                 eventHandler={handleSubmit}
                 buttonStyle='confirm'
                 text='Sign up!' />
-            </div>
+            </ButtonBlock>
 
-            <p className={signupStyles.login}>Already have an account? <Link to='/login'>Log in!</Link></p>
-          </form>
-        </div>
+            <LoginText>Already have an account? <Link to='/login'>Log in!</Link></LoginText>
+          </SignupForm>
+        </GridWrapper>
       )}
     </>
   )
 }
 
 export default Signup;
+
+const SignupForm = styled.form`
+  grid-column: 2 / -2;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto 0;
+  padding: 4rem 0;
+`;
+
+const HeadlineBlock = styled.div`
+  color: $white;
+  margin-bottom: 4rem;
+
+  p {
+    font-size: 1.8rem;
+  }
+`;
+
+const InputBlock = styled.div`
+  margin-bottom: 3rem;
+`;
+
+const ButtonBlock = styled.div`
+  button:last-of-type {
+    margin-left: 3rem;
+  }
+`;
+
+const LoginText = styled.p`
+  color: var(--color-white);
+  font-size: 1.8rem;
+  margin-top: 5rem;
+`;
+
+const ErrorText = styled.p`
+  color: var(--color-danger);
+  font-size: 1.6rem;
+  letter-spacing: 0.05rem;
+  margin-top: -2rem;
+  margin-bottom: 3rem;
+`;

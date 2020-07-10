@@ -2,38 +2,38 @@
 @import '../../styles/mixins.scss';
 
 .EasyRun {
-  background-color: $easy;
-  color: $background;
+  background-color: var(--color-easy);
+  color: var(--color-background);
 }
 
 .DefaultRun {
-  background-color: $default;
+  background-color: var(--color-default);
 } 
 
 .RecoveryRun {
-  background-color: $recovery;
-  color: $background;
+  background-color: var(--color-recovery);
+  color: var(--color-background);
 } 
 
 .HillsRun {
-  background-color: $hill;
-  color: $background;
+  background-color: var(--color-hill);
+  color: var(--color-background);
 }
 
 .TempoRun {
-  background-color: $tempo;
+  background-color: var(--color-tempo);
 }
 
 .IntervalsRun {
-  background-color: $interval;
-  color: $background;
+  background-color: var(--color-interval);
+  color: var(--color-background);
 }
 .LongRun {
-  background-color: $long;
+  background-color: var(--color-long);
 }
 
 .RaceRun {
-  background-color: $race;
+  background-color: var(--color-race);
 }
 
 .rbc-off-range-bg {
@@ -52,7 +52,7 @@
   font-size: 1.2rem;
 }
 .rbc-btn-group button {
-  color: $white;
+  color: var(--color-white);
 }
 .rbc-btn-group:last-of-type {
   display: none;
