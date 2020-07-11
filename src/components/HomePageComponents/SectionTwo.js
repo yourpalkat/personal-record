@@ -8,23 +8,30 @@ const SectionTwo = () => {
   return (
     <SecondSection>
       <GridWrapper>
+        <Alert>
+          <p>IMPORTANT NOTE: this app is very early in development and you should not trust your data to it. It will be in a more stable place in the coming months, but for now, this is just for funsies, OK?</p>
+        </Alert>
         <LeftSide>
           <h2>Welcome back</h2>
-          <p>Hi! It’s nice to see you again. Want to jump right in and log your workouts? You’ll have to <Link to='/login'>Log in</Link> first.</p>
+          <p>Hello again! Want to jump right in and log your workouts? You’ll have to <Link to='/login'>Log in</Link> first.</p>
           <Button
             buttonType='link'
             buttonStyle='secondary'
             text='Log in!'
             linkPath='/login' />
         </LeftSide>
-        <RightSide>
-          <h2>Get started!</h2>
-          <p>Ready to log your own workouts? Nice. You can create an account and <Link to='/signup'>sign up here!</Link> It’s free and only takes a second. IMPORTANT: this app is very early in development and you should not trust your data to it. It will be in a more stable place in the coming months, but for now, this is just for funsies, OK?</p>
+        <Middle>
+          <h2>Get Started!</h2>
+          <p>You can create an account and <Link to='/signup'>sign up here!</Link> It’s free and only takes a second. </p>
           <Button
             buttonType='link'
             buttonStyle='secondary'
             text='Sign up!'
             linkPath='/signup' />
+        </Middle>
+        <RightSide>
+          <h2>What’s new?</h2>
+          <p>July 10, 2020: added ability to track more data (weather, race placement, perceived effort, rating out of five). Also! Redesigned run details screen that shows more information and looks pretty nice, too.</p>
         </RightSide>
       </GridWrapper>
     </SecondSection>
@@ -48,21 +55,42 @@ const SecondSection = styled.section`
   }
 `;
 
+const Alert = styled.div`
+  grid-column: 2 / -2;
+  padding-bottom: 4rem;
+`;
+
 const LeftSide = styled.div`
   grid-column: 2 / 6;
+  padding-inline-end: 2rem;
   @media(max-width: 1024px) {
-    grid-column: 2 / 5;
+    grid-column: 2 / 6;
   }
   @media(max-width: 749px) {
     grid-column: 2 / -2;
+    padding-inline-end: 0;
+    padding-bottom: 6rem;
+  }
+`;
+
+const Middle = styled.div`
+  grid-column: 6 / 10;
+  padding-inline-end: 2 rem;
+  @media(max-width: 1024px) {
+    grid-column: 6 / -2;
+  }
+  @media(max-width: 749px) {
+    grid-column: 2 / -2;
+    padding-inline-end: 0;
     padding-bottom: 6rem;
   }
 `;
 
 const RightSide = styled.div`
-  grid-column: 7 / -2;
+  grid-column: 10 / -2;
   @media(max-width: 1024px) {
-    grid-column: 6 / -2;
+    padding-top: 4rem;
+    grid-column: 2 / 10;
   }
   @media(max-width: 749px) {
     grid-column: 2 / -2;
