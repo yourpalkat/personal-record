@@ -56,8 +56,11 @@ const SecondSection = styled.section`
 `;
 
 const Alert = styled.div`
-  grid-column: 2 / -2;
-  padding-bottom: 4rem;
+  grid-column: 4 / 12;
+  padding-bottom: 2rem;
+  @media(max-width: 1024px) {
+    grid-column: 2 / -2;
+  }
 `;
 
 const LeftSide = styled.div`
@@ -75,7 +78,7 @@ const LeftSide = styled.div`
 
 const Middle = styled.div`
   grid-column: 6 / 10;
-  padding-inline-end: 2 rem;
+  padding-inline-end: 2rem;
   @media(max-width: 1024px) {
     grid-column: 6 / -2;
   }

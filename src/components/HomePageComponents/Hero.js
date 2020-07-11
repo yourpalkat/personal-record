@@ -58,7 +58,7 @@ const Hero = () => {
           <GridWrapper>
             <ContentBlock>
               <h1>Personal Record</h1>
-              <HeroPara>Hello! Personal Record is a simple web app for logging your running workouts &ndash; just enter the date, distance and duration of your run! You can also note things like the type of workout and add comments. This is very much a work in progress, but we’ve got plans to add lots more functionality over the coming months, so check back!</HeroPara>
+              <HeroPara>Hello! Personal Record is a simple web app for logging your running workoutss. This is very much a work in progress, but we’ve got plans to add lots more functionality over the coming months, so check back!</HeroPara>
               <HeroPara>No sign-up needed if you just want to test-drive the app: just click this button to play with the open guest account!</HeroPara>
               <Button
                 buttonType='button'
