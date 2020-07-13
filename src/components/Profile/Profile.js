@@ -1,8 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-const Profile = ({ user, userRuns }) => {
+const Profile = () => {
+  const user = useSelector(state => state.user);
+  const userRuns = useSelector(state => state.userRuns);
   const total = userRuns.reduce((acc, curr) => acc + curr.distance, 0).toFixed(2);
+  
   return (
     <ProfileSection>
       <h2>{user.firstName} {user.lastName}</h2>

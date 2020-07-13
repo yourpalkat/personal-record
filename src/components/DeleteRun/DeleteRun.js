@@ -1,18 +1,22 @@
 import React, { useRef, useEffect } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setSelectedRun, removeRun } from '../../redux/actions';
+
 import styled from 'styled-components';
 import Button from '../Button/Button';
 
-const Delete = ({ toggle, setRun, run, removeRun }) => {
+const Delete = ({ toggle, run }) => {
   const isMountedRef = useRef(null);
+  const dispatch = useDispatch();
 
   const handleDelete = async () => {
     try {
       const res = await axios.delete(`/api/runs/delete/${run._id}`);
       console.log(`Deleted run. ${res}`);
       if (isMountedRef.current) {
-        removeRun(run);
-        setRun({});
+        dispatch(removeRun(run));
+        dispatch(setSelectedRun({}));
         toggle();
       }
     } catch (e) {

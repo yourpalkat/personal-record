@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
 
 import Button from '../Button/Button';
 import ListItem from './ListItem';
 
 import listStyles from './ListView.module.scss';
 
-const ListView = ({ user, userRuns, setRun, selectedRun }) => {
+const ListView = () => {
+  const user = useSelector(state => state.user);
+  const userRuns = useSelector(state => state.userRuns);
+  const selectedRun = useSelector(state => state.selectedRun);
+
   const [navTo, setNavTo] = useState('');
   const [sortedBy, setSortedBy] = useState('dateDesc');
   const [displayRuns, setDisplayRuns] = useState([]);
@@ -88,7 +93,7 @@ const ListView = ({ user, userRuns, setRun, selectedRun }) => {
               onClick={() => sortRuns('type')}><h4>Type</h4></button>
             <p className={listStyles.headerTotals}>Runs 1&ndash;{displayRuns.length} of {displayRuns.length}</p>
           </div>
-          {displayRuns.map((run, i) => <ListItem key={`runItem${i}`} run={run} setRun={setRun} user={user} setNavTo={setNavTo} />)}
+          {displayRuns.map((run, i) => <ListItem key={`runItem${i}`} run={run} user={user} setNavTo={setNavTo} />)}
         </ul>
       </section>
     </>
