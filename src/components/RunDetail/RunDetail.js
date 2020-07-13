@@ -1,8 +1,11 @@
 import React, { useRef, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSelectedRun } from '../../redux/actions';
 import moment from 'moment';
 import styled from 'styled-components';
+
 import { RunDetailSubhead, BigNumbers, Units } from '../../elements/Typography';
 import { AiOutlineCloseSquare, AiOutlineCalendar } from 'react-icons/ai';
 import { Toggle } from '../../utilities';
@@ -14,7 +17,11 @@ import RunWeather from './RunWeather';
 import RunType from './RunType';
 import Modal from '../Modal';
 
-const RunDetail = ({ user, run, setRun, removeRun }) => {
+const RunDetail = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+  const selectedRun = useSelector(state => state.selectedRun);
+
   const isMountedRef = useRef(null);
 
   useEffect(() => {
@@ -24,7 +31,7 @@ const RunDetail = ({ user, run, setRun, removeRun }) => {
     return () => isMountedRef.current = false;
   }, []);
 
-  const displayRun = run;
+  const displayRun = {...selectedRun};
   let start = new moment(displayRun.start);
   let end = new moment(displayRun.end);
   displayRun.elapsedTime = moment.duration(end.diff(start));
@@ -38,14 +45,14 @@ const RunDetail = ({ user, run, setRun, removeRun }) => {
 
   return (
     <>
-      {!run._id ? <Redirect to={`/users/${user._id}`} /> : (
+      {!selectedRun._id ? <Redirect to={`/users/${user._id}`} /> : (
         <RunDetailSection>
           <SectionHeading>{displayRun.title}</SectionHeading>
           <CloseContainer>
             <CloseButton 
               type='button'
               aria-label='Close this view'
-              onClick={() => setRun({})}>
+              onClick={() => dispatch(setSelectedRun({}))}>
               <AiOutlineCloseSquare />
             </CloseButton>
           </CloseContainer>
@@ -139,7 +146,7 @@ const RunDetail = ({ user, run, setRun, removeRun }) => {
                     text='Delete run'
                     eventHandler={toggle} />
                   <Modal on={on} toggle={toggle}>
-                    <DeleteRun setRun={setRun} toggle={toggle} run={displayRun} removeRun={removeRun} />
+                    <DeleteRun toggle={toggle} run={displayRun} />
                   </Modal>
                 </>
               )}
@@ -149,7 +156,7 @@ const RunDetail = ({ user, run, setRun, removeRun }) => {
               buttonType='link'
               buttonStyle='confirm'
               text='Edit run'
-              linkPath={`/users/${user._id}/runs/${run._id}/edit`} />
+              linkPath={`/users/${user._id}/runs/${displayRun._id}/edit`} />
           </EditDeleteContainer>
         </RunDetailSection>
       )}

@@ -1,14 +1,13 @@
 import React from 'react';
 import { Route, Switch, NavLink, useRouteMatch } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSelectedRun, addRun, removeRun, replaceRun } from '../../redux/actions';
+import { setSelectedRun, addRun, replaceRun } from '../../redux/actions';
 import styled from 'styled-components';
 
-import { FiCalendar } from 'react-icons/fi';
-import { FiList } from 'react-icons/fi';
-import { FiUser } from 'react-icons/fi';
+import { FiHome, FiCalendar, FiList, FiUser } from 'react-icons/fi';
 
 import { GridWrapper } from '../../elements/Layouts';
+import CalendarView from '../Calendar/Calendar';
 import Dashboard from '../Dashboard/Dashboard';
 import ListView from '../ListView/ListView';
 import Profile from '../Profile/Profile';
@@ -21,7 +20,6 @@ const UserHome = () => {
   let { path, url } = useRouteMatch();
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
-  const userRuns = useSelector(state => state.userRuns);
   const selectedRun = useSelector(state => state.selectedRun);
 
   return (
@@ -29,7 +27,10 @@ const UserHome = () => {
       <Navigation>
         <NavUl>
           <li>
-            <NavLink to={url}><FiCalendar /><span>Calendar</span></NavLink>
+            <NavLink to={url}><FiHome /><span>Dashboard</span></NavLink>
+          </li>
+          <li>
+            <NavLink to={`${url}/calendar`}><FiCalendar /><span>Calendar</span></NavLink>
           </li>
           <li>
             <NavLink to={`${url}/list`}><FiList /><span>All runs</span></NavLink>
@@ -41,18 +42,17 @@ const UserHome = () => {
       </Navigation>
 
       <Switch>
+        <Route path={`${path}/calendar`}>
+          <CalendarView />
+        </Route>
         <Route path={`${path}/list`}>
-          <ListView 
-            user={user} 
-            userRuns={userRuns} 
-            setRun={(run) => dispatch(setSelectedRun(run))} 
-            selectedRun={selectedRun} />
+          <ListView />
         </Route>
         <Route path={`${path}/shoes`}>
           <Shoes />
         </Route>
         <Route path={`${path}/profile`}>
-          <Profile user={user} userRuns={userRuns} />
+          <Profile />
         </Route>
         <Route path={`${path}/runs/add`}>
           <AddNew user={user} addRunToState={(run) => dispatch(addRun(run))} />
@@ -65,18 +65,10 @@ const UserHome = () => {
             replaceEditedRun={(run) => dispatch(replaceRun(run))} />
         </Route>
         <Route path={`${path}/runs/:runId`}>
-          <RunDetail 
-            user={user} 
-            run={selectedRun} 
-            setRun={(run) => dispatch(setSelectedRun(run))} 
-            removeRun={(run) => dispatch(removeRun(run))} />
+          <RunDetail />
         </Route>
         <Route path={path}>
-          <Dashboard 
-            user={user} 
-            userRuns={userRuns} 
-            setRun={(run) => dispatch(setSelectedRun(run))} 
-            selectedRun={selectedRun} />
+          <Dashboard />
         </Route>
       </Switch>
     </GridWrapper>
@@ -102,7 +94,7 @@ const Navigation = styled.nav`
   a:focus {
     border-bottom: 2px solid var(--color-primary);
   }
-  a.active {
+  & a.active {
     border-bottom: 2px solid var(--color-primary);
   }
   a svg {
