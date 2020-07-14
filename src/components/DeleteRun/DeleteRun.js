@@ -5,6 +5,7 @@ import { setSelectedRun, removeRun } from '../../redux/actions';
 
 import styled from 'styled-components';
 import Button from '../Button/Button';
+import { colors } from '../../elements';
 
 const Delete = ({ toggle, run }) => {
   const isMountedRef = useRef(null);
@@ -52,10 +53,10 @@ const Delete = ({ toggle, run }) => {
 export default Delete;
 
 const ModalInner = styled.div`
-  border: 1px solid var(--color-white);
+  border: 1px solid ${colors.white};
   border-radius: 4px;
-  background-color: var(--color-background);
-  color: var(--color-white);
+  background-color: ${colors.background};
+  color: ${colors.white};
   padding: 2rem;
 
   p {

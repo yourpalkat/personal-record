@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { BarChart, Bar, XAxis, YAxis, Legend } from 'recharts';
 
-import colors from '../../elements/colors';
+import { colors } from '../../elements';
 
 const DailyDistances = () => {
   const allRuns = useSelector(state => state.userRuns);

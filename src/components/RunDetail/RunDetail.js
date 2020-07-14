@@ -7,6 +7,7 @@ import moment from 'moment';
 import styled from 'styled-components';
 
 import { RunDetailSubhead, BigNumbers, Units } from '../../elements/Typography';
+import { colors, breakpoints } from '../../elements';
 import { AiOutlineCloseSquare, AiOutlineCalendar } from 'react-icons/ai';
 import { Toggle } from '../../utilities';
 
@@ -122,8 +123,8 @@ const RunDetail = () => {
           
           {displayRun.effort || displayRun.rating ? (
             <EffortRatingContainer>
-              {displayRun.effort && <RunRating number={displayRun.effort} heading='effort' type='effort' />}
-              {displayRun.rating && <RunRating number={displayRun.rating} heading='rating' type='rating' />}
+              {displayRun.effort && <RunRating number={displayRun.effort} heading='effort' />}
+              {displayRun.rating && <RunRating number={displayRun.rating} heading='rating' />}
             </EffortRatingContainer>
           ) : ( null )}
 
@@ -168,13 +169,13 @@ export default RunDetail;
 
 const RunDetailSection = styled.section`
   grid-column: 2 / -2;
-  color: var(--color-white);
+  color: ${colors.white};
   padding: 8rem 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 2rem;
 
-  @media(max-width: 600px) {
+  @media(max-width: ${breakpoints.mobilemed}) {
     grid-template-columns: 1fr 1fr;
   }
 `;
@@ -182,12 +183,12 @@ const RunDetailSection = styled.section`
 const SectionHeading = styled.h2`
   grid-column: 1 / -1;
   grid-row: 1 / 2;
-  color: var(--color-white);
+  color: ${colors.white};
   font-size: 3.2rem;
   margin-top: 0;
   margin-bottom: 3rem;
   padding-bottom: 1rem;
-  border-bottom: 2px solid var(--color-primary);
+  border-bottom: 2px solid ${colors.primary};
 `;
 
 const CloseContainer = styled.div`
@@ -205,12 +206,12 @@ const CloseButton = styled.button`
   margin: 0;
   padding: 0;
   font-size: 2.5rem;
-  color: var(--color-white);
-  transition: color 0.3s ease;
+  color: ${colors.white};
+  transition: stroke 0.3s ease;
 
   &:hover,
   &:focus {
-    color: var(--color-primary);
+    color: ${colors.primary};
   }
 `;
 
@@ -236,7 +237,7 @@ const DateContainer = styled.div`
     margin-inline-end: 2.4rem;
   }
 
-  @media(max-width: 1024px) {
+  @media(max-width: ${breakpoints.tablet}) {
     grid-column: 1 / -1;
   }
 `;
@@ -253,7 +254,7 @@ const WeatherContainer = styled.div`
     margin-block: 0;
   }
 
-  @media(max-width: 1024px) {
+  @media(max-width: ${breakpoints.tablet}) {
     grid-column: 1 / -1;
   }
 `;
@@ -283,14 +284,14 @@ const RaceInfoContainer = styled.div`
     margin-inline-end: 6rem;
   }
 
-  @media(max-width: 1024px) {
+  @media(max-width: ${breakpoints.tablet}) {
     grid-row-start: 6;
   }
-  @media(max-width: 600px) {
+  @media(max-width: ${breakpoints.mobilemed}) {
     grid-column: 1 / -1;
     grid-row-start: 7;
   }
-  @media(max-width: 375px) {
+  @media(max-width: ${breakpoints.mobilesmall}) {
     grid-row: 8 / 9;
   }
 `;
@@ -303,11 +304,11 @@ const EffortRatingContainer = styled.div`
     margin-inline-end: 6rem;
   }
 
-  @media(max-width: 600px) {
+  @media(max-width: ${breakpoints.mobilemed}) {
     grid-column: 2 / -1;
     grid-row: 5 / 6;
   }
-  @media(max-width: 375px) {
+  @media(max-width: ${breakpoints.mobilesmall}) {
     grid-column: 1 / -1;
     grid-row: 6 / 7;
   }
@@ -336,36 +337,36 @@ const NotesContainer = styled.div`
 `;
 
 const DistanceContainer = styled.div`
-  @media(max-width: 600px) {
+  @media(max-width: ${breakpoints.mobilemed}) {
     grid-column: 1 / 2;
   }
 `;
   
 const DurationContainer = styled.div`
-  @media(max-width: 600px) {
+  @media(max-width: ${breakpoints.mobilemed}) {
     grid-column: 2 / -1;
   }
-  @media(max-width: 375px) {
+  @media(max-width: ${breakpoints.mobilesmall}) {
     grid-column: 1 / -1;
   }
 `;
 
 const PaceContainer = styled.div`
-  @media(max-width: 600px) {
+  @media(max-width: ${breakpoints.mobilemed}) {
     grid-column: 1 / 2;
     grid-row: 5 / 6;
   }
-  @media(max-width: 375px) {
+  @media(max-width: ${breakpoints.mobilesmall}) {
     grid-column: 2 / -1;
     grid-row: 4 / 5;
   }
 `;
 
 const WorkoutTypeContainer = styled.div`
-  @media(max-width: 600px) {
+  @media(max-width: ${breakpoints.mobilemed}) {
     grid-column: 1 / -1;
   }
-  @media(max-width: 375px) {
+  @media(max-width: ${breakpoints.mobilesmall}) {
     grid-row: 7 / 8;
   }
 `;

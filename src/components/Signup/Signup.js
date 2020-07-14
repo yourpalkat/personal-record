@@ -6,7 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setUser, setRuns } from '../../redux/actions';
 import { setToken } from '../../services/tokenService';
 
-import { GridWrapper } from '../../elements/Layouts';
+import { GridWrapper, SignupForm, SignupHeadlineBlock } from '../../elements/Layouts';
+import { colors } from '../../elements';
 import Input from '../FormComponents/Input';
 import Button from '../Button/Button';
 
@@ -92,10 +93,10 @@ const Signup = () => {
       ) : (
         <GridWrapper>
           <SignupForm autoComplete='off' onSubmit={handleSubmit}>
-            <HeadlineBlock>
+            <SignupHeadlineBlock>
               <h2>Please create an account to continue</h2>
               <p>Fields marked with a star are required.</p>
-            </HeadlineBlock>
+            </SignupHeadlineBlock>
             <InputBlock>
               <Input
                 inputName='email'
@@ -169,23 +170,6 @@ const Signup = () => {
 
 export default Signup;
 
-const SignupForm = styled.form`
-  grid-column: 2 / -2;
-  width: 100%;
-  max-width: 450px;
-  margin: 0 auto 0;
-  padding: 4rem 0;
-`;
-
-const HeadlineBlock = styled.div`
-  color: $white;
-  margin-bottom: 4rem;
-
-  p {
-    font-size: 1.8rem;
-  }
-`;
-
 const InputBlock = styled.div`
   margin-bottom: 3rem;
 `;
@@ -197,13 +181,13 @@ const ButtonBlock = styled.div`
 `;
 
 const LoginText = styled.p`
-  color: var(--color-white);
+  color: ${colors.white};
   font-size: 1.8rem;
   margin-top: 5rem;
 `;
 
 const ErrorText = styled.p`
-  color: var(--color-danger);
+  color: ${colors.danger};
   font-size: 1.6rem;
   letter-spacing: 0.05rem;
   margin-top: -2rem;

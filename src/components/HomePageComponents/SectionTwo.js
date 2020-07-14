@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GridWrapper } from '../../elements/Layouts';
+import { colors, breakpoints } from '../../elements';
 import Button from '../Button/Button';
 
 const SectionTwo = () => {
@@ -31,7 +32,7 @@ const SectionTwo = () => {
         </Middle>
         <RightSide>
           <h2>What’s new?</h2>
-          <p>July 10, 2020: added ability to track more data (weather, race placement, perceived effort, rating out of five). Also! Redesigned run details screen that shows more information and looks pretty nice, too.</p>
+          <p>July 14, 2020: new 'dashboard' page showing a graph of your mileage over the last two weeks. July 10, 2020: new data types added (weather, workout rating and effort) and redesigned run details page.</p>
         </RightSide>
       </GridWrapper>
     </SecondSection>
@@ -42,7 +43,7 @@ export default SectionTwo;
 
 const SecondSection = styled.section`
   padding: 4rem 0;
-  color: var(--color-white);
+  color: ${colors.white};
 
   p {
     font-size: 1.85rem;
@@ -58,7 +59,7 @@ const SecondSection = styled.section`
 const Alert = styled.div`
   grid-column: 4 / 12;
   padding-bottom: 2rem;
-  @media(max-width: 1024px) {
+  @media(max-width: ${breakpoints.tablet}) {
     grid-column: 2 / -2;
   }
 `;
@@ -66,10 +67,10 @@ const Alert = styled.div`
 const LeftSide = styled.div`
   grid-column: 2 / 6;
   padding-inline-end: 2rem;
-  @media(max-width: 1024px) {
+  @media(max-width: ${breakpoints.tablet}) {
     grid-column: 2 / 6;
   }
-  @media(max-width: 749px) {
+  @media(max-width: ${breakpoints.mobile}) {
     grid-column: 2 / -2;
     padding-inline-end: 0;
     padding-bottom: 6rem;
@@ -79,10 +80,10 @@ const LeftSide = styled.div`
 const Middle = styled.div`
   grid-column: 6 / 10;
   padding-inline-end: 2rem;
-  @media(max-width: 1024px) {
+  @media(max-width: ${breakpoints.tablet}) {
     grid-column: 6 / -2;
   }
-  @media(max-width: 749px) {
+  @media(max-width: ${breakpoints.mobile}) {
     grid-column: 2 / -2;
     padding-inline-end: 0;
     padding-bottom: 6rem;
@@ -91,11 +92,11 @@ const Middle = styled.div`
 
 const RightSide = styled.div`
   grid-column: 10 / -2;
-  @media(max-width: 1024px) {
+  @media(max-width: ${breakpoints.tablet}) {
     padding-top: 4rem;
     grid-column: 2 / 10;
   }
-  @media(max-width: 749px) {
+  @media(max-width: ${breakpoints.mobile}) {
     grid-column: 2 / -2;
     padding-bottom: 4rem;
   }

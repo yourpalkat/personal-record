@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 
 import Button from '../Button/Button';
 import ListItem from './ListItem';
-
-import listStyles from './ListView.module.scss';
+import arrowUp from '../../assets/images/arrow-up-solid.svg';
+import arrowDown from '../../assets/images/arrow-down-solid.svg';
+import { PageSection, TitleBlock } from '../../elements/Layouts';
+import { colors, breakpoints } from '../../elements';
 
 const ListView = () => {
   const user = useSelector(state => state.user);
@@ -67,37 +70,91 @@ const ListView = () => {
     <>
       {selectedRun && navTo === 'edit' && <Redirect to={`/users/${user._id}/runs/${selectedRun._id}/edit`} />}
       {selectedRun && navTo === 'view' && <Redirect to={`/users/${user._id}/runs/${selectedRun._id}`} />}
-      <section className={listStyles.listSection}>
-        <div className={listStyles.titleBlock}>
+      <PageSection>
+        <TitleBlock>
           <h2>{user.firstName}’s workouts &emsp;</h2>
           <Button
             buttonType='link'
             linkPath={`/users/${user._id}/runs/add`}
             buttonStyle='confirm'
             text='Add New Run' />
-        </div>
+        </TitleBlock>
 
-        <ul className={listStyles.listBlock}>
-          <div className={listStyles.listHeader}>
-            <button 
-              className={`${listStyles.headerButton} ${sortedBy === 'dateAsc' ? listStyles.activeUp : null}  ${sortedBy === 'dateDesc' ? listStyles.activeDown : null}`} 
-              type='button' 
-              onClick={() => sortRuns('date')}><h4>Date</h4></button>
-            <button
-              className={`${listStyles.headerButton} ${sortedBy === 'distAsc' ? listStyles.activeUp : null}  ${sortedBy === 'distDesc' ? listStyles.activeDown : null}`}
-              type='button'
-              onClick={() => sortRuns('dist')}><h4>Dist</h4></button>
-            <button
-              className={`${listStyles.headerButton} ${sortedBy === 'typeAsc' ? listStyles.activeUp : null}  ${sortedBy === 'typeDesc' ? listStyles.activeDown : null}`}
-              type='button'
-              onClick={() => sortRuns('type')}><h4>Type</h4></button>
-            <p className={listStyles.headerTotals}>Runs 1&ndash;{displayRuns.length} of {displayRuns.length}</p>
-          </div>
+        <ul>
+          <ListHeader>
+            <HeaderButton type='button' onClick={() => sortRuns('date')}>
+              <h4>
+                Date
+                {sortedBy === 'dateAsc' && <Arrow src={arrowUp} />}
+                {sortedBy === 'dateDesc' && <Arrow src={arrowDown} />}
+              </h4>
+            </HeaderButton>
+            <HeaderButton type='button' onClick={() => sortRuns('dist')}>
+              <h4>
+                Dist
+                {sortedBy === 'distAsc' && <Arrow src={arrowUp} />}
+                {sortedBy === 'distDesc' && <Arrow src={arrowDown} />}
+              </h4>
+            </HeaderButton>
+            <HeaderButton type='button' onClick={() => sortRuns('type')}>
+              <h4>
+                Type
+                {sortedBy === 'typeAsc' && <Arrow src={arrowUp} />}
+                {sortedBy === 'typeDesc' && <Arrow src={arrowDown} />}
+              </h4>
+            </HeaderButton>
+            <HeaderTotals>Runs 1&ndash;{displayRuns.length} of {displayRuns.length}</HeaderTotals>
+          </ListHeader>
           {displayRuns.map((run, i) => <ListItem key={`runItem${i}`} run={run} user={user} setNavTo={setNavTo} />)}
         </ul>
-      </section>
+      </PageSection>
     </>
   );
 };
 
 export default ListView;
+
+const ListHeader = styled.li`
+  display: grid;
+  grid-template-columns: repeat(3, 25%) 1fr 1fr;
+  grid-column-gap: 1fr;
+  border-bottom: 2px solid ${colors.primary};
+`;
+
+const HeaderTotals = styled.p`
+  grid-column: 4 / -1;
+  color: ${colors.white};
+  font-size: 1.4rem;
+  align-self: center;
+  justify-self: end;
+
+  @media(max-width: ${breakpoints.mobile}) {
+    grid-column: 1 / -1;
+    grid-row-start: 1;
+  }
+`;
+
+const HeaderButton = styled.button`
+  appearance: none;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  color: ${colors.white};
+  text-align: left;
+  justify-self: start;
+`;
+
+const Arrow = styled.img`
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-inline-start: 1.8rem;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    margin-inline-start: 1.4rem;
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+`;

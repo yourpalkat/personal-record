@@ -1,6 +1,3 @@
-@import '../../styles/variables.scss';
-@import '../../styles/mixins.scss';
-
 a.ghost, a.primary, a.secondary, a.confirm, a.danger {
   border-radius: 4px;
   color: var(--color-white);
@@ -13,10 +10,6 @@ a.ghost, a.primary, a.secondary, a.confirm, a.danger {
   white-space: nowrap;
   text-decoration: underline;
   text-decoration-color: transparent;
-  @include respond-to('mobile') {
-    font-size: 1.6rem;
-    padding: 1rem 1.6rem;
-  }
 }
 
 .primary {
@@ -81,4 +74,11 @@ a.ghost, a.primary, a.secondary, a.confirm, a.danger {
 .ghost:focus {
   background: rgba(255, 255, 255, 0.1);
   text-decoration-color: var(--color-white);
+}
+
+@media (max-width: 749px) {
+  a.ghost, a.primary, a.secondary, a.confirm, a.danger {
+    font-size: 1.6rem;
+    padding: 1rem 1.6rem;
+  }
 }
