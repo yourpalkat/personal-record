@@ -6,6 +6,7 @@ import { MdLocalHospital } from 'react-icons/md';
 import { IoMdTrophy, IoMdStopwatch } from 'react-icons/io';
 import { FaRunning, FaMountain, FaHourglassHalf } from 'react-icons/fa';
 import { GiFootprint } from 'react-icons/gi';
+import { colors } from '../../elements';
 
 const RunTypeIndicator = ({ runType }) => {
 
@@ -14,35 +15,35 @@ const RunTypeIndicator = ({ runType }) => {
   switch (runType) {
     case 'Easy':
       icon = <FaRunning />;
-      color = '#67E4AA';
+      color = colors.easy;
       break;
     case 'Recovery':
       icon = <MdLocalHospital />;
-      color = '#829FD6';
+      color = colors.recovery;
       break;
     case 'Hills':
       icon = <FaMountain />
-      color = '#ECAB47';
+      color = colors.hills;
       break;
     case 'Tempo':
       icon = <AiOutlineDashboard />;
-      color = '#BE3BCE';
+      color = colors.tempo;
       break;
     case 'Intervals':
       icon = <IoMdStopwatch />;
-      color = '#F37542';
+      color = colors.intervals;
       break;
     case 'Long':
       icon = <FaHourglassHalf />;
-      color = '#6C50D8';
+      color = colors.long;
       break;
     case 'Race':
       icon = <IoMdTrophy />;
-      color = '#C0268B';
+      color = colors.race;
       break;
     default: 
       icon = <GiFootprint />;
-      color = '#4F6970';
+      color = colors.defaultColor;
   }
   
   return (

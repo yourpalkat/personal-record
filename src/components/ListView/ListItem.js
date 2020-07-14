@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { setSelectedRun } from '../../redux/actions';
 
-import colors from '../../elements/colors';
+import { colors, breakpoints } from '../../elements';
 
 const ListItem = ({ run, setNavTo }) => {
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ const ListRow = styled.li`
   grid-column-gap: 1fr;
   border-bottom: 1px solid ${colors.white};
 
-  @media(max-width: 749px) {
+  @media(max-width: ${breakpoints.mobile}) {
     font-size: 1.4rem;
   }
 `;
@@ -76,7 +76,7 @@ const ViewEditButton = styled.button`
   appearance: none;
   background: transparent;
   border: 0;
-  color: var(--color-white);
+  color: ${colors.white};
   cursor: pointer;
   margin: 0;
   padding: 0;
@@ -88,14 +88,14 @@ const ViewEditButton = styled.button`
 
   &:hover,
   &:focus {
-    text-decoration-color: var(--color-white);
+    text-decoration-color: ${colors.white};
   }
   svg {
     width: 1.5rem;
     margin-right: 1.5rem;
   }
 
-  @media (max-width: 749px) {
+  @media (max-width: ${breakpoints.mobile}) {
     svg {
       margin-right: 0;
     }

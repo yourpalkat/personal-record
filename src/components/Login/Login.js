@@ -7,7 +7,8 @@ import { setUser, setRuns } from '../../redux/actions';
 import { setToken } from '../../services/tokenService';
 import { fetchRuns } from '../../services/fetchRuns';
 
-import { GridWrapper } from '../../elements/Layouts';
+import { GridWrapper, SignupForm, SignupHeadlineBlock } from '../../elements/Layouts';
+import { colors } from '../../elements';
 import Button from '../Button/Button';
 import Input from '../FormComponents/Input';
 
@@ -82,11 +83,11 @@ const Login = () => {
         <Redirect to={`users/${user._id}`} />
       ) : (
         <GridWrapper>
-          <LoginForm autoComplete='off' onSubmit={handleSubmit}>
-            <HeadlineBlock>
+          <SignupForm autoComplete='off' onSubmit={handleSubmit}>
+            <SignupHeadlineBlock>
               <h2>Please log in to continue</h2>
               <p>Fields marked with a star are required.</p>
-            </HeadlineBlock>
+            </SignupHeadlineBlock>
             <InputBlock>
               <Input 
                 inputName='email'
@@ -116,7 +117,7 @@ const Login = () => {
               eventHandler={handleSubmit}
               text='Log in' />
             <SignUp>Don't have an account? <Link to='/signup'>Sign up!</Link></SignUp>
-          </LoginForm>
+          </SignupForm>
         </GridWrapper>
       )}
     </>
@@ -125,36 +126,19 @@ const Login = () => {
 
 export default Login;
 
-const LoginForm = styled.form`
-  grid-column: 2 / -2;
-  width: 100%;
-  max-width: 450px;
-  margin: 0 auto 0;
-  padding: 4rem 0;
-`;
-
 const InputBlock = styled.div`
   margin-bottom: 3rem;
 `;
 
-const HeadlineBlock = styled.div`
-  color: var(--color-white);
-  margin-bottom: 4rem;
-
-  p {
-    font-size: 1.8rem;
-  }
-`;
-
 const ErrorMessage = styled.p`
-  color: var(--color-danger);
+  color: ${colors.danger};
   letter-spacing: 0.05rem;
   margin-top: -2rem;
   margin-bottom: 4rem;
 `;
 
 const SignUp = styled.p`
-  color: var(--color-white);
+  color: ${colors.white};
   font-size: 1.8rem;
   margin-top: 5rem;
 `;

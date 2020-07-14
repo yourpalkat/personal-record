@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GridWrapper } from '../../elements/Layouts';
+import { colors, breakpoints } from '../../elements';
 
 const Footer = () => {
   return (
@@ -22,7 +23,7 @@ export default Footer;
 const FooterSection = styled.footer`
   background-color: rgba(0, 0, 0, 0.4);
   padding: 2rem 0;
-  color: var(--color-white);
+  color: ${colors.white};
   font-size: 1.4rem;
   position: sticky;
   bottom: 0;
@@ -32,10 +33,10 @@ const FooterSection = styled.footer`
 
 const FooterLeft = styled.div`
   grid-column: 2 / 8;
-  @media(max-width: 1024px) {
+  @media(max-width: ${breakpoints.tablet}) {
     grid-column: 2 / 6;
   }
-  @media(max-width: 749px) {
+  @media(max-width: ${breakpoints.mobile}) {
     grid-column: 2 / -2;
   }
 `;
@@ -43,10 +44,10 @@ const FooterLeft = styled.div`
 const FooterRight = styled.div`
   grid-column: 8 / -2;
   text-align: right;
-  @media(max-width: 1024px) {
+  @media(max-width: ${breakpoints.tablet}) {
     grid-column: 6 / -2;
   }
-  @media(max-width: 749px) {
+  @media(max-width: ${breakpoints.mobile}) {
     grid-column: 2 / -2;
     text-align: left;
   }

@@ -1,26 +1,27 @@
 import React from 'react';
 import { PieChart, Pie } from 'recharts';
 import styled from 'styled-components';
+import { colors } from '../../elements';
 
-const RunRating = ({ number, heading, type }) => {
-  const colors = {
-    1: '#EE6461',
-    2: '#F37542',
-    3: '#ECAB47',
-    4: '#67E4AA',
-    5: '#50C376'
+const RunRating = ({ number, heading }) => {
+  const ratingColors = {
+    1: colors.danger,
+    2: colors.intervals,
+    3: colors.hills,
+    4: colors.easy,
+    5: colors.confirm
   };
 
   const ratingData = [];
 
   for (let i = 1; i <=5; i++) {
-    ratingData.push({ name: `${i}`, value: 1, fill: i <= number ? colors[i] : "#171F26"})
+    ratingData.push({ name: `${i}`, value: 1, fill: i <= number ? ratingColors[i] : "#171F26"})
   }
 
   return (
     <div>
       <RatingHeader>{heading}</RatingHeader>
-      <RatingContainer ratingcolor={colors[number]}>
+      <RatingContainer ratingcolor={ratingColors[number]}>
         <RatingNumber>{number}</RatingNumber>
         <PieChart width={60} height={60}>
           <Pie data={ratingData} dataKey="value" cx="50%" cy="50%" outerRadius={29} innerRadius={19} stroke="#171F26" startAngle={90} endAngle={450} />
@@ -49,7 +50,7 @@ const RatingContainer = styled.div`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: var(--color-background-dark);
+  background-color: ${colors.backgroundDark};
   --ratingcolor: ${props => props.ratingcolor};
   > * {
     grid-column: 1 / 2;

@@ -7,6 +7,8 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 
 import Button from '../Button/Button';
+import { colors, breakpoints } from '../../elements';
+import { PageSection, TitleBlock } from '../../elements/Layouts';
 
 import 'react-big-calendar/lib/sass/styles.scss';
 import './CalendarEventStyles.scss';
@@ -22,7 +24,7 @@ const CalendarView = () => {
   return (
     <>
       {selectedRun && selectedRun._id && viewRun ? <Redirect to={`/users/${user._id}/runs/${selectedRun._id}`} /> : (
-        <CalendarSection>
+        <PageSection>
           <TitleBlock>
             <h2>{user.firstName}’s workouts &emsp;</h2>
             <Button
@@ -46,7 +48,7 @@ const CalendarView = () => {
               eventPropGetter={(event) => { return { className: `${event.workoutType}Run` } }}
             />
           </CalendarContainer>
-        </CalendarSection>
+        </PageSection>
       )}
     </>
   );
@@ -54,29 +56,12 @@ const CalendarView = () => {
 
 export default CalendarView;
 
-const CalendarSection = styled.section`
-  grid-column: 2 / -2;
-  padding: 4rem 0;
-`;
-
-const TitleBlock = styled.div`
-  color: var(--color-white);
-  margin-bottom: 4rem;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
-  h2 {
-    margin-right: 4rem;
-  }
-`;
-
 const CalendarContainer = styled.div`
-  color: var(--color-white);
+  color: ${colors.white};
   font-family: var(--font-condensed);
   height: 660px;
 
-  @media(max-width: 749px) {
+  @media(max-width: ${breakpoints.mobile}) {
     height: 360px;
   }
 `;

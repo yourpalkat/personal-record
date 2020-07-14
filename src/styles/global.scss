@@ -15,22 +15,6 @@ html {
   text-rendering: optimizeLegibility;
 }
 
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  content: '';
-  clear: both;
-  height: 0;
-}
-
-.show {
-  display: block;
-}
-
-.hide {
-  display: none;
-}
-
 body {
   background: var(--color-background);
   font-size: 1.6rem;
@@ -56,35 +40,6 @@ ol {
   list-style: none;
 }
 
-.visuallyHidden:not(:focus):not(:active) { 
-  position: absolute; 
-  width: 1px; 
-  height: 1px; 
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(00 0 0);
-  overflow: hidden;
-}
-
-.gridWrapper {
-  width: 100%;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 4% repeat(12, 1fr) 4%;
-  grid-column-gap: 1%;
-  @include respond-to('tablet') {
-    grid-template-columns: 4% repeat(8, 1fr) 4%;
-    grid-column-gap: 1%;
-  }
-  @include respond-to('mobile') {
-    grid-template-columns: 3% repeat(6, 1fr) 3%;
-    grid-column-gap: 2%;
-  }
-}
-
 .btn {
   appearance: none;
   border: none;
@@ -101,33 +56,11 @@ ol {
   text-decoration: underline;
   text-decoration-color: transparent;
   transition: background 0.3s ease, color 0.3s ease, text-decoration-color 0.3s ease;
-  @include respond-to('mobile') {
+}
+
+@media (max-width: 749px) {
+  .btn {
     font-size: 1.6rem;
     padding: 1rem 1.6rem;
   }
-}
-
-.runTypeEasy::after {
-  background-color: var(--color-easy);
-}
-.runTypeTempo::after {
-  background-color: var(--color-tempo);
-}
-.runTypeIntervals::after {
-  background-color: var(--color-interval);
-}
-.runTypeHills::after {
-  background-color: var(--color-hill);
-}
-.runTypeRace::after {
-  background-color: var(--color-race);
-}
-.runTypeDefault::after {
-  background-color: var(--color-default);
-}
-.runTypeLong::after {
-  background-color: var(--color-long);
-}
-.runTypeRecovery::after {
-  background-color: var(--color-recovery);
 }

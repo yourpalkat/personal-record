@@ -8,6 +8,7 @@ import { fetchRuns } from '../../services/fetchRuns';
 import styled from 'styled-components';
 
 import { GridWrapper } from '../../elements/Layouts';
+import { colors, breakpoints } from '../../elements';
 import Button from '../Button/Button';
 
 const Hero = () => {
@@ -87,16 +88,16 @@ const HeroSection = styled.section`
 
 const ContentBlock = styled.div`
   grid-column: 7 / -2;
-  color: var(--color-white);
+  color: ${colors.white};
   padding: 2.4rem 2.8rem 3.4rem;
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.45);
 
-  @media(max-width: 1024px) {
+  @media(max-width: ${breakpoints.tablet}) {
     grid-column: 4 / -2;
   }
 
-  @media(max-width: 749px) {
+  @media(max-width: ${breakpoints.mobile}) {
     grid-column: 2 / -2;
   }
 
@@ -112,7 +113,7 @@ const HeroPara = styled.p`
   letter-spacing: -0.05rem;
   margin-bottom: 2rem;
 
-  @media(max-width: 749px) {
+  @media(max-width: ${breakpoints.mobile}) {
     font-size: 1.9rem;
   }
 

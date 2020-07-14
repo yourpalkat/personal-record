@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GridWrapper } from '../../elements/Layouts';
+import { colors, breakpoints } from '../../elements';
 import Button from '../Button/Button';
 
 const Header = ({isLoggedIn, firstName, logOut}) => {
@@ -25,26 +26,26 @@ const Header = ({isLoggedIn, firstName, logOut}) => {
 export default Header;
 
 const HeaderSection = styled.header`
-  background-color: var(--color-background);
-  border-bottom: 3px solid var(--color-primary);
-  color: var(--color-white);
+  background-color: ${colors.background};
+  border-bottom: 3px solid ${colors.primary};
+  color: ${colors.white};
   padding: 1rem 0;
   width: 100%;
 `;
 
 const Logo = styled.h4`
   grid-column: 2 / 6;
-  @media(max-width: 1024px) {
+  @media(max-width: ${breakpoints.tablet}) {
     grid-column: 2 / 4;
   }
-  @media(max-width: 749px) {
+  @media(max-width: ${breakpoints.mobile}) {
     display: none;
   }
 `;
 
 const SmallLogo = styled.h4`
   display: none;
-  @media(max-width: 749px) {
+  @media(max-width: ${breakpoints.mobile}) {
     display: block;
     grid-column: 2 / 3;
   }
@@ -54,10 +55,10 @@ const LoginDiv = styled.div`
   grid-column: 6 / -2;
   text-align: right;
   align-self: center;
-  @media(max-width: 1024px) {
+  @media(max-width: ${breakpoints.tablet}) {
     grid-column: 4 / -2;
   }
-  @media(max-width: 749px) {
+  @media(max-width: ${breakpoints.mobile}) {
     grid-column: 3 / -2;
   }
 `;

@@ -4,12 +4,13 @@ import { useSelector } from 'react-redux';
 
 import Button from '../Button/Button';
 import DailyDistances from '../Charts/DailyDistances';
+import { PageSection, TitleBlock } from '../../elements/Layouts';
 
 const Dashboard = () => {
   const user = useSelector(state => state.user);
 
   return(
-    <DashboardSection>
+    <PageSection>
       <TitleBlock>
         <h2>Dashboard</h2>
         <Button
@@ -22,30 +23,11 @@ const Dashboard = () => {
       <ChartBlock>
         <DailyDistances />
       </ChartBlock>
-    </DashboardSection>
+    </PageSection>
   );
 }
 
 export default Dashboard;
-
-const DashboardSection = styled.section`
-  grid-column: 2 / -2;
-  padding: 4rem 0;
-  color: var(--color-white);
-`;
-
-const TitleBlock = styled.div`
-  margin-bottom: 4rem;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--color-primary);
-
-  h2 {
-    margin-right: 4rem;
-  }
-`;
 
 const ChartBlock = styled.div`
   margin-top: 2rem;
