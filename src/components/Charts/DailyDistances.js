@@ -58,7 +58,7 @@ const DailyDistances = () => {
           width={window.innerWidth > 375 ? 480 : 325}
           height={300}
           data={sortedRuns}
-          margin={{ top: 0, right: 30, left: -40, bottom: 5, }}
+          margin={{ top: 0, right: 30, left: -32, bottom: 5, }}
         >
           <XAxis dataKey="name" stroke={colors.white} fontFamily={'Roboto Condensed, sans-serif'} />
           <YAxis stroke={colors.white} fontFamily={'Roboto Condensed, sans-serif'} />

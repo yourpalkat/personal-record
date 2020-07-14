@@ -27,6 +27,7 @@ const PlannedRuns = () => {
       <h3>Upcoming planned runs</h3>
       <h4>Next 7 days</h4>
       <ListBox>
+        { sortedRuns.length === 0 && <li><p>Nothing planned for the next week.</p></li>}
         { sortedRuns.map((run, i) => 
           <li key={`runItem${i}`}>
             <p>
