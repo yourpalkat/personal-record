@@ -10,12 +10,22 @@ import DateTime from './DateTime';
 import formStyles from './AddEditForm.module.scss';
 import './DateTime.scss';
 
-const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange, handleTimeChange, handleTreadmillChange, handleWeatherChange, distance, title, elapsedHours, elapsedMinutes, elapsedSeconds, runStart, workoutType, notes, tempInC, weather, treadmill, effort, rating, completed, racePosition, raceFieldSize, raceAgePosition, raceAgeFieldSize, setRedirect }) => {
+const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange, handleTimeChange, handleTreadmillChange, handleCompletedChange, handleWeatherChange, distance, title, elapsedHours, elapsedMinutes, elapsedSeconds, runStart, workoutType, notes, tempInC, weather, treadmill, effort, rating, completed, racePosition, raceFieldSize, raceAgePosition, raceAgeFieldSize, setRedirect }) => {
   return (
     <form autoComplete='off' onSubmit={handleSubmit} className={formStyles.addEditForm}>
       <div className={formStyles.headlineBlock}>
         <h2>{formTitle}</h2>
         <p>Fields marked with a star <span className={formStyles.star}>*</span> are required</p>
+      </div>
+
+      <div className={formStyles.completedBlock}>
+        <Checkbox
+          labelText='Has this run been completed?'
+          name='completed'
+          value='completed'
+          isSelected={completed}
+          changeHandler={handleCompletedChange} />
+        { completed === false && <p>This is a planned workout. Not all data can be entered unless it is marked as completed.</p>}
       </div>
 
       <div className={`${formStyles.inputGroup} ${formStyles.distanceBlock}`} role='group' aria-labelledby='distlabel'>
@@ -32,45 +42,47 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           changeHandler={handleChange} />
       </div>
 
-      <div className={`${formStyles.inputGroup} ${formStyles.durationBlock}`} role='group' aria-labelledby='durlabel'>
-        <p className={formStyles.legend} id='durlabel'>Run duration:</p>
-        <Input
-          inputName='elapsedHours'
-          inputType='number'
-          inputValue={elapsedHours}
-          labelText='hour'
-          inputPlaceholder='0'
-          isRequired
-          min={0}
-          max={12}
-          step={1}
-          updateErrorStatus={updateErrorStatus}
-          changeHandler={handleChange} />
-        <Input
-          inputName='elapsedMinutes'
-          inputType='number'
-          inputValue={elapsedMinutes}
-          labelText='mins'
-          inputPlaceholder='0'
-          isRequired
-          min={0}
-          max={59}
-          step={1}
-          updateErrorStatus={updateErrorStatus}
-          changeHandler={handleChange} />
-        <Input
-          inputName='elapsedSeconds'
-          inputType='number'
-          inputValue={elapsedSeconds}
-          labelText='secs'
-          inputPlaceholder='0'
-          isRequired
-          min={0}
-          max={59}
-          step={1}
-          updateErrorStatus={updateErrorStatus}
-          changeHandler={handleChange} />
-      </div>
+      { completed === true && (
+        <div className={`${formStyles.inputGroup} ${formStyles.durationBlock}`} role='group' aria-labelledby='durlabel'>
+          <p className={formStyles.legend} id='durlabel'>Run duration:</p>
+          <Input
+            inputName='elapsedHours'
+            inputType='number'
+            inputValue={elapsedHours}
+            labelText='hour'
+            inputPlaceholder='0'
+            isRequired
+            min={0}
+            max={12}
+            step={1}
+            updateErrorStatus={updateErrorStatus}
+            changeHandler={handleChange} />
+          <Input
+            inputName='elapsedMinutes'
+            inputType='number'
+            inputValue={elapsedMinutes}
+            labelText='mins'
+            inputPlaceholder='0'
+            isRequired
+            min={0}
+            max={59}
+            step={1}
+            updateErrorStatus={updateErrorStatus}
+            changeHandler={handleChange} />
+          <Input
+            inputName='elapsedSeconds'
+            inputType='number'
+            inputValue={elapsedSeconds}
+            labelText='secs'
+            inputPlaceholder='0'
+            isRequired
+            min={0}
+            max={59}
+            step={1}
+            updateErrorStatus={updateErrorStatus}
+            changeHandler={handleChange} />
+        </div>
+      )}
 
       <div className={formStyles.runTypeBlock}>
         <Select
@@ -82,7 +94,7 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           changeHandler={handleChange} />
       </div>
 
-      {workoutType === 'Race' && (
+      {workoutType === 'Race' && completed === true && (
         <div className={`${formStyles.inputGroup} ${formStyles.raceBlock}`} role='group' aria-labelledby='racelabel'>
           <p className={formStyles.legend} id='racelabel'>Race finish position:</p>
           <div>
@@ -146,60 +158,68 @@ const AddEditForm = ({ handleSubmit, formTitle, updateErrorStatus, handleChange,
           labelText='Date & time:'
           changeHandler={handleTimeChange} />
       </div>
-
-      <div className={formStyles.effortBlock}>
-        <Select
-          inputName='effort'
-          inputValue={effort}
-          labelText='Effort (5 = max):'
-          optionsArray={['', '5', '4', '3', '2', '1']}
-          updateErrorStatus={updateErrorStatus}
-          changeHandler={handleChange} />
-      </div>
-      <div className={formStyles.ratingBlock}>
-        <Select
-          inputName='rating'
-          inputValue={rating}
-          labelText='Rating (5 = best):'
-          optionsArray={['', '5', '4', '3', '2', '1']}
-          updateErrorStatus={updateErrorStatus}
-          changeHandler={handleChange} />
-      </div>
-
-      <div className={formStyles.treadmillBlock}>
-        <Checkbox
-          labelText='Treadmill?'
-          name='treadmill'
-          value='treadmill'
-          isSelected={treadmill}
-          changeHandler={handleTreadmillChange} />
-      </div>
-
-      <div className={formStyles.weatherBlock}>
-        <Input
-          inputName='tempInC'
-          inputType='number'
-          inputValue={tempInC}
-          labelText='Temp (°C):'
-          inputPlaceholder='10'
-          step={1}
-          updateErrorStatus={updateErrorStatus}
-          changeHandler={handleChange} />
-        
-        <div className={formStyles.weather} role='group' aria-labelledby='weather'>
-          <p className={formStyles.legend} id='weather'>Weather:</p>
-          {weather.map(condition => 
-            <div className={formStyles.weatherCheckbox} key={condition.value}>
-              <Checkbox 
-                labelText={condition.value} 
-                name='weather' 
-                value={condition.value} 
-                isSelected={condition.isSelected} 
-                changeHandler={handleWeatherChange} />
-            </div>
-          )}
+      
+      { completed === true && ( 
+        <div className={formStyles.effortBlock}>
+          <Select
+            inputName='effort'
+            inputValue={effort}
+            labelText='Effort (5 = max):'
+            optionsArray={['', '5', '4', '3', '2', '1']}
+            updateErrorStatus={updateErrorStatus}
+            changeHandler={handleChange} />
         </div>
-      </div>
+      )}
+      { completed === true && (
+        <div className={formStyles.ratingBlock}>
+          <Select
+            inputName='rating'
+            inputValue={rating}
+            labelText='Rating (5 = best):'
+            optionsArray={['', '5', '4', '3', '2', '1']}
+            updateErrorStatus={updateErrorStatus}
+            changeHandler={handleChange} />
+        </div>
+      )}
+
+      { completed === true && (
+        <div className={formStyles.treadmillBlock}>
+          <Checkbox
+            labelText='Treadmill?'
+            name='treadmill'
+            value='treadmill'
+            isSelected={treadmill}
+            changeHandler={handleTreadmillChange} />
+        </div>
+      )}
+
+      { completed === true && (
+        <div className={formStyles.weatherBlock}>
+          <Input
+            inputName='tempInC'
+            inputType='number'
+            inputValue={tempInC}
+            labelText='Temp (°C):'
+            inputPlaceholder='10'
+            step={1}
+            updateErrorStatus={updateErrorStatus}
+            changeHandler={handleChange} />
+          
+          <div className={formStyles.weather} role='group' aria-labelledby='weather'>
+            <p className={formStyles.legend} id='weather'>Weather:</p>
+            {weather.map(condition => 
+              <div className={formStyles.weatherCheckbox} key={condition.value}>
+                <Checkbox 
+                  labelText={condition.value} 
+                  name='weather' 
+                  value={condition.value} 
+                  isSelected={condition.isSelected} 
+                  changeHandler={handleWeatherChange} />
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       <div className={formStyles.notesBlock}>
         <Textarea

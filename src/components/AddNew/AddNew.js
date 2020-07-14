@@ -52,14 +52,22 @@ class AddNew extends Component {
   }
 
   handleTimeChange = date => {
+    if (date >= new Date()) this.setState({ completed: false });
     this.setState({ runStart: date });
   }
 
   handleTreadmillChange = () => {
-    const newValue = !this.state.treadmill;
       this.setState({
-        treadmill: newValue
+        treadmill: !this.state.treadmill
       });
+  }
+
+  handleCompletedChange = () => {
+    if(this.state.runStart <= new Date()) {
+      this.setState({
+        completed: !this.state.completed
+      });
+    }
   }
 
   handleWeatherChange = (e) => {
@@ -110,6 +118,7 @@ class AddNew extends Component {
             userId: this.props.user._id,
             workoutType: this.state.workoutType,
             notes: this.state.notes,
+            completed: this.state.completed,
             weather: weather,
             tempInC: this.state.tempInC,
             effort: this.state.effort,
@@ -143,9 +152,11 @@ class AddNew extends Component {
             handleSubmit={this.handleSubmit}
             handleTimeChange={this.handleTimeChange}
             handleTreadmillChange={this.handleTreadmillChange}
+            handleCompletedChange={this.handleCompletedChange}
             handleWeatherChange={this.handleWeatherChange}
             updateErrorStatus={this.updateErrorStatus} 
             distance={this.state.distance}
+            completed={this.state.completed}
             title={this.state.title}
             notes={this.state.notes}
             effort={this.state.effort}

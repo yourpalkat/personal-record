@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import Button from '../Button/Button';
 import DailyDistances from '../Charts/DailyDistances';
+import PlannedRuns from '../Charts/PlannedRuns';
 import { PageSection, TitleBlock } from '../../elements/Layouts';
 
 const Dashboard = () => {
@@ -22,6 +23,7 @@ const Dashboard = () => {
 
       <ChartBlock>
         <DailyDistances />
+        <PlannedRuns />
       </ChartBlock>
     </PageSection>
   );

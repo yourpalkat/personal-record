@@ -45,7 +45,10 @@ const CalendarView = () => {
                 dispatch(setSelectedRun(event));
                 setViewRun(true);
               }}
-              eventPropGetter={(event) => { return { className: `${event.workoutType}Run` } }}
+              eventPropGetter={(event) => { 
+                if (event.completed === false) return { className: `${event.workoutType}RunPlanned` } 
+                return { className: `${event.workoutType}Run` } 
+              }}
             />
           </CalendarContainer>
         </PageSection>

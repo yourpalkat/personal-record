@@ -60,14 +60,19 @@ const RunDetail = () => {
 
           <DateContainer>
             <AiOutlineCalendar />
-            <h3><Moment date={displayRun.start} format='D MMMM YYYY, h:mm a' /></h3>
+            {displayRun.completed ? (
+              <h3><Moment date={displayRun.start} format='D MMMM YYYY, h:mm a' /></h3>
+            ) : ( 
+              <h3><Moment date={displayRun.start} format='D MMMM YYYY' /></h3>
+            )}
+
           </DateContainer>
 
           <WeatherContainer>
-            {displayRun.tempInC && (
+            {displayRun.tempInC && displayRun.completed && (
               <p>{displayRun.tempInC}°C</p>
             )}
-            {displayRun.weather.length > 0 && (
+            {displayRun.weather.length > 0 && displayRun.completed && (
               <WeatherList>
                 {displayRun.weather.map(condition => (
                   <li key={`weather-${condition}`} title={condition}>
@@ -76,6 +81,7 @@ const RunDetail = () => {
                 ))}
               </WeatherList>
             )}
+            {displayRun.completed === false && <p>This is a planned run.</p>}
           </WeatherContainer>
 
           <DistanceContainer>
@@ -84,24 +90,27 @@ const RunDetail = () => {
             <Units>km</Units>
           </DistanceContainer>
 
-          <DurationContainer>
-            <RunDetailSubhead>Duration:</RunDetailSubhead>
-            <BigNumbers>{displayRun.elapsedTime.format('h:mm:ss')}</BigNumbers>
-            <Units>hh:mm:ss</Units>
-          </DurationContainer>
-
-          <PaceContainer>
-            <RunDetailSubhead>Pace:</RunDetailSubhead>
-            <BigNumbers>{paceMinutes}:{paceSeconds < 10 ? `0${paceSeconds}` : paceSeconds}</BigNumbers>
-            <Units>min/km</Units>
-          </PaceContainer>
+          { displayRun.completed && (
+            <DurationContainer>
+              <RunDetailSubhead>Duration:</RunDetailSubhead>
+              <BigNumbers>{displayRun.elapsedTime.format('h:mm:ss')}</BigNumbers>
+              <Units>hh:mm:ss</Units>
+            </DurationContainer>
+          )}
+          { displayRun.completed && (
+            <PaceContainer>
+              <RunDetailSubhead>Pace:</RunDetailSubhead>
+              <BigNumbers>{paceMinutes}:{paceSeconds < 10 ? `0${paceSeconds}` : paceSeconds}</BigNumbers>
+              <Units>min/km</Units>
+            </PaceContainer>
+          )}
 
           <WorkoutTypeContainer>
             <RunDetailSubhead>Workout type:</RunDetailSubhead>
             <RunType runType={displayRun.workoutType} />
           </WorkoutTypeContainer>
 
-          {displayRun.workoutType === 'Race' && (
+          {displayRun.workoutType === 'Race' && displayRun.completed && (
             <RaceInfoContainer>
               {displayRun.racePosition && (
                 <div>
@@ -121,14 +130,14 @@ const RunDetail = () => {
             </RaceInfoContainer>
           )}
           
-          {displayRun.effort || displayRun.rating ? (
+          {(displayRun.effort && displayRun.completed) || (displayRun.rating && displayRun.completed) ? (
             <EffortRatingContainer>
               {displayRun.effort && <RunRating number={displayRun.effort} heading='effort' />}
               {displayRun.rating && <RunRating number={displayRun.rating} heading='rating' />}
             </EffortRatingContainer>
           ) : ( null )}
 
-          {displayRun.treadmill && <TreadmillContainer><p>Treadmill run</p></TreadmillContainer>}
+          {displayRun.treadmill && displayRun.completed && <TreadmillContainer><p>Treadmill run</p></TreadmillContainer>}
 
           {displayRun.notes && (
             <NotesContainer>
