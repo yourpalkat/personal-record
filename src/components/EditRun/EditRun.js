@@ -41,6 +41,7 @@ class EditRun extends Component {
       elapsedSeconds,
       workoutType: this.props.run.workoutType,
       notes: this.props.run.notes,
+      completed: this.props.run.completed,
       tempInC: this.props.run.tempInC,
       weather: weatherFromDb,
       treadmill: this.props.run.treadmill,
@@ -76,7 +77,16 @@ class EditRun extends Component {
   }
 
   handleTimeChange = date => {
+    if (date >= new Date()) this.setState({ completed: false });
     this.setState({ runStart: date });
+  }
+
+  handleCompletedChange = () => {
+    if (this.state.runStart <= new Date()) {
+      this.setState({
+        completed: !this.state.completed
+      });
+    }
   }
 
   handleTreadmillChange = () => {
@@ -121,6 +131,7 @@ class EditRun extends Component {
         userId: this.state.userId,
         workoutType: this.state.workoutType,
         notes: this.state.notes,
+        completed: this.state.completed,
         weather: weather,
         tempInC: this.state.tempInC,
         effort: this.state.effort,
@@ -148,6 +159,7 @@ class EditRun extends Component {
             userId: newRun.userId,
             workoutType: newRun.workoutType,
             notes: newRun.notes,
+            completed: newRun.completed,
             weather: newRun.weather,
             tempInC: newRun.tempInC,
             effort: newRun.effort,
@@ -181,12 +193,14 @@ class EditRun extends Component {
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             handleTimeChange={this.handleTimeChange}
+            handleCompletedChange={this.handleCompletedChange}
             handleTreadmillChange={this.handleTreadmillChange}
             handleWeatherChange={this.handleWeatherChange}
             updateErrorStatus={this.updateErrorStatus}
             distance={this.state.distance}
             title={this.state.title}
             notes={this.state.notes}
+            completed={this.state.completed}
             effort={this.state.effort}
             rating={this.state.rating}
             treadmill={this.state.treadmill}

@@ -2,35 +2,76 @@
   background-color: var(--color-easy);
   color: var(--color-background);
 }
+.EasyRunPlanned {
+  background-color: var(--color-background);
+  border: 2px solid var(--color-easy);
+  color: var(--color-white);
+}
 
 .DefaultRun {
   background-color: var(--color-default);
-} 
+}
+.DefaultRunPlanned {
+  background-color: var(--color-background);
+  border: 2px solid var(--color-default);
+  color: var(--color-white);
+}
 
 .RecoveryRun {
   background-color: var(--color-recovery);
   color: var(--color-background);
-} 
+}
+.RecoveryRunPlanned {
+  background-color: var(--color-background);
+  border: 2px solid var(--color-recovery);
+  color: var(--color-white);
+}
 
 .HillsRun {
   background-color: var(--color-hill);
   color: var(--color-background);
 }
+.HillsRunPlanned {
+  background-color: var(--color-background);
+  border: 2px solid var(--color-hill);
+  color: var(--color-white);
+}
 
 .TempoRun {
   background-color: var(--color-tempo);
+}
+.TempoRunPlanned {
+  background-color: var(--color-background);
+  border: 2px solid var(--color-tempo);
+  color: var(--color-white);
 }
 
 .IntervalsRun {
   background-color: var(--color-interval);
   color: var(--color-background);
 }
+.IntervalsRunPlanned {
+  background-color: var(--color-background);
+  border: 2px solid var(--color-interval);
+  color: var(--color-white);
+}
+
 .LongRun {
   background-color: var(--color-long);
+}
+.LongRunPlanned {
+  background-color: var(--color-background);
+  border: 2px solid var(--color-long);
+  color: var(--color-white);
 }
 
 .RaceRun {
   background-color: var(--color-race);
+}
+.RaceRunPlanned {
+  background-color: var(--color-background);
+  border: 2px solid var(--color-race);
+  color: var(--color-white);
 }
 
 .rbc-off-range-bg {

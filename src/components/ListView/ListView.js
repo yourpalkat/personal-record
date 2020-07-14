@@ -28,7 +28,8 @@ const ListView = () => {
   const byTypeAsc = (a, b) => a.workoutType < b.workoutType;
 
   useEffect(() => {
-    const sortedRuns = userRuns.sort(byDateDesc);
+    const filteredRuns = userRuns.filter(run => run.completed === true);
+    const sortedRuns = filteredRuns.sort(byDateDesc);
     setDisplayRuns(sortedRuns);
   }, [userRuns]);
 

@@ -27,6 +27,11 @@
   color: var(--color-primary);
 }
 
+.completedBlock {
+  grid-column: 1 / -1;
+  color: var(--color-white);
+}
+
 .addEditForm .inputgroup {
   padding: 0;
   display: flex;
@@ -62,7 +67,7 @@
 }
 .raceBlock {
   grid-column: 4 / -1;
-  grid-row: 3 / 4;
+  grid-row: 4 / 5;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -79,7 +84,7 @@
 }
 .titleBlock {
   grid-column: 1 / 4;
-  grid-row: 3 / 4;
+  grid-row: 4 / 5;
 }
 .dateTimeBlock {
   grid-column: 1 / 4;
