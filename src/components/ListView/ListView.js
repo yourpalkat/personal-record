@@ -22,10 +22,16 @@ const ListView = () => {
   const byDateAsc = (a, b) => moment(a.start).unix() - moment(b.start).unix();
   const byDistDesc = (a, b) => b.distance - a.distance;
   const byDistAsc = (a, b) => a.distance - b.distance;
-  const byTypeDesc = (a, b) => b.workoutType < a.workoutType;
-  // This is broken in Chrome: sort has to return 0, 1 or -1. Which is technically correct
-  // As this is written, it only works in Firefox bc it figures what we mean by truthy values
-  const byTypeAsc = (a, b) => a.workoutType < b.workoutType;
+  const byTypeDesc = (a, b) => {
+    if(b.workoutType < a.workoutType) return -1;
+    if(b.workoutType > a.workoutType) return 1;
+    return 0;
+  };
+  const byTypeAsc = (a, b) => {
+    if (a.workoutType < b.workoutType) return -1;
+    if (a.workoutType > b.workoutType) return 1;
+    return 0;
+  };
 
   useEffect(() => {
     const filteredRuns = userRuns.filter(run => run.completed === true);

@@ -27,7 +27,7 @@ const UserHome = () => {
       <Navigation>
         <NavUl>
           <li>
-            <NavLink to={url}><FiHome /><span>Dashboard</span></NavLink>
+            <NavLink exact to={url}><FiHome /><span>Dashboard</span></NavLink>
           </li>
           <li>
             <NavLink to={`${url}/calendar`}><FiCalendar /><span>Calendar</span></NavLink>

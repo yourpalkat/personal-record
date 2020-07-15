@@ -42,7 +42,9 @@ const DailyDistances = () => {
     const index = graphArray.findIndex(run => run.name === name);
     const runType = filteredRuns[i].workoutType.toLowerCase();
     const runDistance = filteredRuns[i].distance;
-    graphArray[index][runType] = graphArray[index][runType] + runDistance;
+    if (index > -1) {
+      graphArray[index][runType] = graphArray[index][runType] + runDistance;
+    }
   }
 
   // reverse our graphArray so it's reverse-chronological
