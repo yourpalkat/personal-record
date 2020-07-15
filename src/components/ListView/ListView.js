@@ -6,8 +6,6 @@ import styled from 'styled-components';
 
 import Button from '../Button/Button';
 import ListItem from './ListItem';
-import arrowUp from '../../assets/images/arrow-up-solid.svg';
-import arrowDown from '../../assets/images/arrow-down-solid.svg';
 import { PageSection, TitleBlock } from '../../elements/Layouts';
 import { colors, breakpoints } from '../../elements';
 
@@ -24,8 +22,16 @@ const ListView = () => {
   const byDateAsc = (a, b) => moment(a.start).unix() - moment(b.start).unix();
   const byDistDesc = (a, b) => b.distance - a.distance;
   const byDistAsc = (a, b) => a.distance - b.distance;
-  const byTypeDesc = (a, b) => b.workoutType < a.workoutType;
-  const byTypeAsc = (a, b) => a.workoutType < b.workoutType;
+  const byTypeDesc = (a, b) => {
+    if(b.workoutType < a.workoutType) return -1;
+    if(b.workoutType > a.workoutType) return 1;
+    return 0;
+  };
+  const byTypeAsc = (a, b) => {
+    if (a.workoutType < b.workoutType) return -1;
+    if (a.workoutType > b.workoutType) return 1;
+    return 0;
+  };
 
   useEffect(() => {
     const filteredRuns = userRuns.filter(run => run.completed === true);
@@ -86,22 +92,22 @@ const ListView = () => {
             <HeaderButton type='button' onClick={() => sortRuns('date')}>
               <h4>
                 Date
-                {sortedBy === 'dateAsc' && <Arrow src={arrowUp} />}
-                {sortedBy === 'dateDesc' && <Arrow src={arrowDown} />}
+                {sortedBy === 'dateAsc' && <ArrowUp />}
+                {sortedBy === 'dateDesc' && <ArrowDown />}
               </h4>
             </HeaderButton>
             <HeaderButton type='button' onClick={() => sortRuns('dist')}>
               <h4>
                 Dist
-                {sortedBy === 'distAsc' && <Arrow src={arrowUp} />}
-                {sortedBy === 'distDesc' && <Arrow src={arrowDown} />}
+                {sortedBy === 'distAsc' && <ArrowUp />}
+                {sortedBy === 'distDesc' && <ArrowDown />}
               </h4>
             </HeaderButton>
             <HeaderButton type='button' onClick={() => sortRuns('type')}>
               <h4>
                 Type
-                {sortedBy === 'typeAsc' && <Arrow src={arrowUp} />}
-                {sortedBy === 'typeDesc' && <Arrow src={arrowDown} />}
+                {sortedBy === 'typeAsc' && <ArrowUp />}
+                {sortedBy === 'typeDesc' && <ArrowDown />}
               </h4>
             </HeaderButton>
             <HeaderTotals>Runs 1&ndash;{displayRuns.length} of {displayRuns.length}</HeaderTotals>
@@ -147,15 +153,26 @@ const HeaderButton = styled.button`
   justify-self: start;
 `;
 
-const Arrow = styled.img`
+const Arrow = styled.div`
   display: inline-block;
   width: 1.6rem;
   height: 1.6rem;
   margin-inline-start: 1.8rem;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 
   @media (max-width: ${breakpoints.mobile}) {
     margin-inline-start: 1.4rem;
     width: 1.3rem;
     height: 1.3rem;
   }
+`;
+
+const ArrowUp = styled(Arrow)`
+  background-image: url('../../assets/arrowUpSolid.svg');
+`;
+
+const ArrowDown = styled(Arrow)`
+  background-image: url('../../assets/arrowDownSolid.svg');
 `;

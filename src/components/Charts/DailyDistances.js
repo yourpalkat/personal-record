@@ -42,7 +42,9 @@ const DailyDistances = () => {
     const index = graphArray.findIndex(run => run.name === name);
     const runType = filteredRuns[i].workoutType.toLowerCase();
     const runDistance = filteredRuns[i].distance;
-    graphArray[index][runType] = graphArray[index][runType] + runDistance;
+    if (index > -1) {
+      graphArray[index][runType] = graphArray[index][runType] + runDistance;
+    }
   }
 
   // reverse our graphArray so it's reverse-chronological
@@ -58,7 +60,7 @@ const DailyDistances = () => {
           width={window.innerWidth > 375 ? 480 : 325}
           height={300}
           data={sortedRuns}
-          margin={{ top: 0, right: 30, left: -40, bottom: 5, }}
+          margin={{ top: 0, right: 30, left: -32, bottom: 5, }}
         >
           <XAxis dataKey="name" stroke={colors.white} fontFamily={'Roboto Condensed, sans-serif'} />
           <YAxis stroke={colors.white} fontFamily={'Roboto Condensed, sans-serif'} />
