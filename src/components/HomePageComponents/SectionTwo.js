@@ -32,7 +32,7 @@ const SectionTwo = () => {
         </Middle>
         <RightSide>
           <h2>What’s new?</h2>
-          <p>July 14, 2020: new 'dashboard' page showing a graph of your mileage over the last two weeks. July 10, 2020: new data types added (weather, workout rating and effort) and redesigned run details page.</p>
+          <p>July 14, 2020: new 'dashboard' page showing a graph of your mileage over the last two weeks; also, you can enter planned future runs! July 10, 2020: new data types added and redesigned run details page.</p>
         </RightSide>
       </GridWrapper>
     </SecondSection>
