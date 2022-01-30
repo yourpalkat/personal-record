@@ -1,6 +1,9 @@
 # Personal Record
 A web application to log running workouts.
 
+## Note:
+This was created as part of Juno College's "Full Stack Masterclass", and the front-end was thrown together at the last minute for demo purposes – there's a newer version! V2 has been completely re-written to use Apollo GraphQL on the backend, and has a much more robust front end. It's here: https://github.com/derekmurr/personal-record-v2
+
 ## Description
 A simple log for anyone to sign up and keep a log of their running workouts and track their mileage. Back-end: API via Express/Node/MongoDB/Mongoose. Front-end: React/Redux/styled-components.
 
